@@ -24,7 +24,7 @@ export default function AuthGuard({ children }) {
         profile.filiere.toLowerCase().includes('compl'));
 
     useEffect(() => {
-        if (loading || !isRegisteredUser || profile?.verifiedEmail !== false) {
+        if (loading || !isRegisteredUser || profile?.verifiedEmail === true) {
             setShowEmailVerificationPrompt(false);
             return;
         }
@@ -58,7 +58,7 @@ export default function AuthGuard({ children }) {
                     profile={profile}
                 />
             )}
-            {isRegisteredUser && profile?.verifiedEmail === false && (
+            {isRegisteredUser && profile?.verifiedEmail !== true && (
                 <EmailVerificationPrompt
                     isOpen={showEmailVerificationPrompt}
                     onOpenChange={setShowEmailVerificationPrompt}
