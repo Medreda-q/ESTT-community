@@ -25,6 +25,7 @@ import {
     Dialog,
     DialogContent,
     DialogDescription,
+    DialogFooter,
     DialogHeader,
     DialogTitle,
 } from '@/components/ui/dialog';
@@ -57,6 +58,11 @@ export default function ContributePage() {
     const [uploadProgress, setUploadProgress] = useState(0);
     const dropRef = useRef(null);
     const [professors, setProfessors] = useState([]);
+
+    // "Autre" professor popup state
+    const [isProfAutreOpen, setIsProfAutreOpen] = useState(false);
+    const [customProfName, setCustomProfName] = useState('');
+    const [profAutreError, setProfAutreError] = useState('');
 
     // AI Autofill State
     const [isAiModalOpen, setIsAiModalOpen] = useState(false);
@@ -132,6 +138,32 @@ export default function ContributePage() {
             ...prev,
             [name]: value
         }));
+    };
+
+    const professorNames = professors.map(p => typeof p === 'string' ? p : p.name);
+
+    const isCustomProf = Boolean(formData.professor)
+        && formData.professor !== 'non-specifie'
+        && !professorNames.includes(formData.professor);
+
+    const openProfAutrePopup = () => {
+        setCustomProfName(isCustomProf ? formData.professor : '');
+        setProfAutreError('');
+        setIsProfAutreOpen(true);
+    };
+
+    const handleProfAutreSubmit = (e) => {
+        e.preventDefault();
+        const name = customProfName.trim();
+        if (!name) {
+            setProfAutreError('Veuillez saisir le nom du professeur.');
+            return;
+        }
+        const existing = professorNames.find(p => p.toLowerCase() === name.toLowerCase());
+        handleChange('professor', existing || name);
+        setIsProfAutreOpen(false);
+        setCustomProfName('');
+        setProfAutreError('');
     };
 
     const applyFile = async (selectedFile) => {
@@ -578,7 +610,14 @@ export default function ContributePage() {
                                     <Label htmlFor="professor">Professeur (Optionnel)</Label>
                                     <Select
                                         value={formData.professor}
-                                        onValueChange={(v) => handleChange('professor', v)}
+                                        onValueChange={(v) => {
+                                            if (v === '__autre__') {
+                                                openProfAutrePopup();
+                                                return;
+                                            }
+                                            if (v === '') return;
+                                            handleChange('professor', v);
+                                        }}
                                     >
                                         <SelectTrigger id="professor">
                                             <SelectValue placeholder="Sélectionnez un professeur" />
@@ -593,6 +632,12 @@ export default function ContributePage() {
                                                     </SelectItem>
                                                 );
                                             })}
+                                            {isCustomProf && (
+                                                <SelectItem value={formData.professor}>
+                                                    {formData.professor}
+                                                </SelectItem>
+                                            )}
+                                            <SelectItem value="__autre__">Autre</SelectItem>
                                         </SelectContent>
                                     </Select>
                                 </div>
@@ -868,6 +913,51 @@ export default function ContributePage() {
                     </CardContent>
                 </Card>
             </section>
+
+            {/* "Autre" professor popup */}
+            <Dialog
+                open={isProfAutreOpen}
+                onOpenChange={(open) => {
+                    setIsProfAutreOpen(open);
+                    if (!open) {
+                        setProfAutreError('');
+                        setCustomProfName('');
+                    }
+                }}
+            >
+                <DialogContent overlayClassName="backdrop-blur-sm" className="max-w-md">
+                    <DialogHeader>
+                        <DialogTitle>Autre professeur</DialogTitle>
+                        <DialogDescription>
+                            Saisissez le nom du professeur. Il apparaîtra sur la ressource comme les autres noms de la liste.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <form onSubmit={handleProfAutreSubmit} className="space-y-4">
+                        <div className="space-y-2">
+                            <Label htmlFor="custom-prof">Nom du professeur *</Label>
+                            <Input
+                                id="custom-prof"
+                                autoFocus
+                                value={customProfName}
+                                onChange={(e) => {
+                                    setCustomProfName(e.target.value);
+                                    if (profAutreError) setProfAutreError('');
+                                }}
+                                placeholder="Ex: Pr. Aboubakr EL HAMMOUMI"
+                            />
+                            {profAutreError && (
+                                <p className="text-xs text-destructive">{profAutreError}</p>
+                            )}
+                        </div>
+                        <DialogFooter>
+                            <Button type="button" variant="outline" onClick={() => setIsProfAutreOpen(false)}>
+                                Annuler
+                            </Button>
+                            <Button type="submit">Valider</Button>
+                        </DialogFooter>
+                    </form>
+                </DialogContent>
+            </Dialog>
 
             {/* AI Autofill Modal */}
             <Dialog open={isAiModalOpen} onOpenChange={setIsAiModalOpen}>

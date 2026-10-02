@@ -27,6 +27,7 @@ const RESOURCE_CATEGORIES = [
 let _savedField = '';
 let _savedSemester = '';
 let _savedModule = '';
+let _savedProfessor = '';
 
 export default function BrowsePage() {
     const { user } = useAuth();
@@ -35,6 +36,7 @@ export default function BrowsePage() {
     const [selectedField, setSelectedField] = useState(_savedField);
     const [selectedSemester, setSelectedSemester] = useState(_savedSemester);
     const [selectedModule, setSelectedModule] = useState(_savedModule);
+    const [selectedProfessor, setSelectedProfessor] = useState(_savedProfessor);
     const [resources, setResources] = useState([]);
     const [ads, setAds] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -43,10 +45,31 @@ export default function BrowsePage() {
 
     useEffect(() => {
         const params = new URLSearchParams(window.location.search);
-        const fieldParam = params.get('field');
-        if (fieldParam && staticDb.fields.some(f => f.id === fieldParam)) {
-            setSelectedField(fieldParam);
-        }
+        const fParam = params.get('field');
+        const sParam = params.get('semester');
+        const mParam = params.get('module');
+
+        const field = [fParam, _savedField].find((id) => id && staticDb.fields.some(f => f.id === id)) || '';
+
+        const semesterList = field
+            ? (staticDb.fields.find(f => f.id === field)?.semesters || staticDb.semesters)
+            : [];
+        const semester = [sParam, _savedSemester].find((id) => id && semesterList.includes(id)) || '';
+
+        const moduleList = field && semester ? (staticDb.modules[`${field}-${semester}`] || []) : [];
+        const moduleId = [mParam, _savedModule].find((id) => id && moduleList.some(m => m.id === id)) || '';
+
+        const professor = moduleId === _savedModule ? _savedProfessor : '';
+
+        _savedField = field;
+        _savedSemester = semester;
+        _savedModule = moduleId;
+        _savedProfessor = professor;
+
+        setSelectedField(field);
+        setSelectedSemester(semester);
+        setSelectedModule(moduleId);
+        setSelectedProfessor(professor);
     }, []);
 
     useEffect(() => {
@@ -205,6 +228,17 @@ export default function BrowsePage() {
 
     const selectedModuleData = modules.find(m => m.id === selectedModule);
 
+    // All professor names found in this module's resources (includes custom "Autre" names)
+    const availableProfessors = Array.from(new Set(
+        resources
+            .map(r => (typeof r.professor === 'string' ? r.professor.trim() : ''))
+            .filter(p => p && p !== 'non-specifie')
+    )).sort((a, b) => a.localeCompare(b, 'fr'));
+
+    const filteredResources = selectedProfessor
+        ? resources.filter(r => (typeof r.professor === 'string' ? r.professor.trim() : '') === selectedProfessor)
+        : resources;
+
     const ensureProtocol = (url) => {
         if (!url) return '';
         if (url.startsWith('http://') || url.startsWith('https://')) {
@@ -228,7 +262,7 @@ export default function BrowsePage() {
         return staticDb.fields.find(f => f.id === fieldId)?.name || fieldId;
     };
 
-    const groupedResources = resources.reduce((acc, resource) => {
+    const groupedResources = filteredResources.reduce((acc, resource) => {
         const type = resource.docType || 'Autres';
         // Normalize type to match our categories
         const normalizedType = RESOURCE_CATEGORIES.find(c => c.id === type) ? type : 'Autres';
@@ -337,18 +371,21 @@ export default function BrowsePage() {
                 </p>
             </section>
 
-            <section className="mb-8 md:mb-10 grid grid-cols-1 md:grid-cols-3 gap-6 bg-card p-6 rounded-xl border shadow-sm">
+            <section className={`mb-8 md:mb-10 grid grid-cols-1 gap-6 bg-card p-6 rounded-xl border shadow-sm ${selectedModule ? 'md:grid-cols-2 lg:grid-cols-4' : 'md:grid-cols-3'}`}>
                 <div className="space-y-2">
                     <label className="text-sm font-medium leading-none">Filière</label>
                     <Select
                         value={selectedField}
                         onValueChange={(value) => {
+                            if (value === '') return;
                             _savedField = value;
                             _savedSemester = '';
                             _savedModule = '';
+                            _savedProfessor = '';
                             setSelectedField(value);
                             setSelectedSemester('');
                             setSelectedModule('');
+                            setSelectedProfessor('');
                             setResources([]);
                             updateParams({ field: value, semester: '', module: '' });
                         }}
@@ -369,10 +406,13 @@ export default function BrowsePage() {
                     <Select
                         value={selectedSemester}
                         onValueChange={(value) => {
+                            if (value === '') return;
                             _savedSemester = value;
                             _savedModule = '';
+                            _savedProfessor = '';
                             setSelectedSemester(value);
                             setSelectedModule('');
+                            setSelectedProfessor('');
                             setResources([]);
                             updateParams({ semester: value, module: '' });
                         }}
@@ -396,8 +436,11 @@ export default function BrowsePage() {
                     <Select
                         value={selectedModule}
                         onValueChange={(value) => {
+                            if (value === '') return;
                             _savedModule = value;
+                            _savedProfessor = '';
                             setSelectedModule(value);
+                            setSelectedProfessor('');
                             updateParams({ module: value });
                         }}
                         disabled={!selectedSemester}
@@ -414,6 +457,33 @@ export default function BrowsePage() {
                         </SelectContent>
                     </Select>
                 </div>
+
+                {selectedModule && (
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium leading-none">Professeur</label>
+                        <Select
+                            value={selectedProfessor || 'all'}
+                            onValueChange={(value) => {
+                                if (value === '') return;
+                                const prof = value === 'all' ? '' : value;
+                                _savedProfessor = prof;
+                                setSelectedProfessor(prof);
+                            }}
+                        >
+                            <SelectTrigger>
+                                <SelectValue placeholder="Tous les professeurs" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="all">Tous les professeurs</SelectItem>
+                                {availableProfessors.map((name) => (
+                                    <SelectItem key={name} value={name}>
+                                        {name}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                    </div>
+                )}
             </section>
 
             {selectedModule && (
@@ -421,9 +491,12 @@ export default function BrowsePage() {
                     <div className="flex items-center justify-between mb-6 border-b pb-3">
                         <h2 className="text-2xl font-semibold tracking-tight">
                             Ressources : <span className="text-primary">{selectedModuleData?.name}</span>
+                            {selectedProfessor && (
+                                <span className="text-muted-foreground font-normal"> — {selectedProfessor}</span>
+                            )}
                         </h2>
                         <Badge variant="outline" className="px-3 py-1">
-                            {resources.length} ressource{resources.length > 1 ? 's' : ''}
+                            {filteredResources.length} ressource{filteredResources.length > 1 ? 's' : ''}
                         </Badge>
                     </div>
 
@@ -431,6 +504,25 @@ export default function BrowsePage() {
                         <div className="flex flex-col items-center justify-center py-20">
                             <Loader2 className="w-10 h-10 animate-spin text-primary mb-4" />
                             <p className="text-muted-foreground">Recherche des ressources...</p>
+                        </div>
+                    ) : filteredResources.length === 0 && selectedProfessor ? (
+                        <div className="text-center py-16 border border-dashed border-border rounded-xl">
+                            <div className="mx-auto w-14 h-14 bg-muted rounded-full flex items-center justify-center mb-4">
+                                <User className="w-7 h-7 text-muted-foreground" />
+                            </div>
+                            <p className="font-semibold text-foreground mb-1">Aucune ressource de {selectedProfessor}</p>
+                            <p className="text-sm text-muted-foreground max-w-sm mx-auto mb-6">Aucun document de ce professeur pour ce module.</p>
+                            <Button
+                                size="sm"
+                                variant="outline"
+                                className="rounded-full px-6"
+                                onClick={() => {
+                                    _savedProfessor = '';
+                                    setSelectedProfessor('');
+                                }}
+                            >
+                                Voir tous les professeurs
+                            </Button>
                         </div>
                     ) : resources.length === 0 ? (
                         <div className="text-center py-16 border border-dashed border-border rounded-xl">
