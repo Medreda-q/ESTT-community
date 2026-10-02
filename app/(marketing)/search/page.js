@@ -70,8 +70,8 @@ function SearchContent() {
             const keywordsData = snapshot.val() || {};
 
             const filteredResourceIds = Object.entries(keywordsData)
-                .filter(([id, data]) => data.title?.toLowerCase().includes(searchLower))
-                .map(([id, data]) => id);
+                .filter(([_id, data]) => data.title?.toLowerCase().includes(searchLower))
+                .map(([id, _data]) => id);
 
             // 3. Fetch full resource data for matched IDs
             // (Note: In a high-traffic app, we might want to store more metadata in the keywords node to avoid fetching multiple resources)

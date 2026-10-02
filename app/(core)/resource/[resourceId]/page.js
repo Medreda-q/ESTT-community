@@ -256,16 +256,7 @@ export default function ResourcePage() {
         }
     };
 
-    const getResourceIcon = (type) => {
-        switch (type) {
-            case 'pdf': return <FileText className="w-12 h-12 text-primary" />;
-            case 'video': return <Video className="w-12 h-12 text-primary" />;
-            case 'image': return <ImageIcon className="w-12 h-12 text-primary" />;
-            case 'link': return <LinkIcon className="w-12 h-12 text-primary" />;
-            case 'html': return <Globe className="w-12 h-12 text-primary" />;
-            default: return <FileText className="w-12 h-12 text-primary" />;
-        }
-    };
+
 
     const ensureProtocol = (url) => {
         if (!url) return '';

@@ -7,7 +7,7 @@ const DialogContext = createContext();
 
 export function DialogProvider({ children }) {
     const [dialogs, setDialogs] = useState([]);
-    const [confirmResolvers, setConfirmResolvers] = useState({});
+    const [, setConfirmResolvers] = useState({});
 
     const showDialog = useCallback((config) => {
         const id = Date.now();

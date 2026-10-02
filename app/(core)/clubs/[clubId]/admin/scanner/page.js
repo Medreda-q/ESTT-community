@@ -23,7 +23,7 @@ export default function TicketScannerPage() {
     const { user, loading: authLoading } = useAuth();
     const clubId = params.clubId;
 
-    const [club, setClub] = useState(null);
+    const [, setClub] = useState(null);
     const [isAdmin, setIsAdmin] = useState(false);
     const [loading, setLoading] = useState(true);
     const [scannedTicket, setScannedTicket] = useState(null);
@@ -32,7 +32,7 @@ export default function TicketScannerPage() {
     const [success, setSuccess] = useState('');
     const [scanning, setScanning] = useState(true);
 
-    const scannerRef = useRef(null);
+    // scannerRef unused — scanner is managed via Html5QrcodeScanner instance directly
 
     useEffect(() => {
         if (clubId && !authLoading) {
@@ -93,7 +93,7 @@ export default function TicketScannerPage() {
         handleTicketLookup(decodedText);
     }
 
-    function onScanFailure(error) {
+    function onScanFailure(_error) {
         // console.warn(`Code scan error = ${error}`);
     }
 

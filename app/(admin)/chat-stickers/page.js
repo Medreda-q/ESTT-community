@@ -68,7 +68,7 @@ export default function StickerManagement() {
                 const filename = `stickers/${categoryId}/${Date.now()}_${file.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
 
                 // Upload to Supabase
-                const { data, error: uploadError } = await supabase.storage
+                const { error: uploadError } = await supabase.storage
                     .from('resources')
                     .upload(filename, file, {
                         contentType: 'image/webp',

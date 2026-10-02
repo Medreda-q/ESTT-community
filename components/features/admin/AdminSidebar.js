@@ -25,7 +25,7 @@ export default function AdminSidebar({
     activeTab, 
     setActiveTab, 
     profile, 
-    stats = {}, 
+    stats: _stats = {}, 
     openReportsCount = 0, 
     openBugReportsCount = 0, 
     openClubRequestsCount = 0, 

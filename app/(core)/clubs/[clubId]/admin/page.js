@@ -45,7 +45,7 @@ export default function ClubAdminPage() {
 
     // Post creation
     const [newPost, setNewPost] = useState({ type: 'article', title: '', content: '', linkedFormId: '', imageUrl: '' });
-    const [postImage, setPostImage] = useState(null);
+    const [, setPostImage] = useState(null);
     const [uploadingPostImage, setUploadingPostImage] = useState(false);
     const [submittingPost, setSubmittingPost] = useState(false);
 
@@ -60,7 +60,7 @@ export default function ClubAdminPage() {
 
     // Logo upload
     const [logoFile, setLogoFile] = useState(null);
-    const [uploadingLogo, setUploadingLogo] = useState(false);
+    const [, setUploadingLogo] = useState(false);
 
     // Posts list
     const [posts, setPosts] = useState([]);
@@ -100,7 +100,7 @@ export default function ClubAdminPage() {
             { id: 'email', label: 'Email', type: 'email', required: true }
         ]
     });
-    const [eventImage, setEventImage] = useState(null);
+    const [, setEventImage] = useState(null);
     const [uploadingEventImage, setUploadingEventImage] = useState(false);
 
 
@@ -160,7 +160,7 @@ export default function ClubAdminPage() {
             const presidentKey = Object.keys(club.organizationalChart || {}).find(k =>
                 club.organizationalChart[k].role.toLowerCase() === 'président'
             );
-            const isPresident = presidentKey && club.organizationalChart[presidentKey].email === user.email;
+            // isPresident check used inline in JSX only
 
             // Initialize org chart for editing if needed
             if (club.organizationalChart) {
@@ -2932,7 +2932,7 @@ export default function ClubAdminPage() {
 
                                             {changeRequest.type === 'organizationalChart' && (
                                                 <div className="space-y-4">
-                                                    {(!user || !club.organizationalChart || !Object.entries(club.organizationalChart).find(([_, m]) => m.email === user.email && m.role.toLowerCase() === 'président')) ? (
+                                                    {(!user || !club.organizationalChart || !Object.entries(club.organizationalChart).find(([_key, m]) => m.email === user.email && m.role.toLowerCase() === 'président')) ? (
                                                         <Alert variant="destructive">
                                                             <AlertCircle className="h-4 w-4" />
                                                             <AlertDescription>

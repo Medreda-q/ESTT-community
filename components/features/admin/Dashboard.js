@@ -210,11 +210,6 @@ export default function AdminDashboard() {
         };
     }, [user, profile, authLoading]);
 
-    // Handle tab change from outside (e.g. sidebar)
-    const handleTabChange = (status) => {
-        setActiveTab(status);
-        setIsSidebarOpen(false);
-    };
 
     if (authLoading || loading) return (
         <div className="flex items-center justify-center min-h-screen">

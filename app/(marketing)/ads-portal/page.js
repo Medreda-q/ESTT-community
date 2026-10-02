@@ -99,19 +99,19 @@ export default function AdPlatformLanding() {
                 step: "01",
                 title: "Créez votre annonce",
                 desc: "Remplissez le formulaire, téléchargez votre visuel (image ou vidéo) et définissez votre lien de redirection.",
-                icon: Edit3 => <PlusCircle className="w-8 h-8 text-blue-600" />
+                icon: () => <PlusCircle className="w-8 h-8 text-blue-600" />
               },
               {
                 step: "02",
                 title: "Validation & Review",
                 desc: "Notre équipe vérifie le contenu de votre annonce sous 24h pour s'assurer de sa qualité.",
-                icon: Shield => <ShieldCheck className="w-8 h-8 text-blue-600" />
+                icon: () => <ShieldCheck className="w-8 h-8 text-blue-600" />
               },
               {
                 step: "03",
                 title: "Activez & Rayonnez",
                 desc: "Une fois validée, procédez au paiement pour activer votre annonce sur la page d'accueil de l'ESTT.",
-                icon: Rocket => <Sparkles className="w-8 h-8 text-blue-600" />
+                icon: () => <Sparkles className="w-8 h-8 text-blue-600" />
               }
             ].map((step, i) => (
               <div key={i} className="relative group p-8 bg-card rounded-[32px] border border-border shadow-sm hover:shadow-xl transition-all duration-500">

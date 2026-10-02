@@ -14,7 +14,7 @@ export default function Footer() {
     
     if (pathname === '/downloadAndroid' || pathname === '/docs' || isChatPage || isMessagesPage) return null;
 
-    const currentYear = new Date().getFullYear();
+
 
 
     const sections = [

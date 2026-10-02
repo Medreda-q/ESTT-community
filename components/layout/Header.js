@@ -35,7 +35,7 @@ export default function Header() {
 
     const level = getUserLevel(profile?.startYear);
     const contributionsCount = profile?.contributions ? Object.keys(profile.contributions).length : 0;
-    const isMentor = level === 2 && contributionsCount > 5;
+    const _isMentor = level === 2 && contributionsCount > 5;
     const isSubscribed = profile?.subscription?.expiresAt && profile.subscription.expiresAt > Date.now();
 
     useEffect(() => {

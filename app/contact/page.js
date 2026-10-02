@@ -20,7 +20,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Loader2, Mail, Phone, Send, CheckCircle2, ArrowLeft, Globe, Github, MapPin } from 'lucide-react';
 
 export default function ContactPage() {
-    const { user, profile, loading: authLoading } = useAuth();
+    const { user, profile } = useAuth();
     const { showSuccess, showError } = useDialog();
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);

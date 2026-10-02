@@ -41,9 +41,9 @@ export default function DirectMessagePage() {
     const [replyingTo, setReplyingTo] = useState(null);
     const [typingUsers, setTypingUsers] = useState({});
     const [readStatuses, setReadStatuses] = useState({});
-    const [messageLimit, setMessageLimit] = useState(100);
-    const [hasMore, setHasMore] = useState(true);
-    const [isInitialLoad, setIsInitialLoad] = useState(true);
+    const [, setMessageLimit] = useState(100);
+    const [, setHasMore] = useState(true);
+    const [, setIsInitialLoad] = useState(true);
     const [isGeneratingAiResponse, setIsGeneratingAiResponse] = useState(false);
     const [isAiSearching, setIsAiSearching] = useState(false);
     const [aiMessageCount, setAiMessageCount] = useState(0);

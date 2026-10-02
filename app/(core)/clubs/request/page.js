@@ -587,7 +587,7 @@ export default function ClubRequestPage() {
 
                                 {members.length > 0 && (
                                     <div className="space-y-3">
-                                        {members.map((member, index) => (
+                                        {members.map((member, _index) => (
                                             <Card key={member.id} className="border-muted">
                                                 <CardContent className="pt-4 pb-4">
                                                     <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:gap-4">

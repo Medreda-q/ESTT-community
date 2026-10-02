@@ -15,7 +15,7 @@ export default function ModeratorSidebar({
     activeTab, 
     setActiveTab, 
     profile, 
-    stats = {}, 
+    stats: _stats = {}, 
     openReportsCount = 0,
     isOpen,
     setIsOpen

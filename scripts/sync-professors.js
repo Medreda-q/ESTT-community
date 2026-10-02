@@ -53,9 +53,6 @@ function getDatabaseValue(value) {
     throw new Error(`Expected ${DATABASE_PATH} to contain an array or object.`);
 }
 
-function getProfessorName(professor) {
-    return professor && typeof professor === 'object' ? professor.name : null;
-}
 
 function buildMergedProfessors(currentValue, sourceProfessors) {
     const currentProfessors = getDatabaseValue(currentValue);

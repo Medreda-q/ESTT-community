@@ -10,7 +10,7 @@ export default function ProjectSubmissionCard({
     submission,
     userId = '',
     currentVoteId = '',
-    showProjectLink = false,
+    showProjectLink: _showProjectLink = false,
 }) {
     const isOwnSubmission = userId && submission.authorId === userId;
     const isActiveVote = currentVoteId === submission.id;

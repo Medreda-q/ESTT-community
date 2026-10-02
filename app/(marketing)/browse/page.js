@@ -224,9 +224,7 @@ export default function BrowsePage() {
         }
     };
 
-    const getFieldName = (fieldId) => {
-        return staticDb.fields.find(f => f.id === fieldId)?.name || fieldId;
-    };
+
 
     const groupedResources = resources.reduce((acc, resource) => {
         const type = resource.docType || 'Autres';

@@ -378,11 +378,6 @@ export default function DiscussionPage() {
     ];
     if (user) navItems.push({ href: '/profile', label: 'Profil' });
 
-    const isActive = (path) => {
-        if (path === '/') return false; // Simple check for chat
-        return false;
-    };
-
     return (
         <main className="fixed inset-0 z-[100] h-[100dvh] bg-card flex flex-col font-sans overflow-hidden overscroll-none">
             <ChatTermsDialog />

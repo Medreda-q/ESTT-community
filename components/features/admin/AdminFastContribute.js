@@ -20,7 +20,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Loader2, CheckCircle2, AlertCircle, Info, Plus, Trash2 } from 'lucide-react';
 
 export default function AdminFastContribute() {
-    const { user, profile } = useAuth();
+    const { user } = useAuth();
     const [commonData, setCommonData] = useState({
         field: '',
         semester: '',

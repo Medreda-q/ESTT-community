@@ -30,7 +30,7 @@ import {
 } from '@/components/ui/dialog';
 import Image from 'next/image';
 import { Loader2, CheckCircle2, AlertCircle, CloudUpload, Info, Plus, Trash2, Copy, Check } from 'lucide-react';
-const AI_MAX_WORDS = 50; // Restored to a higher limit for the new provider
+
 import { Sparkles } from 'lucide-react';
 
 export default function ContributePage() {

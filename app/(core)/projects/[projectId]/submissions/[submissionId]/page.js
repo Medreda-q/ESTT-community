@@ -40,13 +40,13 @@ export default function SubmissionDetailPage() {
     const [comments, setComments] = useState([]);
     const [currentVote, setCurrentVote] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [refreshing, setRefreshing] = useState(false);
+    const [, setRefreshing] = useState(false);
     const [voting, setVoting] = useState(false);
     const [commentText, setCommentText] = useState('');
     const [replyTexts, setReplyTexts] = useState({});
     const [expandedReplies, setExpandedReplies] = useState({});
     const [submittingComment, setSubmittingComment] = useState(false);
-    const [message, setMessage] = useState(null);
+    const [, setMessage] = useState(null);
     const [error, setError] = useState(null);
 
     const fetchData = async () => {

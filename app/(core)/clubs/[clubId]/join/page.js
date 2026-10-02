@@ -154,7 +154,6 @@ export default function ClubJoinPage() {
                     );
                     if (president) recipient = president.email;
                 }
-                a
                 if (sendNotif && recipient) {
                     const { adminNotificationEmail } = await import('@/lib/email-templates');
                     const notifHtml = adminNotificationEmail(

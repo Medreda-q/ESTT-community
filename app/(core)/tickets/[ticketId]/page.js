@@ -21,7 +21,7 @@ export default function TicketPage() {
     const searchParams = useSearchParams();
     const orderId = searchParams.get('order_id');
     const [verifying, setVerifying] = useState(false);
-    const [justScanned, setJustScanned] = useState(false);
+    const [, setJustScanned] = useState(false);
     const [prevScanned, setPrevScanned] = useState(false);
 
     useEffect(() => {

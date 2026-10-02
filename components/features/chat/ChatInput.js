@@ -1,4 +1,4 @@
-import { ArrowUp, Image as ImageIcon, Loader2, Library, Search, FileText, Video, Link as LinkIcon, ArrowRight, BookOpen, Sticker, Globe } from 'lucide-react';
+import { ArrowUp, Image as ImageIcon, Loader2, Library, Search, FileText, Video, Link as LinkIcon, ArrowRight, BookOpen, Sticker, Globe, CalendarDays } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { uploadToImgBB } from '@/lib/uploadUtils';
 import { db, ref, get, onValue } from '@/lib/firebase';

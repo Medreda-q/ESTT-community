@@ -22,7 +22,7 @@ export default function PublicProfilePage() {
     const { id } = useParams();
     const router = useRouter();
     const { user: currentUser, signOut } = useAuth();
-    const { showWarning, showError, showSuccess, showInfo, showConfirm } = useDialog();
+    const { showWarning, showError, showSuccess, showConfirm } = useDialog();
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -168,7 +168,7 @@ export default function PublicProfilePage() {
                     setUserClubs(associatedClubs);
 
                     // Find primary affiliation (part of bureau)
-                    const primaryAffiliate = Object.entries(allClubs).find(([cId, club]) => {
+                    const primaryAffiliate = Object.entries(allClubs).find(([_cId, club]) => {
                         const inOrg = club.organizationalChart && Object.values(club.organizationalChart).find(m =>
                             m?.email?.toLowerCase() === userEmail
                         );
@@ -384,7 +384,8 @@ export default function PublicProfilePage() {
 
     const level = getUserLevel(profile?.startYear);
     const contributionsCount = Object.keys(profile?.contributions || {}).length;
-    const isMentor = level === 2 && contributionsCount > 5;
+    // isMentor is computed for potential future use
+    const _isMentor = level === 2 && contributionsCount > 5;
 
     // New stats for badges
     const verifiedReports = profile?.stats?.verifiedReports || 0;
@@ -919,7 +920,7 @@ export default function PublicProfilePage() {
                             {profile.contributions ? (
                                 <div className="flex gap-3 overflow-x-auto pb-3 no-scrollbar">
                                     {Object.entries(profile.contributions)
-                                        .filter(([_, item]) => !item.unverified)
+                                        .filter(([_key, item]) => !item.unverified)
                                         .sort((a, b) => b[1].timestamp - a[1].timestamp)
                                         .map(([cid, item]) => (
                                             <Link

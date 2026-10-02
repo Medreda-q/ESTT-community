@@ -53,7 +53,7 @@ export default function ReportBugPage() {
     });
 
     const [attachments, setAttachments] = useState([]);
-    const [uploadingFiles, setUploadingFiles] = useState({}); // Track progress for individual files
+
     const [uploadProgress, setUploadProgress] = useState(0);
 
     // Auto-detection logic and user linking

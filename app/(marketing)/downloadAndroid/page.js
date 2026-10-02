@@ -26,7 +26,7 @@ import {
 } from 'lucide-react';
 
 export default function DownloadAndroidPage() {
-    const [scrolled, setScrolled] = useState(false);
+    const [, setScrolled] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 50);

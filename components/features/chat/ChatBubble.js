@@ -41,7 +41,8 @@ export default function ChatBubble({ message, isOwn, onReact, onDelete, onReply,
     // Permissions logic
     const isSubscribed = subscription?.expiresAt && subscription.expiresAt > Date.now();
     const isAdmin = role === 'admin';
-    const canEdit = isOwn;
+    // canEdit — kept for future use (currently only canDelete and canReport are active)
+    // const canEdit = isOwn;
     const canDelete = isOwn;
     const canReport = !isOwn;
 
@@ -581,7 +582,7 @@ export default function ChatBubble({ message, isOwn, onReact, onDelete, onReply,
                                                 {attendees.length > 0 && (
                                                     <div className="mt-4 pt-4 border-t border-border flex items-center justify-between">
                                                         <div className="flex -space-x-2 md:-space-x-2.5 overflow-hidden">
-                                                            {attendees.slice(0, 5).map((uid, i) => {
+                                                            {attendees.slice(0, 5).map((uid, _i) => {
                                                                 const p = profiles[uid];
                                                                 if (!p) return null;
                                                                 return (
@@ -1024,7 +1025,7 @@ export default function ChatBubble({ message, isOwn, onReact, onDelete, onReply,
     );
 }
 
-function ResourceCard({ resource, isOwn }) {
+function ResourceCard({ resource, isOwn: _isOwn }) {
     return (
         <div className="p-0.5">
             <Link
@@ -1058,7 +1059,7 @@ function ResourceCard({ resource, isOwn }) {
     );
 }
 
-function ResourceCardSkeleton({ isOwn }) {
+function ResourceCardSkeleton({ isOwn: _isOwn }) {
     return (
         <div className="p-0.5 animate-pulse">
             <div className="w-full h-24 bg-card/40 border border-border/50 rounded-xl" />

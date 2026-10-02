@@ -17,15 +17,16 @@ try {
 const GITHUB_WEBHOOK_SECRET =  'ak04pzxzikfdr6I0L6z3zx9VKLm1';
 
 // Function to verify GitHub webhook signature
-function verifyGitHubSignature(req, secret) {
-    const signature = req.headers.get('x-hub-signature-256');
+// verifyGitHubSignature — kept for reference; actual verification uses verifyWebhookSignature
+function _verifyGitHubSignature(_req, _secret) {
+    const signature = _req.headers.get('x-hub-signature-256');
     
     if (!signature) {
         return false;
     }
 
     // The signature format is: sha256=<hex_digest>
-    const [algorithm, hash] = signature.split('=');
+    const [algorithm] = signature.split('=');
     
     if (algorithm !== 'sha256') {
         return false;
@@ -69,7 +70,7 @@ async function verifyWebhookSignature(req, secret) {
     return isValid;
 }
 
-export async function OPTIONS(req) {
+export async function OPTIONS(_req) {
     return NextResponse.json(
         { message: 'OK' },
         {
@@ -156,7 +157,7 @@ export async function POST(req) {
 }
 
 // Add a GET endpoint for testing
-export async function GET(req) {
+export async function GET(_req) {
     return NextResponse.json(
         { message: 'GitHub Events webhook endpoint. Send POST requests from GitHub.' },
         { status: 200 }
