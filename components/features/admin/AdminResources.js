@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { logModeratorAction } from '@/lib/moderator-logs';
 import { useDialog } from '@/context/DialogContext';
@@ -77,6 +77,10 @@ export default function AdminResources({ resources }) {
         docType: ''
     });
     const [saving, setSaving] = useState(false);
+    const [professors, setProfessors] = useState([]);
+    const [isProfAutreOpen, setIsProfAutreOpen] = useState(false);
+    const [customProfName, setCustomProfName] = useState('');
+    const [profAutreError, setProfAutreError] = useState('');
     const [linkModalOpen, setLinkModalOpen] = useState(false);
     const [itemToLink, setItemToLink] = useState(null);
     const [selectedFields, setSelectedFields] = useState([]);
@@ -90,6 +94,51 @@ export default function AdminResources({ resources }) {
     const [ratingModalOpen, setRatingModalOpen] = useState(false);
     const [itemToRate, setItemToRate] = useState(null);
     const [currentRatings, setCurrentRatings] = useState([]);
+
+    useEffect(() => {
+        if (!db) return;
+        let cancelled = false;
+        const fetchProfessors = async () => {
+            try {
+                const snapshot = await get(ref(db, 'metadata/professors'));
+                if (!cancelled && snapshot.exists()) {
+                    const data = snapshot.val();
+                    const profList = Array.isArray(data) ? data : (data.professors || Object.values(data));
+                    setProfessors(profList);
+                }
+            } catch (error) {
+                console.error("Error fetching professors:", error);
+            }
+        };
+        fetchProfessors();
+        return () => { cancelled = true; };
+    }, []);
+
+    const professorNames = professors.map(p => typeof p === 'string' ? p : p.name);
+
+    const isCustomProf = Boolean(editData.professor)
+        && editData.professor !== 'non-specifie'
+        && !professorNames.includes(editData.professor);
+
+    const openProfAutrePopup = () => {
+        setCustomProfName(isCustomProf ? editData.professor : '');
+        setProfAutreError('');
+        setIsProfAutreOpen(true);
+    };
+
+    const handleProfAutreSubmit = (e) => {
+        e.preventDefault();
+        const name = customProfName.trim();
+        if (!name) {
+            setProfAutreError('Veuillez saisir le nom du professeur.');
+            return;
+        }
+        const existing = professorNames.find(p => p.toLowerCase() === name.toLowerCase());
+        setEditData(prev => ({ ...prev, professor: existing || name }));
+        setIsProfAutreOpen(false);
+        setCustomProfName('');
+        setProfAutreError('');
+    };
 
     const userRole = profile?.role || 'student';
     const userFiliere = profile?.filiere || '';
@@ -991,11 +1040,38 @@ export default function AdminResources({ resources }) {
                         </div>
                         <div className="grid gap-2">
                             <Label htmlFor="professor">Professeur</Label>
-                            <Input
-                                id="professor"
+                            <Select
                                 value={editData.professor}
-                                onChange={(e) => setEditData(prev => ({ ...prev, professor: e.target.value }))}
-                            />
+                                onValueChange={(v) => {
+                                    if (v === '__autre__') {
+                                        openProfAutrePopup();
+                                        return;
+                                    }
+                                    if (v === '') return;
+                                    setEditData(prev => ({ ...prev, professor: v }));
+                                }}
+                            >
+                                <SelectTrigger id="professor">
+                                    <SelectValue placeholder="Sélectionnez un professeur" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="non-specifie">Non spécifié</SelectItem>
+                                    {professors.map((p, index) => {
+                                        const name = typeof p === 'string' ? p : p.name;
+                                        return (
+                                            <SelectItem key={index} value={name}>
+                                                {name} {p.department ? `— ${p.department}` : ''}
+                                            </SelectItem>
+                                        );
+                                    })}
+                                    {isCustomProf && (
+                                        <SelectItem value={editData.professor}>
+                                            {editData.professor}
+                                        </SelectItem>
+                                    )}
+                                    <SelectItem value="__autre__">Autre</SelectItem>
+                                </SelectContent>
+                            </Select>
                         </div>
                         <div className="grid gap-2">
                             <Label htmlFor="docType">Type de document</Label>
@@ -1035,6 +1111,52 @@ export default function AdminResources({ resources }) {
                     </DialogFooter>
                 </DialogContent>
             </Dialog>
+
+            {/* "Autre" professor popup */}
+            <Dialog
+                open={isProfAutreOpen}
+                onOpenChange={(open) => {
+                    setIsProfAutreOpen(open);
+                    if (!open) {
+                        setProfAutreError('');
+                        setCustomProfName('');
+                    }
+                }}
+            >
+                <DialogContent overlayClassName="backdrop-blur-sm" className="max-w-md">
+                    <DialogHeader>
+                        <DialogTitle>Autre professeur</DialogTitle>
+                        <DialogDescription>
+                            Saisissez le nom du professeur. Il apparaîtra sur la ressource comme les autres noms de la liste.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <form onSubmit={handleProfAutreSubmit} className="space-y-4">
+                        <div className="space-y-2">
+                            <Label htmlFor="custom-prof">Nom du professeur *</Label>
+                            <Input
+                                id="custom-prof"
+                                autoFocus
+                                value={customProfName}
+                                onChange={(e) => {
+                                    setCustomProfName(e.target.value);
+                                    if (profAutreError) setProfAutreError('');
+                                }}
+                                placeholder="Ex: Pr. Aboubakr EL HAMMOUMI"
+                            />
+                            {profAutreError && (
+                                <p className="text-xs text-destructive">{profAutreError}</p>
+                            )}
+                        </div>
+                        <DialogFooter>
+                            <Button type="button" variant="outline" onClick={() => setIsProfAutreOpen(false)}>
+                                Annuler
+                            </Button>
+                            <Button type="submit">Valider</Button>
+                        </DialogFooter>
+                    </form>
+                </DialogContent>
+            </Dialog>
+
             {/* Link Modal */}
             <Dialog open={linkModalOpen} onOpenChange={setLinkModalOpen}>
                 <DialogContent className="sm:max-w-md">
