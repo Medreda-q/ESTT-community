@@ -1010,7 +1010,7 @@ export default function ClubAdminPage() {
             <div className="min-h-screen flex items-center justify-center bg-muted">
                 <div className="text-center space-y-4">
                     <Loader2 className="w-12 h-12 animate-spin text-primary mx-auto" />
-                    <p className="text-muted-foreground font-medium">Préparation de l'environnement de démonstration...</p>
+                    <p className="text-muted-foreground font-medium">Préparation de l&apos;environnement de démonstration...</p>
                 </div>
             </div>
         );
@@ -1175,7 +1175,7 @@ export default function ClubAdminPage() {
                                             <Label>Nom du club</Label>
                                             <Input value={club?.name} disabled />
                                             <p className="text-xs text-muted-foreground">
-                                                Le nom ne peut pas être modifié directement. Utilisez l'onglet "Modifications" pour soumettre une demande.
+                                                Le nom ne peut pas être modifié directement. Utilisez l&apos;onglet &quot;Modifications&quot; pour soumettre une demande.
                                             </p>
                                         </div>
 
@@ -1305,14 +1305,14 @@ export default function ClubAdminPage() {
                                         <CardHeader>
                                             <CardTitle>Créer un Événement</CardTitle>
                                             <CardDescription>
-                                                Un événement dédié avec formulaire d'inscription et tickets automatiques.
+                                                Un événement dédié avec formulaire d&apos;inscription et tickets automatiques.
                                             </CardDescription>
                                         </CardHeader>
                                         <CardContent>
                                             <form onSubmit={handleCreateEvent} className="space-y-6">
                                                 <div className="grid md:grid-cols-2 gap-4">
                                                     <div className="space-y-2">
-                                                        <Label>Titre de l'événement</Label>
+                                                        <Label>Titre de l&apos;événement</Label>
                                                         <Input
                                                             value={newEvent.title}
                                                             onChange={e => setNewEvent(p => ({ ...p, title: e.target.value }))}
@@ -1424,7 +1424,7 @@ export default function ClubAdminPage() {
 
                                                 <div className="space-y-4 border p-4 rounded-md bg-muted/50">
                                                     <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between">
-                                                        <Label className="font-bold">Champs du formulaire d'inscription</Label>
+                                                        <Label className="font-bold">Champs du formulaire d&apos;inscription</Label>
                                                         <Button type="button" variant="outline" size="sm" onClick={handleAddEventField}>
                                                             <Plus className="w-4 h-4 mr-2" /> Ajouter un champ
                                                         </Button>
@@ -1499,7 +1499,7 @@ export default function ClubAdminPage() {
 
                                                 <Button type="submit" disabled={creatingEvent} className="w-full">
                                                     {creatingEvent ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4 mr-2" />}
-                                                    Créer l'Événement & Activer la Billetterie
+                                                    Créer l&apos;Événement & Activer la Billetterie
                                                 </Button>
                                             </form>
                                         </CardContent>
@@ -1785,7 +1785,7 @@ export default function ClubAdminPage() {
                                         <form onSubmit={handleSendEmails} className="space-y-6">
                                             <div className="grid md:grid-cols-2 gap-4">
                                                 <div className="space-y-2">
-                                                    <Label>Sujet de l'email</Label>
+                                                    <Label>Sujet de l&apos;email</Label>
                                                     <Input 
                                                         placeholder="Ex: Nouvelle annonce importante" 
                                                         value={newEmail.subject}
@@ -1794,7 +1794,7 @@ export default function ClubAdminPage() {
                                                     />
                                                 </div>
                                                 <div className="space-y-2">
-                                                    <Label>Titre (Header) de l'email</Label>
+                                                    <Label>Titre (Header) de l&apos;email</Label>
                                                     <Input 
                                                         placeholder="Ex: Bienvenue à notre prochain atelier" 
                                                         value={newEmail.title}
@@ -1873,7 +1873,7 @@ export default function ClubAdminPage() {
                                                                     onChange={handleCoverImageUpload}
                                                                 />
                                                                 <p className="text-xs text-muted-foreground italic">
-                                                                    L'image sera hébergée sur imgbb.com
+                                                                    L&apos;image sera hébergée sur imgbb.com
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -1960,7 +1960,7 @@ export default function ClubAdminPage() {
                                                     ) : (
                                                         <>
                                                             <CheckCircle2 className="w-4 h-4 mr-2" />
-                                                            Envoyer l'email
+                                                            Envoyer l&apos;email
                                                         </>
                                                     )}
                                                 </Button>
@@ -1974,7 +1974,7 @@ export default function ClubAdminPage() {
                                                     </DialogTrigger>
                                                     <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
                                                         <DialogHeader>
-                                                            <DialogTitle>Aperçu de l'email</DialogTitle>
+                                                            <DialogTitle>Aperçu de l&apos;email</DialogTitle>
                                                             <DialogDescription>Voici comment vos membres verront votre message.</DialogDescription>
                                                         </DialogHeader>
                                                         <div className="bg-muted p-4 rounded-md border text-foreground shadow-inner overflow-hidden">
@@ -2017,7 +2017,7 @@ export default function ClubAdminPage() {
                                                                     )}
                                                                     <div className="text-muted-foreground text-sm italic">
                                                                         Cordialement,<br />
-                                                                        <strong>L'équipe {club.name}</strong>
+                                                                        <strong>L&apos;équipe {club.name}</strong>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -2114,7 +2114,7 @@ export default function ClubAdminPage() {
                                                                 onChange={handlePostImageUpload}
                                                             />
                                                             <p className="text-xs text-muted-foreground italic">
-                                                                L'image sera hébergée sur imgbb.com
+                                                                L&apos;image sera hébergée sur imgbb.com
                                                             </p>
                                                         </div>
                                                     </div>
@@ -2191,14 +2191,14 @@ export default function ClubAdminPage() {
                             <TabsContent value="requests">
                                 <Card>
                                     <CardHeader>
-                                        <CardTitle>Demandes d'adhésion</CardTitle>
+                                        <CardTitle>Demandes d&apos;adhésion</CardTitle>
                                         <CardDescription>Gérez les demandes pour rejoindre le club.</CardDescription>
                                     </CardHeader>
                                     <CardContent className="space-y-6">
                                         {/* Invitation Link */}
                                         <div className="p-4 bg-blue-50 border border-blue-100 rounded-lg flex flex-col sm:flex-row items-center justify-between gap-4 dark:bg-blue-500/10 dark:border-blue-500/30">
                                             <div className="space-y-1">
-                                                <h3 className="font-semibold text-blue-900">Lien d'invitation</h3>
+                                                <h3 className="font-semibold text-blue-900">Lien d&apos;invitation</h3>
                                                 <p className="text-sm text-blue-700">Partagez ce lien pour inviter des étudiants à rejoindre le club.</p>
                                             </div>
                                             <div className="flex flex-col items-stretch gap-2 w-full sm:flex-row sm:items-center sm:w-auto">
@@ -2225,7 +2225,7 @@ export default function ClubAdminPage() {
                                             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                                                 <div className="space-y-1">
                                                     <h3 className="font-semibold">Questions personnalisées</h3>
-                                                    <p className="text-sm text-muted-foreground">Ajoutez des questions spécifiques pour votre formulaire d'adhésion.</p>
+                                                    <p className="text-sm text-muted-foreground">Ajoutez des questions spécifiques pour votre formulaire d&apos;adhésion.</p>
                                                 </div>
                                                 <Button variant="outline" size="sm" onClick={handleAddJoinQuestion}>
                                                     <Plus className="w-4 h-4 mr-2" /> Ajouter une question
@@ -2326,7 +2326,7 @@ export default function ClubAdminPage() {
                                                                     <p>{req.email}</p>
                                                                     <p>{req.phone}</p>
                                                                     <p className="mt-2 text-foreground bg-muted p-2 rounded text-xs italic">
-                                                                        "{req.reason}"
+                                                                        &quot;{req.reason}&quot;
                                                                     </p>
 
                                                                     {req.answers && Object.keys(req.answers).length > 0 && (
@@ -2703,14 +2703,14 @@ export default function ClubAdminPage() {
                                     <CardHeader>
                                         <CardTitle>Demandes de modification</CardTitle>
                                         <CardDescription>
-                                            Soumettez une demande pour modifier le nom du club ou l'organigramme
+                                            Soumettez une demande pour modifier le nom du club ou l&apos;organigramme
                                         </CardDescription>
                                     </CardHeader>
                                     <CardContent>
                                         <Alert className="mb-6">
                                             <AlertCircle className="h-4 w-4" />
                                             <AlertDescription>
-                                                Les modifications du nom et de l'organigramme doivent être approuvées par les administrateurs de la plateforme.
+                                                Les modifications du nom et de l&apos;organigramme doivent être approuvées par les administrateurs de la plateforme.
                                             </AlertDescription>
                                         </Alert>
 
@@ -2751,12 +2751,12 @@ export default function ClubAdminPage() {
                                                         <Alert variant="destructive">
                                                             <AlertCircle className="h-4 w-4" />
                                                             <AlertDescription>
-                                                                Seul le Président du club est autorisé à modifier l'organigramme.
+                                                                Seul le Président du club est autorisé à modifier l&apos;organigramme.
                                                             </AlertDescription>
                                                         </Alert>
                                                     ) : (
                                                         <div className="space-y-4 border p-4 rounded-lg bg-muted">
-                                                            <h3 className="font-medium text-sm mb-2">Modifier l'organigramme</h3>
+                                                            <h3 className="font-medium text-sm mb-2">Modifier l&apos;organigramme</h3>
                                                             {orgChartItems.map((item) => (
                                                                 <div key={item.id} className="bg-card p-3 border rounded space-y-3">
                                                                     <div className="grid grid-cols-2 gap-2">
@@ -2841,7 +2841,7 @@ export default function ClubAdminPage() {
                                                         Activer les notifications
                                                     </label>
                                                     <p className="text-[0.8rem] text-muted-foreground">
-                                                        Si activé, le responsable recevra un email pour chaque nouvelle demande d'adhésion ou commande de billet.
+                                                        Si activé, le responsable recevra un email pour chaque nouvelle demande d&apos;adhésion ou commande de billet.
                                                     </p>
                                                 </div>
                                             </div>
@@ -2857,7 +2857,7 @@ export default function ClubAdminPage() {
                                                     disabled={!notificationSettings.enabled}
                                                 />
                                                 <p className="text-xs text-muted-foreground">
-                                                    Si laissé vide, nous tenterons d'utiliser l'email du Président actuel.
+                                                    Si laissé vide, nous tenterons d&apos;utiliser l&apos;email du Président actuel.
                                                 </p>
                                             </div>
 

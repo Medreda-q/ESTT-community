@@ -678,7 +678,7 @@ export default function PublicProfilePage() {
                                                     </div>
 
                                                     <div className="mt-4 p-3 bg-blue-50/50 border border-blue-100 rounded-lg text-xs leading-5 text-muted-foreground dark:bg-blue-500/10 dark:border-blue-500/30">
-                                                        <strong>Mise en garde :</strong> L'outil d'upload d'images utilise <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">ImgBB</a>, un service tiers. Veuillez ne pas télécharger d'images contenant des informations personnelles sensibles.
+                                                        <strong>Mise en garde :</strong> L&apos;outil d&apos;upload d&apos;images utilise <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">ImgBB</a>, un service tiers. Veuillez ne pas télécharger d&apos;images contenant des informations personnelles sensibles.
                                                     </div>
                                                 </div>
                                                 <DialogFooter className="flex gap-2">

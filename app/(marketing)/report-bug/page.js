@@ -276,7 +276,7 @@ export default function ReportBugPage() {
                                     </li>
                                     <li className="flex items-start gap-3 text-muted-foreground text-sm">
                                         <div className="w-5 h-5 bg-primary/10 text-primary rounded-full flex items-center justify-center shrink-0 mt-0.5">3</div>
-                                        <span>Vous pourriez recevoir un email si nous avons besoin de plus d'informations.</span>
+                                        <span>Vous pourriez recevoir un email si nous avons besoin de plus d&apos;informations.</span>
                                     </li>
                                 </ul>
                             </div>
@@ -285,7 +285,7 @@ export default function ReportBugPage() {
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
                         <Button asChild className="rounded-2xl h-12 px-8 font-bold">
-                            <Link href="/">Retour à l'accueil</Link>
+                            <Link href="/">Retour à l&apos;accueil</Link>
                         </Button>
                         <Button variant="outline" onClick={() => setSuccess(false)} className="rounded-2xl h-12 px-8 font-bold bg-card">
                             Signaler un autre bug
@@ -321,7 +321,7 @@ export default function ReportBugPage() {
                             <Link href="/login?redirect=/report-bug">Se connecter</Link>
                         </Button>
                         <Button variant="ghost" asChild className="rounded-2xl h-14 px-8 font-bold w-full sm:w-auto border-border border">
-                            <Link href="/">Retour à l'accueil</Link>
+                            <Link href="/">Retour à l&apos;accueil</Link>
                         </Button>
                     </div>
                 </div>
@@ -353,7 +353,7 @@ export default function ReportBugPage() {
                     <CardHeader>
                         <CardTitle>Détails du rapport</CardTitle>
                         <CardDescription>
-                            Veuillez fournir autant d'informations que possible.
+                            Veuillez fournir autant d&apos;informations que possible.
                         </CardDescription>
                     </CardHeader>
                     <CardContent>

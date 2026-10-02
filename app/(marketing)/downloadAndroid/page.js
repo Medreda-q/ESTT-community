@@ -123,10 +123,10 @@ export default function DownloadAndroidPage() {
                                 </div>
                                 <h1 className="text-4xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 leading-[0.85] bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-500 drop-shadow-sm animate-in fade-in slide-in-from-left-8 duration-1000">
                                     LE FUTUR DE <br />
-                                    <span className="text-blue-500 drop-shadow-[0_0_30px_rgba(59,130,246,0.3)]">L'ESTT</span> EST LÀ.
+                                    <span className="text-blue-500 drop-shadow-[0_0_30px_rgba(59,130,246,0.3)]">L&apos;ESTT</span> EST LÀ.
                                 </h1>
                                 <p className="text-lg md:text-2xl text-gray-400 mb-12 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light animate-in fade-in slide-in-from-left-10 duration-[1200ms] delay-200">
-                                    EsttPlus est une plateforme complète conçue pour la communauté de l'EST Tétouan. Connectez-vous, partagez et gérez vos événements en toute fluidité.
+                                    EsttPlus est une plateforme complète conçue pour la communauté de l&apos;EST Tétouan. Connectez-vous, partagez et gérez vos événements en toute fluidité.
                                 </p>
 
                                 <div className="flex flex-col sm:flex-row items-center gap-8 justify-center lg:justify-start animate-in fade-in slide-in-from-left-12 duration-[1500ms] delay-500">
@@ -207,7 +207,7 @@ export default function DownloadAndroidPage() {
                                 </span>.
                             </h2>
                             <p className="text-xl md:text-2xl text-gray-400 font-light leading-relaxed max-w-3xl mx-auto">
-                                Chaque aspect de l'expérience étudiante a été réimaginé pour la rapidité, la simplicité et le plaisir absolu d'utilisation.
+                                Chaque aspect de l&apos;expérience étudiante a été réimaginé pour la rapidité, la simplicité et le plaisir absolu d&apos;utilisation.
                             </p>
                         </div>
 
@@ -243,7 +243,7 @@ export default function DownloadAndroidPage() {
                                 <div className="w-20 h-1.5 bg-blue-600 mb-10 rounded-full shadow-[0_0_20px_rgba(37,99,235,0.5)]" />
                                 <h2 className="text-6xl md:text-8xl font-black mb-10 tracking-tighter leading-[0.85] uppercase drop-shadow-lg">
                                     CONÇUE POUR <br />
-                                    <span className="text-blue-600 italic">L'EXCELLENCE</span>.
+                                    <span className="text-blue-600 italic">L&apos;EXCELLENCE</span>.
                                 </h2>
                                 <p className="text-xl md:text-3xl text-gray-400 font-light leading-relaxed mb-16 italic">
                                     Une interface sombre, épurée et ultra-réactive qui respecte votre batterie tout en offrant une lisibilité parfaite dans toutes les conditions.
@@ -306,7 +306,7 @@ export default function DownloadAndroidPage() {
                                     <span className="text-blue-500 not-italic glow-text">communauté</span>.
                                 </h2>
                                 <p className="text-lg md:text-4xl text-gray-400 mb-20 font-light leading-relaxed max-w-3xl mx-auto italic tracking-tight uppercase opacity-80">
-                                    EsttPlus est un projet open source développé par et pour les étudiants d'élite de l'EST Tétouan.
+                                    EsttPlus est un projet open source développé par et pour les étudiants d&apos;élite de l&apos;EST Tétouan.
                                 </p>
 
                                 <div className="flex flex-col lg:flex-row items-center justify-center gap-16">

@@ -153,7 +153,7 @@ export default function Header() {
                                     <Link href="/login">Se connecter</Link>
                                 </Button>
                                 <Button asChild>
-                                    <Link href="/signup">S'inscrire</Link>
+                                    <Link href="/signup">S&apos;inscrire</Link>
                                 </Button>
                             </>
                         ) : (
@@ -276,7 +276,7 @@ export default function Header() {
                                             <Link href="/login">Se connecter</Link>
                                         </Button>
                                         <Button className="w-full justify-center h-11 bg-primary hover:bg-primary/90 shadow-none" asChild onClick={() => setOpen(false)}>
-                                            <Link href="/signup">S'inscrire</Link>
+                                            <Link href="/signup">S&apos;inscrire</Link>
                                         </Button>
                                     </div>
                                 ) : (

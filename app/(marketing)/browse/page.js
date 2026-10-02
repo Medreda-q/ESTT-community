@@ -490,7 +490,7 @@ export default function BrowsePage() {
                                             {ads[0].link && (
                                                 <a href={ads[0].link} target="_blank" rel="noopener noreferrer">
                                                     <Button variant="default" className="rounded-full shadow-lg hover:shadow-primary/25 transition-all">
-                                                        Découvrir l'annonce <ArrowRight className="ml-2 w-4 h-4" />
+                                                        Découvrir l&apos;annonce <ArrowRight className="ml-2 w-4 h-4" />
                                                     </Button>
                                                 </a>
                                             )}

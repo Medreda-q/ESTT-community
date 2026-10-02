@@ -151,7 +151,7 @@ export default function SubmitAdPage() {
                                 {/* Title */}
                                 <div className="space-y-2">
                                     <div className="flex justify-between">
-                                        <Label className="text-foreground font-bold">Titre de l'annonce</Label>
+                                        <Label className="text-foreground font-bold">Titre de l&apos;annonce</Label>
                                         <span className="text-[10px] text-muted-foreground">{formData.title.length}/{AD_LIMITS.TITLE_MAX_LENGTH}</span>
                                     </div>
                                     <Input

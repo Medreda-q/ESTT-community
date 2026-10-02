@@ -211,7 +211,7 @@ export default function TicketScannerPage() {
                         </Card>
 
                         <div className="flex flex-col gap-2">
-                            <Label className="text-slate-400 text-xs text-center">OU ENTRER L'ID MANUELLEMENT</Label>
+                            <Label className="text-slate-400 text-xs text-center">OU ENTRER L&apos;ID MANUELLEMENT</Label>
                             <div className="flex gap-2">
                                 <Input
                                     placeholder="Ticket ID (ex: -O...)"

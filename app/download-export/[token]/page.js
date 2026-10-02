@@ -348,7 +348,7 @@ export default function DownloadExportPage() {
                                         className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl border border-border text-muted-foreground text-sm font-medium hover:bg-muted transition-colors"
                                     >
                                         <Home className="w-4 h-4" />
-                                        Retour à l'accueil
+                                        Retour à l&apos;accueil
                                     </Link>
                                 </div>
                             </div>
@@ -369,8 +369,8 @@ export default function DownloadExportPage() {
                                 </div>
                                 <div className="p-4 bg-amber-50 border border-amber-100 rounded-xl text-xs text-amber-700 text-left leading-relaxed dark:bg-amber-500/10 dark:border-amber-500/30 dark:text-amber-300">
                                     <AlertTriangle className="w-4 h-4 inline mr-1.5 shrink-0" />
-                                    <strong>Rappel sécurité :</strong> Ce lien ne peut être utilisé qu'une seule fois. 
-                                    Si vous avez besoin d'un nouvel export, générez un nouveau lien depuis vos paramètres.
+                                    <strong>Rappel sécurité :</strong> Ce lien ne peut être utilisé qu&apos;une seule fois.
+                                    Si vous avez besoin d&apos;un nouvel export, générez un nouveau lien depuis vos paramètres.
                                 </div>
                                 <div className="pt-2 space-y-2">
                                     <Link
@@ -378,7 +378,7 @@ export default function DownloadExportPage() {
                                         className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl bg-blue-600 text-white text-sm font-semibold hover:bg-blue-700 transition-colors"
                                     >
                                         <Home className="w-4 h-4" />
-                                        Retour à l'accueil
+                                        Retour à l&apos;accueil
                                     </Link>
                                 </div>
                             </div>

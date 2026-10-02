@@ -353,7 +353,7 @@ export default function DiscussionPage() {
             </div>
             <h1 className="text-2xl font-black mb-2">Accès Restreint</h1>
             <p className="text-muted-foreground max-w-sm mb-8">
-                Vous devez être connecté pour accéder à l'espace de discussion de votre promotion.
+                Vous devez être connecté pour accéder à l&apos;espace de discussion de votre promotion.
             </p>
         </div>
     );

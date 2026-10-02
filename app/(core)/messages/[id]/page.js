@@ -682,7 +682,7 @@ export default function DirectMessagePage() {
                                         </div>
                                         <h2 className="mt-4 text-2xl font-black text-foreground">Agent officiel de la communaute ESTT</h2>
                                         <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">
-                                            Posez vos questions sur la plateforme, les clubs, les evenements, les contributions ou demandez de l'aide pour rediger un message, une annonce ou une presentation.
+                                            Posez vos questions sur la plateforme, les clubs, les evenements, les contributions ou demandez de l&apos;aide pour rediger un message, une annonce ou une presentation.
                                         </p>
                                     </div>
                                 </div>
@@ -746,7 +746,7 @@ export default function DirectMessagePage() {
                     {recipientIsTyping && !isAiSearching && (
                         <div className="flex items-center gap-2 mb-2 animate-in fade-in slide-in-from-bottom-1 duration-200">
                             <span className="text-[10px] font-medium text-muted-foreground italic">
-                                {activeRecipientProfile?.firstName} est en train d'écrire...
+                                {activeRecipientProfile?.firstName} est en train d&apos;écrire...
                             </span>
                         </div>
                     )}
@@ -779,7 +779,7 @@ export default function DirectMessagePage() {
                                     </h3>
                                     <p className="text-sm text-white/80 font-medium leading-relaxed max-w-lg">
                                         Notre assistant intelligent est réservé aux membres <strong>ESTTPlus+</strong>.
-                                        Débloquez l'IA pour obtenir des résumés, des conseils d'étude et une recherche de ressources ultra-rapide.
+                                        Débloquez l&apos;IA pour obtenir des résumés, des conseils d&apos;étude et une recherche de ressources ultra-rapide.
                                     </p>
                                 </div>
                                 <div className="shrink-0 w-full md:w-auto">
@@ -802,7 +802,7 @@ export default function DirectMessagePage() {
                                 <div className="space-y-1">
                                     <h3 className="text-base font-bold text-foreground">Limite quotidienne atteinte</h3>
                                     <p className="text-sm text-muted-foreground">
-                                        Vous avez utilisé vos 2 messages gratuits pour aujourd'hui.
+                                        Vous avez utilisé vos 2 messages gratuits pour aujourd&apos;hui.
                                         Revenez demain ou passez à <strong>ESTTPlus+</strong> pour un accès illimité.
                                     </p>
                                 </div>

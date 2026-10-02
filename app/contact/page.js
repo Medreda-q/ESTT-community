@@ -97,7 +97,7 @@ export default function ContactPage() {
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
                         <Button asChild className="rounded-2xl h-12 px-8 font-bold">
-                            <Link href="/">Retour à l'accueil</Link>
+                            <Link href="/">Retour à l&apos;accueil</Link>
                         </Button>
                         <Button variant="outline" onClick={() => { setSuccess(false); setFormData(prev => ({ ...prev, subject: '', message: '' })); }} className="rounded-2xl h-12 px-8 font-bold bg-card">
                             Envoyer un autre message
@@ -124,7 +124,7 @@ export default function ContactPage() {
                         Contactez-nous
                     </h1>
                     <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                        Une question, une suggestion ou besoin d'aide ? N'hésitez pas à nous écrire.
+                        Une question, une suggestion ou besoin d&apos;aide ? N&apos;hésitez pas à nous écrire.
                     </p>
                 </section>
 

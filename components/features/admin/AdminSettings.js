@@ -64,7 +64,7 @@ export default function AdminSettings({ settings, setSettings }) {
                                     Activer les notifications
                                 </label>
                                 <p className="text-[0.8rem] text-muted-foreground">
-                                    Si désactivé, vous ne recevrez aucun email automatique d'alerte.
+                                    Si désactivé, vous ne recevrez aucun email automatique d&apos;alerte.
                                 </p>
                             </div>
                         </div>

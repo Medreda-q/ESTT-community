@@ -173,7 +173,7 @@ export default function UserAdsDashboard() {
                         </div>
                         <h2 className="text-2xl font-bold text-foreground mb-2">Aucune annonce trouvée</h2>
                         <p className="text-muted-foreground max-w-sm mx-auto mb-8">
-                            Partagez votre première annonce dès aujourd'hui pour gagner en visibilité auprès de la communauté.
+                            Partagez votre première annonce dès aujourd&apos;hui pour gagner en visibilité auprès de la communauté.
                         </p>
                         <Button variant="outline" onClick={() => router.push('/ads-portal/submit')} className="rounded-full h-12 px-8">
                             Publier ma première annonce
@@ -280,7 +280,7 @@ export default function UserAdsDashboard() {
                                         <div className="bg-red-50 p-6 flex gap-4 items-start border-t border-red-100 dark:bg-red-500/10 dark:border-red-500/30">
                                             <AlertCircle className="w-5 h-5 text-red-500 mt-0.5" />
                                             <div>
-                                                <p className="text-sm font-bold text-red-900">Note de l'administrateur :</p>
+                                                <p className="text-sm font-bold text-red-900">Note de l&apos;administrateur :</p>
                                                 <p className="text-sm text-red-700 mt-1">{ad.adminNote}</p>
                                             </div>
                                         </div>
@@ -294,7 +294,7 @@ export default function UserAdsDashboard() {
                 {/* Footer Help */}
                 <div className="mt-20 p-10 bg-slate-900 rounded-[40px] text-white">
                     <div className="max-w-3xl">
-                        <h2 className="text-2xl font-bold mb-4">Besoin d'aide avec votre campagne ?</h2>
+                        <h2 className="text-2xl font-bold mb-4">Besoin d&apos;aide avec votre campagne ?</h2>
                         <p className="text-slate-400 mb-8 leading-relaxed">
                             Notre équipe est là pour vous accompagner dans la réussite de votre publicité.
                             Contactez-nous si vous avez des questions sur le paiement ou le ciblage.

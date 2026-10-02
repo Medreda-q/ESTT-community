@@ -53,7 +53,7 @@ export default function ModeratorSidebar({
                         className="justify-start gap-3 h-11"
                         onClick={() => setActiveTab('overview')}
                     >
-                        <LayoutDashboard className="w-4 h-4" /> Vue d'ensemble
+                        <LayoutDashboard className="w-4 h-4" /> Vue d&apos;ensemble
                     </Button>
                     <Button
                         variant={activeTab === 'resources' ? 'default' : 'ghost'}

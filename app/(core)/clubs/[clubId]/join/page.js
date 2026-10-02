@@ -215,7 +215,7 @@ export default function ClubJoinPage() {
                         </div>
                         <CardTitle className="text-2xl text-green-700">Demande envoyée !</CardTitle>
                         <CardDescription>
-                            Votre demande d'adhésion a été transmise aux administrateurs du club.
+                            Votre demande d&apos;adhésion a été transmise aux administrateurs du club.
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
@@ -303,7 +303,7 @@ export default function ClubJoinPage() {
 
                 <Card className="border-t-4" style={{ borderTopColor: club.themeColor || '#64748b' }}>
                     <CardHeader>
-                        <CardTitle>Formulaire d'adhésion</CardTitle>
+                        <CardTitle>Formulaire d&apos;adhésion</CardTitle>
                         <CardDescription>
                             Remplissez ce formulaire pour soumettre votre candidature.
                         </CardDescription>

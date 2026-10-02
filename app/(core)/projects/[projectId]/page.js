@@ -250,7 +250,7 @@ export default function ProjectDetailPage() {
                 <div className="rounded-xl border border-dashed border-border bg-card p-10">
                     <h1 className="text-3xl font-black text-foreground">Projet introuvable</h1>
                     <p className="mt-3 text-sm text-muted-foreground">
-                        Ce challenge n'existe plus ou son identifiant est invalide.
+                        Ce challenge n&apos;existe plus ou son identifiant est invalide.
                     </p>
                     <Button asChild className="mt-6 rounded-full">
                         <Link href="/projects">Retour au hub</Link>
@@ -442,7 +442,7 @@ export default function ProjectDetailPage() {
 
                         <AccordionItem value="criteria" className="border-none">
                             <AccordionTrigger className="hover:no-underline py-4 flex items-center gap-3 rounded-2xl border border-border bg-muted/50 px-6 transition-colors hover:bg-muted [&[data-state=open]]:bg-muted [&[data-state=open]]:rounded-b-none">
-                                <h2 className="text-2xl font-black tracking-tight text-foreground">Criteres d'evaluation</h2>
+                                <h2 className="text-2xl font-black tracking-tight text-foreground">Criteres d&apos;evaluation</h2>
                             </AccordionTrigger>
                             <AccordionContent className="mt-0 border-x border-b border-border rounded-b-2xl bg-card px-8 pb-8 pt-6">
                                 {project.evaluationCriteria.length > 0 ? (
@@ -455,7 +455,7 @@ export default function ProjectDetailPage() {
                                         ))}
                                     </ul>
                                 ) : (
-                                    <p className="text-sm text-muted-foreground italic">Les criteres seront ajoutes par l'auteur du projet plus tard.</p>
+                                    <p className="text-sm text-muted-foreground italic">Les criteres seront ajoutes par l&apos;auteur du projet plus tard.</p>
                                 )}
                             </AccordionContent>
                         </AccordionItem>

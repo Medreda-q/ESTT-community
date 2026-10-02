@@ -24,14 +24,14 @@ export default function VerifySuccessPage() {
                     </div>
                     <CardTitle className="text-3xl font-extrabold tracking-tight">Email Vérifié !</CardTitle>
                     <p className="text-muted-foreground mt-2">
-                        Votre compte ESTT est maintenant actif et prêt à l'emploi.
+                        Votre compte ESTT est maintenant actif et prêt à l&apos;emploi.
                     </p>
                 </CardHeader>
 
                 <CardContent className="text-center space-y-4 px-8 pb-10">
                     <p className="text-sm leading-relaxed text-muted-foreground/80">
-                        Merci d'avoir rejoint la communauté. Vous pouvez maintenant accéder à toutes les ressources,
-                        partager vos documents et discuter avec d'autres étudiants.
+                        Merci d&apos;avoir rejoint la communauté. Vous pouvez maintenant accéder à toutes les ressources,
+                        partager vos documents et discuter avec d&apos;autres étudiants.
                     </p>
                 </CardContent>
 
@@ -45,7 +45,7 @@ export default function VerifySuccessPage() {
                     <Button asChild variant="ghost" className="w-full h-11 text-muted-foreground hover:text-primary transition-colors">
                         <Link href="/">
                             <Home className="mr-2 h-4 w-4" />
-                            Retour à l'accueil
+                            Retour à l&apos;accueil
                         </Link>
                     </Button>
                 </CardFooter>

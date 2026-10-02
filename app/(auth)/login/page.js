@@ -256,7 +256,7 @@ export default function LoginPage() {
                                 htmlFor="terms" 
                                 className="text-xs text-muted-foreground font-normal leading-tight peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                             >
-                                J'accepte les <Link href="/terms" target="_blank" className="text-primary hover:underline">Conditions d'utilisation</Link> et la <Link href="/privacy" target="_blank" className="text-primary hover:underline">Politique de confidentialité</Link>.
+                                J&apos;accepte les <Link href="/terms" target="_blank" className="text-primary hover:underline">Conditions d&apos;utilisation</Link> et la <Link href="/privacy" target="_blank" className="text-primary hover:underline">Politique de confidentialité</Link>.
                             </Label>
                         </div>
 
@@ -315,7 +315,7 @@ export default function LoginPage() {
                             Google
                         </Button>
                         <p className="text-[11px] text-center text-muted-foreground bg-muted/30 p-2 rounded-lg border border-muted-foreground/10 italic">
-                            Note : Seuls les e-mails académiques (@etu.uae.ac.ma) sont autorisés pour l'authentification Google.
+                            Note : Seuls les e-mails académiques (@etu.uae.ac.ma) sont autorisés pour l&apos;authentification Google.
                         </p>
                     </div>
                 </CardContent>

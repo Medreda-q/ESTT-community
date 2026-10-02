@@ -16,7 +16,7 @@ export default function RejectionDialog({ open, onOpenChange, onConfirm, isSubmi
                 <DialogHeader>
                     <DialogTitle>Motif du rejet</DialogTitle>
                     <DialogDescription>
-                        Veuillez indiquer la raison pour laquelle vous rejetez cet élément. Cette raison sera envoyée par email à l'utilisateur.
+                        Veuillez indiquer la raison pour laquelle vous rejetez cet élément. Cette raison sera envoyée par email à l&apos;utilisateur.
                     </DialogDescription>
                 </DialogHeader>
                 <div className="py-4">

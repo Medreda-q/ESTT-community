@@ -44,11 +44,11 @@ export default function AdPlatformLanding() {
           <h1 className="text-4xl md:text-7xl font-black text-foreground mb-8 tracking-tighter leading-[1.1]">
             Propulsez votre projet <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
-              au cœur de l'EST Tétouan
+              au cœur de l&apos;EST Tétouan
             </span>
           </h1>
           <p className="max-w-2xl mx-auto text-muted-foreground text-lg md:text-xl mb-12 leading-relaxed">
-            Le moyen le plus simple et le plus efficace pour atteindre des milliers d'étudiants chaque jour. Services, projets ou événements : soyez visible là où ça compte.
+            Le moyen le plus simple et le plus efficace pour atteindre des milliers d&apos;étudiants chaque jour. Services, projets ou événements : soyez visible là où ça compte.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
@@ -193,7 +193,7 @@ export default function AdPlatformLanding() {
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-black text-foreground mb-4">Questions Fréquentes</h2>
-            <p className="text-muted-foreground">Tout ce qu'il faut savoir avant de vous lancer.</p>
+            <p className="text-muted-foreground">Tout ce qu&apos;il faut savoir avant de vous lancer.</p>
           </div>
 
           <div className="space-y-4">
@@ -225,7 +225,7 @@ export default function AdPlatformLanding() {
             <div className="relative z-10">
               <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tight">Prêt à briller sur le campus ?</h2>
               <p className="text-blue-100 text-lg md:text-xl max-w-2xl mx-auto mb-12">
-                Ne laissez pas votre projet dans l'ombre. Rejoignez les dizaines d'étudiants qui boostent leur visibilité avec nous.
+                Ne laissez pas votre projet dans l&apos;ombre. Rejoignez les dizaines d&apos;étudiants qui boostent leur visibilité avec nous.
               </p>
               <Button
                 asChild

@@ -513,7 +513,7 @@ export default function ChatBubble({ message, isOwn, onReact, onDelete, onReply,
                                     ) : loadError ? (
                                         <div className="p-4 bg-red-50 border border-red-100 rounded-2xl flex items-center gap-3 text-red-600 dark:bg-red-500/15 dark:border-red-500/30 dark:text-red-300">
                                             <AlertTriangle className="w-5 h-5 shrink-0" />
-                                            <p className="text-xs font-bold">Cet événement n'est plus disponible.</p>
+                                            <p className="text-xs font-bold">Cet événement n&apos;est plus disponible.</p>
                                         </div>
                                     ) : (
                                         <Link

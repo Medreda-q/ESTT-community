@@ -13,7 +13,7 @@ export default function AdsPreview({ ads }) {
                     <div className="max-w-2xl">
                         <h2 className="text-3xl font-bold tracking-tight text-foreground mb-2 md:mb-4">Projets & Partenaires</h2>
                         <p className="text-muted-foreground text-lg">
-                            Soutenez les initiatives et services créés par vos camarades de l'ESTT.
+                            Soutenez les initiatives et services créés par vos camarades de l&apos;ESTT.
                         </p>
                     </div>
                     <Link href="/ads-portal" className="text-primary text-sm font-bold hover:underline shrink-0">

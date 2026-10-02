@@ -315,7 +315,7 @@ export default function ClubRequestPage() {
                         <h2 className="text-2xl font-bold mb-2">Demande envoyée !</h2>
                         <p className="text-muted-foreground mb-6">
                             Votre demande de création de club a été soumise avec succès.
-                            Les administrateurs l'examineront prochainement.
+                            Les administrateurs l&apos;examineront prochainement.
                         </p>
                         <Button asChild>
                             <Link href="/clubs">Retour aux clubs</Link>
@@ -569,7 +569,7 @@ export default function ClubRequestPage() {
                                     <div>
                                         <h3 className="text-xl font-semibold">Membres réguliers (optionnel)</h3>
                                         <p className="text-sm text-muted-foreground">
-                                            Ajoutez les membres qui ne font pas partie de l'organigramme
+                                            Ajoutez les membres qui ne font pas partie de l&apos;organigramme
                                         </p>
                                     </div>
                                     <Button

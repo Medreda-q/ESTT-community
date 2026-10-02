@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Search, Bell, Send, User, Loader2, Info, Link as LinkIcon, ExternalLink, MousePointer2, ArrowRight, Download, Check, Copy, Edit, Trash2, Share2, MoreVertical, MapPin, Calendar, Mail, Phone, Eye, Lock, Home, Menu, X, Plus, Minus, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Heart, Star, Flag, Bookmark, Settings, LogOut, LogIn, Clock, Zap, AlertTriangle, AlertCircle, CheckCircle, AlertOctagon, MessageSquare, Inbox, Archive, Trash, FileText, Image, Music, Video, Code, Cpu, Database, Server, Cloud, GitBranch, Package } from 'lucide-react';
+import { Search, Bell, Send, User, Loader2, Info, Link as LinkIcon, ExternalLink, MousePointer2, ArrowRight, Download, Check, Copy, Edit, Trash2, Share2, MoreVertical, MapPin, Calendar, Mail, Phone, Eye, Lock, Home, Menu, X, Plus, Minus, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Heart, Star, Flag, Bookmark, Settings, LogOut, LogIn, Clock, Zap, AlertTriangle, AlertCircle, CheckCircle, AlertOctagon, MessageSquare, Inbox, Archive, Trash, FileText, Image as ImageIcon, Music, Video, Code, Cpu, Database, Server, Cloud, GitBranch, Package } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 export default function AdminNotifications({ users }) {
@@ -80,7 +80,7 @@ export default function AdminNotifications({ users }) {
             'inbox': <Inbox className={className} />,
             'archive': <Archive className={className} />,
             'file-text': <FileText className={className} />,
-            'image': <Image className={className} />,
+            'image': <ImageIcon className={className} />,
             'music': <Music className={className} />,
             'video': <Video className={className} />,
             'code': <Code className={className} />,
@@ -301,7 +301,7 @@ export default function AdminNotifications({ users }) {
                                                         value={globalForm.actionButtonIcon}
                                                         onChange={(e) => setGlobalForm({ ...globalForm, actionButtonIcon: e.target.value })}
                                                     />
-                                                    <p className="text-[10px] text-muted-foreground mt-1">Nom d'une icône <a href="https://lucide.dev" target="_blank" rel="noopener noreferrer" className="text-primary underline">Lucide</a></p>
+                                                    <p className="text-[10px] text-muted-foreground mt-1">Nom d&apos;une icône <a href="https://lucide.dev" target="_blank" rel="noopener noreferrer" className="text-primary underline">Lucide</a></p>
                                                 </div>
                                                 <div className="flex flex-col items-center gap-1">
                                                     <div className="w-10 h-10 flex items-center justify-center border border-border rounded-lg bg-muted">
@@ -446,7 +446,7 @@ export default function AdminNotifications({ users }) {
                                                         value={privateForm.actionButtonIcon}
                                                         onChange={(e) => setPrivateForm({ ...privateForm, actionButtonIcon: e.target.value })}
                                                     />
-                                                    <p className="text-[10px] text-muted-foreground mt-1">Nom d'une icône <a href="https://lucide.dev" target="_blank" rel="noopener noreferrer" className="text-primary underline">Lucide</a></p>
+                                                    <p className="text-[10px] text-muted-foreground mt-1">Nom d&apos;une icône <a href="https://lucide.dev" target="_blank" rel="noopener noreferrer" className="text-primary underline">Lucide</a></p>
                                                 </div>
                                                 <div className="flex flex-col items-center gap-1">
                                                     <div className="w-10 h-10 flex items-center justify-center border border-border rounded-lg bg-muted">
@@ -483,7 +483,7 @@ export default function AdminNotifications({ users }) {
                 <div>
                     <h4 className="font-bold text-foreground">Conseil de modération</h4>
                     <p className="text-sm text-muted-foreground leading-relaxed">
-                        Les notifications globales doivent être utilisées avec parcimonie pour ne pas saturer l'espace de l'étudiant.
+                        Les notifications globales doivent être utilisées avec parcimonie pour ne pas saturer l&apos;espace de l&apos;étudiant.
                         Privilégiez les notifications privées pour les retours sur les ressources ou les annonces publicitaires.
                     </p>
                 </div>

@@ -199,7 +199,7 @@ export default function ContributeDrivePage() {
                                 Se connecter
                             </Button>
                             <Button onClick={() => router.push('/signup')} className="w-fit">
-                                S'inscrire
+                                S&apos;inscrire
                             </Button>
                         </div>
                     </AlertDescription>
@@ -227,7 +227,7 @@ export default function ContributeDrivePage() {
                                 Mon profil
                             </Button>
                             <Button variant="outline" onClick={() => router.push('/')} className="w-fit border-destructive/30 hover:bg-destructive/20 text-destructive">
-                                Retour à l'accueil
+                                Retour à l&apos;accueil
                             </Button>
                         </div>
                     </AlertDescription>
@@ -457,7 +457,7 @@ export default function ContributeDrivePage() {
                                                     </label>
                                                 </div>
                                                 <p className="text-xs text-muted-foreground">
-                                                    PDF ou Images jusqu'à 10MB
+                                                    PDF ou Images jusqu&apos;à 10MB
                                                 </p>
                                             </div>
                                         </div>

@@ -709,7 +709,7 @@ export default function ResourcePage() {
                                             Signaler cette ressource
                                         </DialogTitle>
                                         <DialogDescription>
-                                            Pourquoi signalez-vous "{resource.title}" ? Notre équipe examinera ce contenu.
+                                            Pourquoi signalez-vous &quot;{resource.title}&quot; ? Notre équipe examinera ce contenu.
                                         </DialogDescription>
                                     </DialogHeader>
 
@@ -725,7 +725,7 @@ export default function ResourcePage() {
                                             </div>
                                             <div className="flex items-center space-x-2">
                                                 <RadioGroupItem value="copyright" id="copyright" />
-                                                <Label htmlFor="copyright">Violation des droits d'auteur</Label>
+                                                <Label htmlFor="copyright">Violation des droits d&apos;auteur</Label>
                                             </div>
                                             <div className="flex items-center space-x-2">
                                                 <RadioGroupItem value="irrelevant" id="irrelevant" />
@@ -1026,7 +1026,7 @@ export default function ResourcePage() {
 
                         <div className="border-t pt-4">
                             {comments.length === 0 && (
-                                <p className="text-center text-muted-foreground text-sm py-6">Aucun commentaire pour l'instant.</p>
+                                <p className="text-center text-muted-foreground text-sm py-6">Aucun commentaire pour l&apos;instant.</p>
                             )}
                             {comments.length > 0 && (
                                 <div className="space-y-4">

@@ -459,7 +459,7 @@ export default function EventRegistrationPage() {
                                         event.price > 0 ? (
                                             <div className="flex items-center gap-2">
                                                 <Ticket className="w-5 h-5" />
-                                                Payer {event.price} DH & S'inscrire
+                                                Payer {event.price} DH & S&apos;inscrire
                                             </div>
                                         ) : (
                                             "S'inscrire à l'événement"

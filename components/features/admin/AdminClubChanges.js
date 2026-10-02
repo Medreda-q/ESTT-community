@@ -109,7 +109,7 @@ export default function AdminClubChanges({ requests }) {
                                     <div>
                                         <p className="text-sm font-bold mb-2">Nouvel organigramme</p>
                                         <p className="text-xs text-muted-foreground mb-2">
-                                            Contactez l'administrateur du club pour plus de détails
+                                            Contactez l&apos;administrateur du club pour plus de détails
                                         </p>
                                     </div>
                                 )}

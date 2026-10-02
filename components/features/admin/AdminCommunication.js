@@ -232,7 +232,7 @@ export default function AdminCommunication({ users }) {
                 {/* Preview */}
                 <div className="lg:col-span-2 space-y-4">
                     <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground px-1 flex items-center gap-2">
-                        <Eye className="w-4 h-4" /> Aperçu de l'email
+                        <Eye className="w-4 h-4" /> Aperçu de l&apos;email
                     </h3>
                     <Card className="border-none shadow-sm overflow-hidden bg-card">
                         {/* Mock Email Header */}
@@ -264,7 +264,7 @@ export default function AdminCommunication({ users }) {
 
                             <div className="pt-8 border-t border-border text-sm">
                                 <p className="text-muted-foreground italic mb-1">Cordialement,</p>
-                                <p className="font-bold text-foreground">L'équipe ESTT-Community</p>
+                                <p className="font-bold text-foreground">L&apos;équipe ESTT-Community</p>
                             </div>
                         </div>
                         

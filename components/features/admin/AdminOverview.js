@@ -163,7 +163,7 @@ export default function AdminOverview({ stats, resources, users = [], setActiveT
                         disabled={rebuilding}
                     >
                         {rebuilding ? <Loader2 className="w-4 h-4 animate-spin" /> : <SearchIcon className="w-4 h-4" />}
-                        Reconstruire l'index
+                        Reconstruire l&apos;index
                     </Button>
                     <Button variant="outline" size="sm" className="gap-2 rounded-xl px-4">
                         <ArrowUpRight className="w-4 h-4" /> Exporter

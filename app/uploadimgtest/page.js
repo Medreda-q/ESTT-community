@@ -65,14 +65,14 @@ export default function UploadImgTestPage() {
             <div className="max-w-3xl mx-auto">
                 <div className="text-center mb-10">
                     <h1 className="text-4xl font-bold text-foreground mb-2">ImgBB Test Upload</h1>
-                    <p className="text-muted-foreground">Testez l'envoi d'images vers ImgBB et récupérez l'URL publique.</p>
+                    <p className="text-muted-foreground">Testez l&apos;envoi d&apos;images vers ImgBB et récupérez l&apos;URL publique.</p>
                 </div>
 
                 <Card className="border-none shadow-xl bg-background/80 backdrop-blur-sm">
                     <CardHeader>
                         <CardTitle className="flex items-center gap-2">
                             <ImageIcon className="w-5 h-5 text-primary" />
-                            Sélecteur d'image
+                            Sélecteur d&apos;image
                         </CardTitle>
                         <CardDescription>
                             Sélectionnez une image à héberger publiquement.
@@ -89,7 +89,7 @@ export default function UploadImgTestPage() {
                                     <Upload className="w-8 h-8 text-muted-foreground group-hover:text-primary" />
                                 </div>
                                 <p className="text-muted-foreground font-medium">Cliquez pour choisir un fichier</p>
-                                <p className="text-muted-foreground text-sm mt-1">PNG, JPG, GIF jusqu'à 32MB</p>
+                                <p className="text-muted-foreground text-sm mt-1">PNG, JPG, GIF jusqu&apos;à 32MB</p>
                                 <input 
                                     id="file-upload"
                                     type="file"
@@ -177,7 +177,7 @@ export default function UploadImgTestPage() {
                                     ) : (
                                         <>
                                             <Upload className="w-4 h-4 mr-2" />
-                                            Héberger l'image
+                                            Héberger l&apos;image
                                         </>
                                     )}
                                 </Button>
