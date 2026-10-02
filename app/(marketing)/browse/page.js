@@ -58,7 +58,7 @@ export default function BrowsePage() {
             setResources([]);
             setAds([]);
         }
-    }, [selectedModule, db]);
+    }, [selectedModule]);
 
     useEffect(() => {
         if (!user || !db) return;
@@ -72,7 +72,7 @@ export default function BrowsePage() {
             setFavorites(map);
         });
         return () => unsub();
-    }, [user, db]);
+    }, [user]);
 
     const handleToggleFavorite = async (e, resource) => {
         e.preventDefault();

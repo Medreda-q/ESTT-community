@@ -63,7 +63,7 @@ export default function ContributePage() {
         };
 
         fetchProfessors();
-    }, [db]);
+    }, []);
 
 
     const handleChange = (name, value) => {

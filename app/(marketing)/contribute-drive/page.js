@@ -62,7 +62,7 @@ export default function ContributeDrivePage() {
         };
 
         fetchProfessors();
-    }, [db]);
+    }, []);
 
 
     const handleChange = (name, value) => {

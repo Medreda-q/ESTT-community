@@ -82,7 +82,7 @@ export default function EventRegistrationPage() {
         };
 
         fetchData();
-    }, [clubId, eventId, db, user, profile]);
+    }, [clubId, eventId, user, profile]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();

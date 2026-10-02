@@ -279,7 +279,7 @@ export default function ClubAdminPage() {
         });
 
         return () => unsubSettings();
-    }, [db, clubId, club]); // Depend on club to get president email once loaded
+    }, [clubId, club]); // Depend on club to get president email once loaded
 
     const handleSaveSettings = async (e) => {
         e.preventDefault();

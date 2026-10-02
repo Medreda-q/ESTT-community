@@ -64,7 +64,7 @@ export default function NotificationsPage() {
         return () => {
             unsubPrivate();
         };
-    }, [user, profile, db]);
+    }, [user, profile]);
 
     const handleMarkAllRead = async () => {
         if (!user) return;

@@ -62,7 +62,7 @@ export default function MyListPage() {
         });
 
         return () => unsub();
-    }, [user, db]);
+    }, [user]);
 
     useEffect(() => {
         if (favorites.length === 0) {
@@ -106,7 +106,7 @@ export default function MyListPage() {
         };
 
         fetchResources();
-    }, [favorites, db]);
+    }, [favorites]);
 
     const handleRemoveFavorite = async (e, resourceId) => {
         e.preventDefault();

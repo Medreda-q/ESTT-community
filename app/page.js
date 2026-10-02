@@ -192,7 +192,7 @@ export default function Home() {
         };
 
         fetchData();
-    }, [firebaseDb]);
+    }, []);
 
     // Carousel Autoplay
     useEffect(() => {

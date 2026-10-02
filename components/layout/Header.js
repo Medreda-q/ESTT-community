@@ -59,7 +59,7 @@ export default function Header() {
         return () => {
             unsubPrivate();
         };
-    }, [isRegisteredUser, user, profile, db]);
+    }, [isRegisteredUser, user, profile]);
 
     useEffect(() => {
         if (!isRegisteredUser || !db) return;
@@ -72,7 +72,7 @@ export default function Header() {
         });
 
         return () => unsubDM();
-    }, [isRegisteredUser, user, db]);
+    }, [isRegisteredUser, user]);
 
     if (isIndividualDM || isChat) return null;
 
