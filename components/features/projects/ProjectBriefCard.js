@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -25,9 +26,12 @@ export default function ProjectBriefCard({ project, leaderSubmission }) {
             <div className="relative">
                 <div className="absolute inset-0 bg-muted" />
                 {image && (
-                    <img
+                    <Image
                         src={image}
                         alt={project.title}
+                        width={800}
+                        height={400}
+                        unoptimized
                         className="relative h-28 sm:h-44 w-full object-cover"
                     />
                 )}
