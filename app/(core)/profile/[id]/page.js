@@ -13,7 +13,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import UnifiedDialog from '@/components/ui/UnifiedDialog';
-import { Loader2, User, Mail, GraduationCap, Calendar, Share2, Star, Ticket, Edit2, X, Megaphone, ArrowRight, FileText, Award, Camera, Upload, BadgeCheck, ShieldCheck, Trophy, Zap, LogOut, Bug, Gem, MessageSquare, Settings } from 'lucide-react';
+import { Loader2, User, Mail, GraduationCap, Calendar, Share2, Star, Edit2, X, ArrowRight, Award, Camera, Upload, ShieldCheck, Trophy, LogOut, Bug, Gem, MessageSquare, Settings } from 'lucide-react';
 import { cn, getUserLevel, resolveUidFromIdentifier } from '@/lib/utils';
 import { uploadToImgBB } from '@/lib/uploadUtils';
 import SettingsModal from '@/components/profile/SettingsModal';
@@ -314,7 +314,7 @@ export default function PublicProfilePage() {
             } else {
                 showError(data.error || "Erreur lors de l'envoi du code.");
             }
-        } catch (err) {
+        } catch {
             showError("Impossible d'envoyer le code.");
         } finally {
             setIsVerifying(false);
@@ -344,7 +344,7 @@ export default function PublicProfilePage() {
             } else {
                 showError(data.error || "Code incorrect ou expiré.");
             }
-        } catch (err) {
+        } catch {
             showError("Erreur lors de la vérification.");
         } finally {
             setIsVerifying(false);
@@ -365,7 +365,7 @@ export default function PublicProfilePage() {
             console.error("Error sharing profile:", err);
             if (err.name !== 'AbortError') {
                 try { await navigator.clipboard.writeText(window.location.href); showSuccess("Lien du profil copié !"); }
-                catch (e) { showError("Impossible de copier le lien."); }
+                catch { showError("Impossible de copier le lien."); }
             }
         }
     };

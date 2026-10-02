@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { db, ref, get } from '@/lib/firebase';
-import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Trophy, Medal, ArrowLeft, Loader2, User, Heart, ChevronRight } from 'lucide-react';
 

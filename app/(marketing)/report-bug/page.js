@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import packageInfo from '@/package.json';
 const { version } = packageInfo;
 import {
@@ -13,13 +12,7 @@ import {
     Upload,
     X,
     Loader2,
-    Plus,
-    Trash2,
     Monitor,
-    Smartphone,
-    Tablet,
-    Laptop,
-    HelpCircle,
     ArrowLeft
 } from 'lucide-react';
 import { db, push, ref, set, serverTimestamp } from '@/lib/firebase';
@@ -41,7 +34,6 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { useAuth } from '@/context/AuthContext';
 
 export default function ReportBugPage() {
-    const router = useRouter();
     const { user, profile, loading: authLoading } = useAuth();
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);

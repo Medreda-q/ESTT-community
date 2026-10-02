@@ -3,11 +3,11 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { cn, getUserLevel } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Bell, LogOut, User as UserIcon, Search, MessageSquare, Home, Calendar, PlusCircle, ShieldCheck, BookOpen, HelpCircle, ListPlus, Sun, Moon } from 'lucide-react';
+import { Menu, Bell, LogOut, User as UserIcon, MessageSquare, Home, Calendar, PlusCircle, BookOpen, ListPlus, Sun, Moon } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { db, ref, onValue } from '@/lib/firebase';
 import { Badge } from '@/components/ui/badge';

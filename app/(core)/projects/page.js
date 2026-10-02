@@ -11,7 +11,6 @@ import ProjectSubmissionCard from '@/components/features/projects/ProjectSubmiss
 import ProjectShowcaseCard from '@/components/features/projects/ProjectShowcaseCard';
 import {
     countUniqueAuthors,
-    getProjectCategoryLabel,
     isProjectVisible,
     normalizeProject,
     normalizeShowcase,

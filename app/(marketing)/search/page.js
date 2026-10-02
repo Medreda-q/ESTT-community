@@ -7,13 +7,7 @@ import Image from 'next/image';
 import { db as staticDb } from '@/lib/data';
 import { db, ref, get } from '@/lib/firebase';
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from '@/components/ui/select';
-import { cn } from '@/lib/utils';
+    } from '@/components/ui/select';
 import { Loader2, FileText, Video, ImageIcon, Link as LinkIcon, ArrowRight, Search as SearchIcon, User, BookOpen, Sparkles, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 function SearchContent() {

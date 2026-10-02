@@ -7,7 +7,6 @@ import {
     createUserWithEmailAndPassword,
     signInAnonymously,
     linkWithCredential,
-    linkWithPopup,
     EmailAuthProvider,
     signOut as firebaseSignOut,
     sendEmailVerification,

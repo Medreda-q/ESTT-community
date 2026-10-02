@@ -10,8 +10,7 @@ import ChatTermsDialog from '@/components/features/chat/ChatTermsDialog';
 import { Loader2, ArrowLeft, Bell, BellOff, Search, Trash2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { onDisconnect, remove } from 'firebase/database';
-import { X, Lock, ShieldCheck, Gem } from 'lucide-react';
-import Image from 'next/image';
+import { X, Lock, Gem } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { getSharedKey, encryptText, decryptText } from '@/lib/crypto';
@@ -23,7 +22,6 @@ import {
     buildEsttAiHistory,
     isEsttAiAgent,
 } from '@/lib/estt-ai';
-import { searchResourcesAction } from '@/lib/resourceUtils';
 
 export default function DirectMessagePage() {
     const { id: recipientId } = useParams();

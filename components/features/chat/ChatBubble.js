@@ -7,7 +7,7 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
 import { cn } from '@/lib/utils';
-import { BadgeCheck, ShieldCheck, Gem, User, SmilePlus, Trash2, MoreHorizontal, Pencil, AlertTriangle, X, Reply, Flag, FileText, Video, Link as LinkIcon, ArrowRight, BookOpen, Users, CheckCheck, Calendar, MapPin, Clock, CalendarDays, Loader2 } from 'lucide-react';
+import { Gem, User, SmilePlus, Trash2, MoreHorizontal, AlertTriangle, X, Reply, Flag, FileText, Video, Link as LinkIcon, ArrowRight, BookOpen, Users, CheckCheck, Calendar, MapPin, Clock, CalendarDays, Loader2 } from 'lucide-react';
 import { db, ref, get } from '@/lib/firebase';
 import { ESTT_AI_AGENT_ID } from '@/lib/estt-ai';
 

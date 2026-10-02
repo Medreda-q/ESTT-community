@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import { supabase } from "@/lib/supabase";
-import { db, ref, push, set } from "@/lib/firebase";
+import { db, ref, set } from "@/lib/firebase";
 import { 
     Upload, 
     Image as ImageIcon, 

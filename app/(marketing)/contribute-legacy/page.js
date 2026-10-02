@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { db as staticDb } from '@/lib/data';
 import { uploadResourceFile } from '@/lib/supabase';
-import { db, ref, push, set, get, update } from '@/lib/firebase';
+import { db, ref, push, set, get, } from '@/lib/firebase';
 import { useAuth } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';

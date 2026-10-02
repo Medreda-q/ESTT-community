@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { db, ref, get, query, orderByChild, equalTo } from '@/lib/firebase';
 import { Button } from '@/components/ui/button';
@@ -36,7 +36,6 @@ const sortSubmissions = (items) =>
 
 export default function ProjectDetailPage() {
     const params = useParams();
-    const router = useRouter();
     const { user } = useAuth();
     const projectId = Array.isArray(params?.projectId) ? params.projectId[0] : params?.projectId;
 

@@ -6,8 +6,7 @@ import {
     ShieldCheck,
     Zap,
     BookOpen,
-    X
-} from 'lucide-react';
+    } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';

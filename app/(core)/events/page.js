@@ -20,10 +20,8 @@ import {
     ChevronRight,
     Loader2,
     Search,
-    Filter,
     Calendar,
     Clock,
-    Tag,
     Ticket,
     X,
 } from 'lucide-react';

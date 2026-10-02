@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { db, ref, get, push, set } from '@/lib/firebase';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -18,7 +18,6 @@ import { generatePDF } from '@/lib/pdfUtils';
 
 export default function ClubJoinPage() {
     const params = useParams();
-    const router = useRouter();
     const { user, profile } = useAuth();
     const clubId = params.clubId;
 

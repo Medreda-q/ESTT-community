@@ -7,13 +7,11 @@ import ChatTermsDialog from '@/components/features/chat/ChatTermsDialog';
 import { ArrowRight, Loader2, Search, MessageSquare, User, MoreVertical, Trash2 } from 'lucide-react';
 import { PeopleIcon } from '@primer/octicons-react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { cn, getUserLevel } from '@/lib/utils';
-import { db as staticData } from '@/lib/data';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { getSharedKey, decryptText } from '@/lib/crypto';
-import { ShieldCheck, Lock, Gem } from 'lucide-react';
+import { Gem } from 'lucide-react';
 import { notifyDM as rawNotifyDM } from '@/lib/browserNotifications';
 import {
     ESTT_AI_AGENT_ID,

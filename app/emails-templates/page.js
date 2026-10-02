@@ -70,7 +70,7 @@ function EmailPreview({ html }) {
             if (scrollHeight) {
                 setHeight(scrollHeight + 16);
             }
-        } catch (e) {
+        } catch {
             // ignore cross-origin / rendering edge cases
         }
     };
@@ -97,7 +97,7 @@ function CopyButton({ html }) {
             await navigator.clipboard.writeText(html);
             setCopied(true);
             setTimeout(() => setCopied(false), 1500);
-        } catch (e) {
+        } catch {
             // clipboard not available
         }
     };

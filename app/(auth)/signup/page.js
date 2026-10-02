@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
 import { useDialog } from '@/context/DialogContext';
@@ -24,7 +24,6 @@ import { Checkbox } from '@/components/ui/checkbox';
 
 
 export default function SignupPage() {
-    const router = useRouter();
     const searchParams = useSearchParams();
     const { showSuccess } = useDialog();
 

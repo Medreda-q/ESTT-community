@@ -16,7 +16,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select';
-import { Badge, Loader2, FileText, Video, ImageIcon, Link as LinkIcon, ArrowRight, FolderOpen, User, Star, BookOpen, ClipboardList, FlaskConical, FileCheck, Layers, Globe, ListPlus, Search, X } from 'lucide-react';
+import { Badge, Loader2, FileText, Video, ImageIcon, Link as LinkIcon, ArrowRight, User, Star, BookOpen, ClipboardList, FlaskConical, Layers, Globe, ListPlus, Search, X } from 'lucide-react';
 
 const TYPE_CATEGORIES = [
     { id: 'all', label: 'Tous', icon: <Layers className="w-5 h-5 text-muted-foreground" /> },

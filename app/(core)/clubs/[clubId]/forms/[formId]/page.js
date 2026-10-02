@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { db, ref, get, push, set } from '@/lib/firebase';
 import { useAuth } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
@@ -11,14 +11,13 @@ import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter, CardDescription } from '@/components/ui/card';
-import { Loader2, CheckCircle2, ArrowLeft, AlertCircle, Ticket, Check, FileText, Download } from 'lucide-react';
+import { Loader2, CheckCircle2, ArrowLeft, AlertCircle, Download } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { generatePDF } from '@/lib/pdfUtils';
 
 export default function CustomFormPage() {
     const params = useParams();
-    const router = useRouter();
     const { user, profile } = useAuth();
     const { clubId, formId } = params;
 

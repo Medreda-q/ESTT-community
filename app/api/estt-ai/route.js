@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import {
-    AI_MODELS,
     DEFAULT_AI_MODEL,
     ESTT_AI_SYSTEM_INSTRUCTION,
 } from '@/lib/estt-ai';
@@ -43,7 +42,7 @@ function extractAiResponse(text) {
                 action: actionData,
             };
         }
-    } catch (e) {
+    } catch {
         console.warn('[ESTT-AI] Malformed JSON in response, treating as plain text.');
     }
 

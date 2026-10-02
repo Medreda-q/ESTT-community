@@ -1,12 +1,11 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Github, Smartphone, Apple, ExternalLink, Download, Sparkles, Shield, Zap, Heart } from 'lucide-react';
+import { Github, Smartphone, Apple, ExternalLink, Download, Sparkles, Shield, Zap, } from 'lucide-react';
 
 export default function DownloadPage() {
     const androidDownloadUrl = 'https://expo.dev/artifacts/eas/4QW4Fn5v85oLWxeTcoYeoi.apk';

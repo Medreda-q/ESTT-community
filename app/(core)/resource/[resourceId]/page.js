@@ -6,10 +6,10 @@ import { db, ref, get, set, push, update, remove, runTransaction, onValue } from
 import { useAuth } from '@/context/AuthContext';
 import { useDialog } from '@/context/DialogContext';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Textarea } from '@/components/ui/textarea';
-import { Loader2, FileText, Video, Image as ImageIcon, Link as LinkIcon, Download, ExternalLink, User, Share2, GraduationCap, Play, MessageCircle, Send, X, Flag, AlertTriangle, Star, Bookmark, Eye, Globe, ListPlus } from 'lucide-react';
+import { Loader2, FileText, Video, Image as ImageIcon, Link as LinkIcon, Download, ExternalLink, User, Share2, MessageCircle, Send, X, Flag, AlertTriangle, Star, Eye, Globe, ListPlus } from 'lucide-react';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
@@ -63,7 +63,7 @@ export default function ResourcePage() {
                     const vcRef = ref(db, `resourceViews/${resourceId}/viewCount`);
                     const snap = await get(vcRef);
                     if (snap.exists()) setViewCount(snap.val());
-                } catch (_) {}
+                } catch {}
             };
             loadViewCount();
         }
@@ -319,7 +319,7 @@ export default function ResourcePage() {
         try {
             const urlObj = new URL(url);
             return urlObj.pathname.toLowerCase().endsWith('.pdf');
-        } catch (e) {
+        } catch {
             return url.toLowerCase().includes('.pdf');
         }
     };

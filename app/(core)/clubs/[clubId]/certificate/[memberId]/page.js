@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { db, ref, get } from '@/lib/firebase';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter, CardDescription } from '@/components/ui/card';
@@ -11,7 +11,6 @@ import { generateCertificate, getCertificateSignature } from '@/lib/pdfUtils';
 
 export default function CertificatePage() {
     const params = useParams();
-    const router = useRouter();
     const { clubId, memberId } = params;
 
     const [club, setClub] = useState(null);

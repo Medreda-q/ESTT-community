@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Heart, Github, Globe, MessageCircle, BookOpen, ExternalLink, ShieldCheck, Mail, Info, Phone , Copyright } from 'lucide-react';
+import { Heart, Github, Globe, ExternalLink, Mail, Phone , } from 'lucide-react';
 import LatestReleaseBadge from '../LatestReleaseBadge';
 
 export default function Footer() {

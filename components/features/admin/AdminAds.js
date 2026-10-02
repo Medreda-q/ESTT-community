@@ -21,7 +21,6 @@ import {
     XCircle,
     ExternalLink,
     MessageSquare,
-    Clock,
     CreditCard,
     AlertCircle
 } from 'lucide-react';
@@ -33,7 +32,7 @@ import { sendPrivateNotification, NOTIF_TYPES } from '@/lib/notifications';
 export default function AdminAds() {
     const { showError } = useDialog();
     const [ads, setAds] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [, setLoading] = useState(true);
     const [filter, setFilter] = useState('all');
     const [search, setSearch] = useState('');
 
@@ -90,7 +89,7 @@ export default function AdminAds() {
             setShowApproveModal(false);
 
             setSelectedAd(null);
-        } catch (error) {
+        } catch {
             showError("Erreur lors de l'approbation");
         }
     };
@@ -117,7 +116,7 @@ export default function AdminAds() {
 
             setSelectedAd(null);
             setRejectReason('');
-        } catch (error) {
+        } catch {
             showError("Erreur lors du refus");
         }
     };
@@ -152,7 +151,7 @@ export default function AdminAds() {
             setShowPaidModal(false);
 
             setSelectedAd(null);
-        } catch (error) {
+        } catch {
             showError("Erreur lors du marquage comme payé");
         }
     };

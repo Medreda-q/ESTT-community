@@ -7,20 +7,11 @@ import {
     Download,
     Github,
     ExternalLink,
-    Book,
-    Zap,
     Smartphone,
     Shield,
-    Search,
     Menu,
     X,
     Layout,
-    Calendar,
-    Ticket,
-    Users,
-    ClipboardList,
-    QrCode,
-    UserCircle,
     Monitor
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';

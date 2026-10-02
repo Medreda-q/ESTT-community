@@ -12,8 +12,8 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Loader2, Plus, Trash2, Upload, CheckCircle2, AlertCircle, ArrowLeft, Info } from 'lucide-react';
+import { Alert, AlertDescription, } from '@/components/ui/alert';
+import { Loader2, Plus, Trash2, CheckCircle2, AlertCircle, ArrowLeft, Info } from 'lucide-react';
 import Link from 'next/link';
 
 export default function ClubRequestPage() {

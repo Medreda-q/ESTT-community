@@ -3,8 +3,7 @@
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
-import { ExternalLink, Eye, Github, Trophy } from 'lucide-react';
+import { Eye, Trophy } from 'lucide-react';
 
 export default function ProjectSubmissionCard({
     submission,

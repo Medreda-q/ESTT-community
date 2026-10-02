@@ -4,11 +4,9 @@ import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
-import { db, ref, get, query, orderByChild, equalTo, runTransaction, set, push } from '@/lib/firebase';
+import { db, ref, get, runTransaction, set, push } from '@/lib/firebase';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Textarea } from '@/components/ui/textarea';
 import {
     formatProjectDate,
@@ -17,11 +15,8 @@ import {
     normalizeSubmission,
 } from '@/lib/projects';
 import { 
-    AlertCircle, 
     ArrowLeft, 
     CalendarDays, 
-    CheckCircle2, 
-    ChevronDown, 
     ExternalLink, 
     Github, 
     Loader2, 
@@ -29,8 +24,7 @@ import {
     Send, 
     Trophy, 
     User, 
-    X 
-} from 'lucide-react';
+    } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export default function SubmissionDetailPage() {

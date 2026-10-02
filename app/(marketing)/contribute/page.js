@@ -29,7 +29,7 @@ import {
     DialogTitle,
 } from '@/components/ui/dialog';
 import Image from 'next/image';
-import { Loader2, CheckCircle2, AlertCircle, CloudUpload, Info, Plus, Trash2, HardDrive, FileText, FileSpreadsheet, Presentation, File, Copy, Check } from 'lucide-react';
+import { Loader2, CheckCircle2, AlertCircle, CloudUpload, Info, Plus, Trash2, Copy, Check } from 'lucide-react';
 const AI_MAX_WORDS = 50; // Restored to a higher limit for the new provider
 import { Sparkles } from 'lucide-react';
 
@@ -397,7 +397,7 @@ export default function ContributePage() {
             setAiResponseText('');
             setIsError(false);
             setMessage('Champs remplis avec succès via l\'IA !');
-        } catch (error) {
+        } catch {
             setAiParseError('Format JSON invalide. Assurez-vous de coller uniquement le JSON renvoyé par l\'IA.');
         }
     };

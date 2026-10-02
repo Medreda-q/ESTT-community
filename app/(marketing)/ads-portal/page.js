@@ -1,6 +1,5 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
@@ -12,14 +11,10 @@ import {
   CreditCard,
   LayoutDashboard,
   PlusCircle,
-  PlayCircle,
-  MousePointer2,
-  Calendar,
-  MessageSquare
-} from 'lucide-react';
+  } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, } from "@/components/ui/card";
 import { AD_PRICING } from '@/lib/ad-constants';
 
 export default function AdPlatformLanding() {

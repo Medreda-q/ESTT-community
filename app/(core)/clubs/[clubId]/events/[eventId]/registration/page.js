@@ -1,24 +1,21 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
-import { db, ref, get, push, set, update, increment, query, orderByChild, equalTo } from '@/lib/firebase';
+import { useParams } from 'next/navigation';
+import { db, ref, get, push, set, update, increment } from '@/lib/firebase';
 import { useAuth } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Loader2, ArrowLeft, CheckCircle2, Calendar, MapPin, Users, Ticket, AlertCircle, Clock } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { cn } from '@/lib/utils';
 
 export default function EventRegistrationPage() {
     const params = useParams();
-    const router = useRouter();
     const { user, profile } = useAuth();
     const { clubId, eventId } = params;
 
@@ -57,7 +54,7 @@ export default function EventRegistrationPage() {
                         if (ticketsSnap.exists()) {
                             const allTickets = ticketsSnap.val();
                             const userTicketForEvent = Object.entries(allTickets).find(
-                                ([_, ticket]) => ticket.userId === user.uid && ticket.eventId === eventId
+                                ([, ticket]) => ticket.userId === user.uid && ticket.eventId === eventId
                             );
                             
                             if (userTicketForEvent) {

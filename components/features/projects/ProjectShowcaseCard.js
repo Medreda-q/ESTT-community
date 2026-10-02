@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { getFirstProjectImage, getProjectCategoryLabel, formatProjectDate } from '@/lib/projects';
-import { ExternalLink, Github, Sparkles } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 export default function ProjectShowcaseCard({ showcase }) {
     const image = getFirstProjectImage(showcase);

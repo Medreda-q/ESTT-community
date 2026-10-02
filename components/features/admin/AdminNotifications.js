@@ -1,14 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { db, ref, onValue } from '@/lib/firebase';
 import { useDialog } from '@/context/DialogContext';
 import { sendGlobalNotification, sendPrivateNotification, NOTIF_TYPES, NOTIF_PRIORITY } from '@/lib/notifications';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Search, Bell, Send, User, Loader2, Info, Link as LinkIcon, ExternalLink, MousePointer2, ArrowRight, Download, Check, Copy, Edit, Trash2, Share2, MoreVertical, MapPin, Calendar, Mail, Phone, Eye, Lock, Home, Menu, X, Plus, Minus, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Heart, Star, Flag, Bookmark, Settings, LogOut, LogIn, Clock, Zap, AlertTriangle, AlertCircle, CheckCircle, AlertOctagon, MessageSquare, Inbox, Archive, Trash, FileText, Image as ImageIcon, Music, Video, Code, Cpu, Database, Server, Cloud, GitBranch, Package } from 'lucide-react';
+import { Search, Bell, Send, User, Loader2, Info, Link as LinkIcon, ExternalLink, MousePointer2, ArrowRight, Download, Check, Copy, Edit, Trash2, Share2, MoreVertical, Calendar, Mail, Phone, Eye, Lock, Home, Heart, Star, Flag, Bookmark, Settings, Clock, Zap, AlertTriangle, AlertCircle, CheckCircle, MessageSquare, Inbox, Archive, FileText, Image as ImageIcon, Music, Video, Code, Cpu, Database, Server, Cloud, GitBranch, Package } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 export default function AdminNotifications({ users }) {

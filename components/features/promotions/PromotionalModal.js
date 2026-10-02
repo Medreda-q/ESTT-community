@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { 
     Dialog, 
     DialogContent, 
-    DialogHeader, 
     DialogTitle, 
     DialogDescription 
 } from '@/components/ui/dialog';

@@ -17,7 +17,7 @@ import {
     SelectValue,
 } from '@/components/ui/select';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Loader2, Mail, Phone, MessageSquare, Send, CheckCircle2, ArrowLeft, Globe, Github, MapPin } from 'lucide-react';
+import { Loader2, Mail, Phone, Send, CheckCircle2, ArrowLeft, Globe, Github, MapPin } from 'lucide-react';
 
 export default function ContactPage() {
     const { user, profile, loading: authLoading } = useAuth();

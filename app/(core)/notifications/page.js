@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { db, ref, onValue, remove } from '@/lib/firebase';
 import { useAuth } from '@/context/AuthContext';
-import { markAsRead, markGlobalAsRead, NOTIF_PRIORITY } from '@/lib/notifications';
+import { markAsRead, markGlobalAsRead } from '@/lib/notifications';
 import { useDialog } from '@/context/DialogContext';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -15,7 +15,7 @@ import {
     DialogTitle,
     DialogClose,
 } from "@/components/ui/dialog";
-import { Bell, CheckCheck, Loader2, ArrowRight, Info, AlertTriangle, Megaphone, ExternalLink, Download, Check, Copy, Edit, Trash2, Share2, MoreVertical, MapPin, Calendar, User, Mail, Phone, Eye, Lock, Home, Search, Menu, X, Plus, Minus, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Heart, Star, Flag, Bookmark, Settings, LogOut, LogIn, Clock, Zap, AlertCircle, CheckCircle, AlertOctagon, MessageSquare, Send, Inbox, Archive, Trash, FileText, Image as ImageIcon, Music, Video, Code, Cpu, Database, Server, Cloud, GitBranch, Package } from 'lucide-react';
+import { Bell, CheckCheck, Loader2, ArrowRight, Info, AlertTriangle, Megaphone, ExternalLink, Download, Check, Copy, Edit, Trash2, Share2, MoreVertical, Calendar, User, Mail, Phone, Eye, Lock, Home, Search, Heart, Star, Flag, Bookmark, Settings, Clock, Zap, AlertCircle, CheckCircle, MessageSquare, Send, Inbox, Archive, FileText, Image as ImageIcon, Music, Video, Code, Cpu, Database, Server, Cloud, GitBranch, Package } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 

@@ -8,9 +8,7 @@ import { db, ref, push, set, get } from '@/lib/firebase';
 import { useAuth } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { Checkbox } from '@/components/ui/checkbox';
 import {
     Select,
     SelectContent,
@@ -19,8 +17,7 @@ import {
     SelectValue,
 } from '@/components/ui/select';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Loader2, CheckCircle2, AlertCircle, CloudUpload, Info, Plus, Trash2 } from 'lucide-react';
+import { Loader2, CheckCircle2, AlertCircle, Info, Plus, Trash2 } from 'lucide-react';
 
 export default function AdminFastContribute() {
     const { user, profile } = useAuth();

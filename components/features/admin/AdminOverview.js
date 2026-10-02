@@ -11,8 +11,7 @@ import {
     Loader2,
     PieChart as PieChartIcon,
     BarChart3,
-    Filter
-} from 'lucide-react';
+    } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -23,7 +22,6 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import Link from 'next/link';
 import { 
     ResponsiveContainer, 
     PieChart, 

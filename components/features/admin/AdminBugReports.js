@@ -15,7 +15,6 @@ import {
     Bug,
     CheckCircle2,
     Clock,
-    AlertCircle,
     ExternalLink,
     Loader2,
     ChevronRight,
@@ -30,11 +29,7 @@ import {
 import {
     Dialog,
     DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle
-} from '@/components/ui/dialog';
+    } from '@/components/ui/dialog';
 
 export default function AdminBugReports({ reports = [] }) {
     const { showError, showConfirm } = useDialog();

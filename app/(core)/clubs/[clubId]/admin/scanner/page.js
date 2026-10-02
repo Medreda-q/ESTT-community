@@ -9,9 +9,9 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
-import { Loader2, ArrowLeft, Camera, CheckCircle2, XCircle, AlertCircle, Scan, User, Ticket, Calendar } from 'lucide-react';
+import { Loader2, ArrowLeft, CheckCircle2, XCircle, AlertCircle, Scan, User } from 'lucide-react';
 import Link from 'next/link';
 import { Html5QrcodeScanner } from 'html5-qrcode';
 import { cn } from '@/lib/utils';
@@ -148,7 +148,7 @@ export default function TicketScannerPage() {
                 setScanning(true);
             }, 3000);
 
-        } catch (err) {
+        } catch {
             setError("Erreur lors de la validation");
         } finally {
             setActionLoading(false);
@@ -166,7 +166,7 @@ export default function TicketScannerPage() {
 
             setSuccess("Ticket marqué comme VALIDE.");
             setScannedTicket(prev => ({ ...prev, status: 'valid' }));
-        } catch (err) {
+        } catch {
             setError("Erreur lors de la validation");
         } finally {
             setActionLoading(false);

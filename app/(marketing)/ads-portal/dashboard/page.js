@@ -2,17 +2,15 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
 import { useDialog } from '@/context/DialogContext';
-import { db, ref, onValue, remove, set } from '@/lib/firebase';
+import { db, ref, onValue, remove, } from '@/lib/firebase';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
     Plus,
     LayoutDashboard,
-    MoreHorizontal,
     Trash2,
     ExternalLink,
     Clock,
@@ -21,8 +19,7 @@ import {
     XCircle,
     CreditCard,
     MessageSquare,
-    Loader2
-} from 'lucide-react';
+    } from 'lucide-react';
 import { AD_STATUSES } from '@/lib/ad-constants';
 import { useSearchParams } from 'next/navigation';
 
@@ -52,7 +49,6 @@ export default function UserAdsDashboard() {
     const searchParams = useSearchParams();
     const [ads, setAds] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [payLoading, setPayLoading] = useState(null);
 
     // Handle success/cancel notifications
     useEffect(() => {
@@ -103,37 +99,8 @@ export default function UserAdsDashboard() {
         }
         try {
             await remove(ref(db, `studentAds/${ad.id}`));
-        } catch (error) {
+        } catch {
             showError("Erreur lors de la suppression");
-        }
-    };
-
-    const handlePayment = async (ad) => {
-        setPayLoading(ad.id);
-        try {
-            const response = await fetch('/api/checkout', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    type: 'ad',
-                    adId: ad.id,
-                    adTitle: ad.title,
-                    price: ad.price,
-                    userEmail: user.email
-                })
-            });
-
-            const data = await response.json();
-            if (data.url) {
-                window.location.href = data.url;
-            } else {
-                throw new Error(data.error || "Une erreur est survenue");
-            }
-        } catch (error) {
-            console.error("Payment error:", error);
-            showError("Erreur: " + error.message);
-        } finally {
-            setPayLoading(null);
         }
     };
 

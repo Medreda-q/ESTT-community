@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
-import { db, ref, get, push, set, update, remove, query, orderByChild, equalTo, onValue } from '@/lib/firebase';
+import { db, ref, get, onValue } from '@/lib/firebase';
 import { useAuth } from '@/context/AuthContext';
 import { useDialog } from '@/context/DialogContext';
-import { isClubAdmin, uploadClubImage } from '@/lib/clubUtils';
+import { isClubAdmin, } from '@/lib/clubUtils';
 import { db as staticDb } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -17,12 +17,10 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import { Loader2, ArrowLeft, AlertCircle, CheckCircle2, FileText, Megaphone, Calendar, Edit, Trash2, Plus, Upload, Ticket, Users, LayoutDashboard, Settings, LineChart, Menu, X, Share2, ClipboardList, Scan, Bell, ShieldAlert } from 'lucide-react';
+import { Loader2, ArrowLeft, AlertCircle, CheckCircle2, FileText, Megaphone, Calendar, Edit, Trash2, Plus, Upload, Ticket, Users, LayoutDashboard, Settings, Menu, Share2, ClipboardList, Scan, Bell, ShieldAlert } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-import { sendPrivateNotification, NOTIF_TYPES } from '@/lib/notifications';
 import { generatePDF, generateCertificate, generateAttendanceList, generatePostPDF } from '@/lib/pdfUtils';
-import { uploadToImgBB } from '@/lib/uploadUtils';
 
 
 export default function ClubAdminPage() {

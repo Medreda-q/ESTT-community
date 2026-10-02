@@ -6,7 +6,7 @@ import { db, ref, onValue, push, set, serverTimestamp, update, query, limitToLas
 import ChatBubble from '@/components/features/chat/ChatBubble';
 import ChatInput from '@/components/features/chat/ChatInput';
 import ChatTermsDialog from '@/components/features/chat/ChatTermsDialog';
-import { Loader2, Lock, Menu, Bell, BellOff, Search, User as UserIcon, LogOut, ArrowLeft } from 'lucide-react';
+import { Loader2, Lock, Menu, Bell, BellOff, User as UserIcon, LogOut, ArrowLeft } from 'lucide-react';
 import { PeopleIcon } from '@primer/octicons-react';
 import { useNotifications } from '@/context/NotificationContext';
 import { notifyMention as rawNotifyMention } from '@/lib/browserNotifications';

@@ -15,7 +15,6 @@ import {
     Link,
     Gift,
     Trophy,
-    X,
     MessageSquare
 } from 'lucide-react';
 
