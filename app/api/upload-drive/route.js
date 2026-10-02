@@ -1,4 +1,5 @@
 import { google } from 'googleapis';
+import { PassThrough } from 'stream';
 import { NextResponse } from 'next/server';
 import { getAdminDb, requireAuthenticatedUser } from '@/lib/firebase-admin';
 
@@ -118,8 +119,7 @@ export async function POST(req) {
         }
 
         const buffer = Buffer.from(await file.arrayBuffer());
-        const stream = require('stream');
-        const bufferStream = new stream.PassThrough();
+        const bufferStream = new PassThrough();
         bufferStream.end(buffer);
 
         const originalName = file.name;
