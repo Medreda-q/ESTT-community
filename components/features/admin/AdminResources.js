@@ -45,7 +45,7 @@ import {
 import { Textarea } from '@/components/ui/textarea';
 import RejectionDialog from './RejectionDialog';
 import { sendPrivateNotification, NOTIF_TYPES } from '@/lib/notifications';
-import { db as staticDb } from '@/lib/data';
+import { db as staticDb, getModulesForField } from '@/lib/data';
 import { Checkbox } from '@/components/ui/checkbox';
 
 const SORT_OPTIONS = [
@@ -1172,10 +1172,11 @@ export default function AdminResources({ resources }) {
                                 const isSelected = selectedFields.some(f => f.fieldId === field.id);
                                 const currentModuleId = selectedFields.find(f => f.fieldId === field.id)?.moduleId || '';
 
-                                // Get modules for this field and the resource's semester
-                                const fieldModules = itemToLink?.semester
-                                    ? staticDb.modules[`${field.id}-${itemToLink.semester}`] || []
-                                    : [];
+                                const fieldModules = getModulesForField(field.id);
+                                const selectedLink = selectedFields.find(f => f.fieldId === field.id);
+                                const currentSemester = selectedLink?.semester
+                                    || fieldModules.find(m => m.id === currentModuleId)?.semester
+                                    || '';
 
                                 return (
                                     <div key={field.id} className="space-y-3 p-3 rounded-xl border border-border hover:bg-muted/50 transition-colors">
@@ -1185,7 +1186,7 @@ export default function AdminResources({ resources }) {
                                                 checked={isSelected || field.id === itemToLink?.field}
                                                 onCheckedChange={(checked) => {
                                                     if (checked) {
-                                                        setSelectedFields(prev => [...prev, { fieldId: field.id, moduleId: '' }]);
+                                                        setSelectedFields(prev => [...prev, { fieldId: field.id, semester: '', moduleId: '' }]);
                                                     } else {
                                                         setSelectedFields(prev => prev.filter(f => f.fieldId !== field.id));
                                                     }
@@ -1203,7 +1204,24 @@ export default function AdminResources({ resources }) {
 
                                         {isSelected && (
                                             <div className="pl-6 animate-in slide-in-from-top-2 duration-200">
-                                                <Label className="text-[10px] font-black uppercase text-muted-foreground mb-1 block">Module Équivalent ({itemToLink?.semester})</Label>
+                                                <Label className="text-[10px] font-black uppercase text-muted-foreground mb-1 block">Semestre et module équivalents</Label>
+                                                <Select
+                                                    value={currentSemester}
+                                                    onValueChange={(val) => {
+                                                        setSelectedFields(prev => prev.map(f =>
+                                                            f.fieldId === field.id ? { ...f, semester: val, moduleId: '' } : f
+                                                        ));
+                                                    }}
+                                                >
+                                                    <SelectTrigger className="h-9 text-xs bg-card mb-2">
+                                                        <SelectValue placeholder="Choisir le semestre" />
+                                                    </SelectTrigger>
+                                                    <SelectContent>
+                                                        {Array.from(new Set(fieldModules.map(m => m.semester))).map(semester => (
+                                                            <SelectItem key={semester} value={semester}>{semester}</SelectItem>
+                                                        ))}
+                                                    </SelectContent>
+                                                </Select>
                                                 <Select
                                                     value={currentModuleId}
                                                     onValueChange={(val) => {
@@ -1216,7 +1234,7 @@ export default function AdminResources({ resources }) {
                                                         <SelectValue placeholder="Choisir le module" />
                                                     </SelectTrigger>
                                                     <SelectContent>
-                                                        {fieldModules.map(m => (
+                                                        {fieldModules.filter(m => !currentSemester || m.semester === currentSemester).map(m => (
                                                             <SelectItem key={m.id} value={m.id}>{m.name}</SelectItem>
                                                         ))}
                                                     </SelectContent>

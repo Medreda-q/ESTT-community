@@ -37,6 +37,8 @@ import {
 
 const TYPE_COLORS = ['#3b82f6', '#f59e0b', '#ec4899', '#10b981', '#6366f1'];
 const STATUS_COLORS = { 'Vérifié': '#10b981', 'En attente': '#ef4444' };
+const EMAIL_STATUS_COLORS = { 'Vérifié': '#10b981', 'Non vérifié': '#f59e0b' };
+const BUG_STATUS_COLORS = { 'Corrigé': '#10b981', 'En cours': '#f59e0b', 'Non vu': '#3b82f6' };
 const USER_FIELD_COLORS = ['#6366f1', '#8b5cf6', '#ec4899', '#f43f5e', '#f59e0b'];
 
 function getTimestamp(value) {
@@ -71,7 +73,7 @@ function calculateGrowth(items, now, periodDays) {
     return Math.round(((currentCount - previousCount) / previousCount) * 100);
 }
 
-export default function AdminOverview({ stats, resources, users = [], setActiveTab }) {
+export default function AdminOverview({ stats, resources, users = [], bugReports = [], setActiveTab }) {
     const { showSuccess, showError, showConfirm } = useDialog();
     const [rebuilding, setRebuilding] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
@@ -101,11 +103,11 @@ export default function AdminOverview({ stats, resources, users = [], setActiveT
 
     // Compute chart data
     const chartData = useMemo(() => {
-        if (!resources.length) return { types: [], status: [], fields: [], modules: [], userFields: [] };
-
         const typeMap = {};
         const statusMap = { 'Vérifié': 0, 'En attente': 0 };
         const fieldMap = {};
+        const emailStatusMap = { 'Vérifié': 0, 'Non vérifié': 0 };
+        const bugStatusMap = { 'Corrigé': 0, 'En cours': 0, 'Non vu': 0 };
         
         resources.forEach(res => {
             // Type
@@ -116,34 +118,62 @@ export default function AdminOverview({ stats, resources, users = [], setActiveT
             const status = res.unverified ? 'En attente' : 'Vérifié';
             statusMap[status] = (statusMap[status] || 0) + 1;
 
-            // Field count (all available fields)
-            const field = res.field || 'Inconnu';
-            fieldMap[field] = (fieldMap[field] || 0) + 1;
+            // Count the resource once for every filière where it is available.
+            const linkedFields = new Set([
+                res.field,
+                ...(Array.isArray(res.fields) ? res.fields.map(link => link.fieldId) : [])
+            ].filter(Boolean));
+            if (linkedFields.size === 0) linkedFields.add('Inconnu');
+            linkedFields.forEach(field => {
+                fieldMap[field] = (fieldMap[field] || 0) + 1;
+            });
         });
 
         // Interactive Modules logic
         const selectedKey = `${selectedField}-${selectedSem}`;
         const modulesList = staticDb.modules[selectedKey] || [];
         const moduleCounts = modulesList.map(mod => {
-            const count = resources.filter(res => 
-                res.field === selectedField && 
-                res.semester === selectedSem && 
-                (res.module === mod.name || res.moduleId === mod.id)
-            ).length;
+            const count = resources.filter(res => {
+                const matchesDirectModule = res.field === selectedField &&
+                    res.semester === selectedSem &&
+                    (res.module === mod.name || res.moduleId === mod.id);
+                const matchesLinkedModule = Array.isArray(res.fields) &&
+                    res.fields.some(link =>
+                        link.fieldId === selectedField &&
+                        link.moduleId === mod.id &&
+                        (!link.semester || link.semester === selectedSem)
+                    );
+                return matchesDirectModule || matchesLinkedModule;
+            }).length;
             return { name: mod.name, value: count };
         });
 
         // Users by Field distribution
         const userFieldMap = {};
         users.forEach(u => {
+            const emailStatus = u.verifiedEmail === true ? 'Vérifié' : 'Non vérifié';
+            emailStatusMap[emailStatus] += 1;
+
             const fieldId = u.filiere || 'Autre';
             const fieldName = staticDb.fields.find(f => f.id === fieldId)?.name || fieldId;
             userFieldMap[fieldName] = (userFieldMap[fieldName] || 0) + 1;
         });
 
+        bugReports.forEach(bug => {
+            if (bug.status === 'fixed' || bug.status === 'closed') {
+                bugStatusMap['Corrigé'] += 1;
+            } else if (bug.status === 'in-progress') {
+                bugStatusMap['En cours'] += 1;
+            } else {
+                bugStatusMap['Non vu'] += 1;
+            }
+        });
+
         return {
             types: Object.entries(typeMap).map(([name, value]) => ({ name, value })),
             status: Object.entries(statusMap).map(([name, value]) => ({ name, value })),
+            emailStatus: Object.entries(emailStatusMap).map(([name, value]) => ({ name, value })),
+            bugStatus: Object.entries(bugStatusMap).map(([name, value]) => ({ name, value })),
             fields: Object.entries(fieldMap)
                 .map(([name, value]) => ({ 
                     name: staticDb.fields.find(f => f.id === name)?.name || name, 
@@ -155,7 +185,7 @@ export default function AdminOverview({ stats, resources, users = [], setActiveT
                 .map(([name, value]) => ({ name, value }))
                 .sort((a, b) => b.value - a.value)
         };
-    }, [resources, users, selectedField, selectedSem]);
+    }, [resources, users, bugReports, selectedField, selectedSem]);
 
     const handleRebuildIndex = async () => {
         const confirmed = await showConfirm("Voulez-vous vraiment reconstruire l'index de recherche ? Cela indexera toutes les ressources existantes.", {
@@ -169,8 +199,14 @@ export default function AdminOverview({ stats, resources, users = [], setActiveT
         try {
             let count = 0;
             for (const res of resources) {
-                if (res.field && res.title && !res.unverified) {
-                    const keywordRef = ref(db, `metadata/keywords/${res.field}/${res.id}`);
+                if (!res.title || res.unverified) continue;
+
+                const fields = new Set([
+                    res.field,
+                    ...(Array.isArray(res.fields) ? res.fields.map(link => link.fieldId) : [])
+                ].filter(Boolean));
+                for (const field of fields) {
+                    const keywordRef = ref(db, `metadata/keywords/${field}/${res.id}`);
                     await set(keywordRef, {
                         title: res.title,
                         resourceId: res.id
@@ -276,7 +312,7 @@ export default function AdminOverview({ stats, resources, users = [], setActiveT
             {/* Charts Section */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Repartition par Type & Statut */}
-                <Card className="border-none shadow-sm bg-card">
+                <Card className="border-none shadow-sm bg-card lg:col-span-2">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0">
                         <div>
                             <CardTitle className="text-lg font-black uppercase tracking-tight">Analyse des Ressources</CardTitle>
@@ -354,8 +390,100 @@ export default function AdminOverview({ stats, resources, users = [], setActiveT
                     </CardContent>
                 </Card>
 
-                {/* Popularite Filiere & Modules */}
+                {/* User Email Verification */}
                 <Card className="border-none shadow-sm bg-card">
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0">
+                        <div>
+                            <CardTitle className="text-lg font-black uppercase tracking-tight">Vérification des emails</CardTitle>
+                            <CardDescription>Utilisateurs avec une adresse email vérifiée.</CardDescription>
+                        </div>
+                        <PieChartIcon className="w-5 h-5 text-muted-foreground" />
+                    </CardHeader>
+                    <CardContent>
+                        <div className="h-[300px]">
+                            {isMounted ? (
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <PieChart>
+                                        <Pie
+                                            data={chartData.emailStatus}
+                                            innerRadius={75}
+                                            outerRadius={105}
+                                            paddingAngle={5}
+                                            dataKey="value"
+                                        >
+                                            {chartData.emailStatus.map((entry, index) => (
+                                                <Cell key={`cell-${index}`} fill={EMAIL_STATUS_COLORS[entry.name]} />
+                                            ))}
+                                        </Pie>
+                                        <Tooltip
+                                            contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
+                                            itemStyle={{ fontSize: '10px', fontWeight: 'bold' }}
+                                        />
+                                        <Legend
+                                            verticalAlign="bottom"
+                                            height={48}
+                                            iconType="circle"
+                                            wrapperStyle={{ fontSize: '9px', fontWeight: 'bold', textTransform: 'uppercase' }}
+                                        />
+                                    </PieChart>
+                                </ResponsiveContainer>
+                            ) : (
+                                <div className="h-full flex items-center justify-center">
+                                    <Loader2 className="w-6 h-6 animate-spin text-slate-200" />
+                                </div>
+                            )}
+                        </div>
+                    </CardContent>
+                </Card>
+
+                {/* Bug Reports Status */}
+                <Card className="border-none shadow-sm bg-card">
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0">
+                        <div>
+                            <CardTitle className="text-lg font-black uppercase tracking-tight">Statut des bugs</CardTitle>
+                            <CardDescription>Bugs corrigés, en cours et non vus.</CardDescription>
+                        </div>
+                        <BarChart3 className="w-5 h-5 text-muted-foreground" />
+                    </CardHeader>
+                    <CardContent>
+                        <div className="h-[300px]">
+                            {isMounted ? (
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <PieChart>
+                                        <Pie
+                                            data={chartData.bugStatus}
+                                            innerRadius={75}
+                                            outerRadius={105}
+                                            paddingAngle={5}
+                                            dataKey="value"
+                                        >
+                                            {chartData.bugStatus.map((entry, index) => (
+                                                <Cell key={`cell-${index}`} fill={BUG_STATUS_COLORS[entry.name]} />
+                                            ))}
+                                        </Pie>
+                                        <Tooltip
+                                            contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
+                                            itemStyle={{ fontSize: '10px', fontWeight: 'bold' }}
+                                        />
+                                        <Legend
+                                            verticalAlign="bottom"
+                                            height={48}
+                                            iconType="circle"
+                                            wrapperStyle={{ fontSize: '9px', fontWeight: 'bold', textTransform: 'uppercase' }}
+                                        />
+                                    </PieChart>
+                                </ResponsiveContainer>
+                            ) : (
+                                <div className="h-full flex items-center justify-center">
+                                    <Loader2 className="w-6 h-6 animate-spin text-slate-200" />
+                                </div>
+                            )}
+                        </div>
+                    </CardContent>
+                </Card>
+
+                {/* Popularite Filiere & Modules */}
+                <Card className="border-none shadow-sm bg-card lg:col-span-2">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0">
                         <div>
                             <CardTitle className="text-lg font-black uppercase tracking-tight">Popularité</CardTitle>

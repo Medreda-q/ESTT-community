@@ -260,6 +260,7 @@ export default function AdminDashboard() {
                             stats={stats}
                             resources={resources}
                             users={users}
+                            bugReports={bugReports}
                             setActiveTab={setActiveTab}
                         />
                     )}
