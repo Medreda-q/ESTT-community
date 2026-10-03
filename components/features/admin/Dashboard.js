@@ -29,6 +29,33 @@ import AdminRewardCodes from './AdminRewardCodes';
 import AdminMessages from './AdminMessages';
 import { normalizeProject, normalizeShowcase, normalizeSubmission } from '@/lib/projects';
 
+const ADMIN_TABS = [
+    'overview',
+    'resources',
+    'projects',
+    'fastContribute',
+    'users',
+    'reports',
+    'bugReports',
+    'clubRequests',
+    'clubChangeRequests',
+    'announcements',
+    'ads',
+    'communication',
+    'notifications',
+    'messages',
+    'rewardCodes',
+    'shortUrls',
+    'settings'
+];
+
+function getTabFromHash() {
+    if (typeof window === 'undefined') return 'overview';
+
+    const tab = window.location.hash.slice(1);
+    return ADMIN_TABS.includes(tab) ? tab : 'overview';
+}
+
 export default function AdminDashboard() {
     const { user, profile, loading: authLoading } = useAuth();
     const router = useRouter();
@@ -43,7 +70,7 @@ export default function AdminDashboard() {
     const [reports, setReports] = useState([]);
     const [clubRequests, setClubRequests] = useState([]);
     const [clubChangeRequests, setClubChangeRequests] = useState([]);
-    const [activeTab, setActiveTab] = useState('overview');
+    const [activeTab, setActiveTab] = useState(getTabFromHash);
     const [notificationSettings, setNotificationSettings] = useState({
         enabled: true,
         email: 'thevcercle@gmail.com'
@@ -55,6 +82,22 @@ export default function AdminDashboard() {
     const [projectSubmissions, setProjectSubmissions] = useState([]);
     const [projectShowcases, setProjectShowcases] = useState([]);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+    useEffect(() => {
+        const handleHashChange = () => setActiveTab(getTabFromHash());
+
+        window.addEventListener('hashchange', handleHashChange);
+        return () => window.removeEventListener('hashchange', handleHashChange);
+    }, []);
+
+    const handleSetActiveTab = (tab) => {
+        if (!ADMIN_TABS.includes(tab)) return;
+
+        setActiveTab(tab);
+        if (window.location.hash !== `#${tab}`) {
+            window.location.hash = tab;
+        }
+    };
 
     // Admin Check
     useEffect(() => {
@@ -240,7 +283,7 @@ export default function AdminDashboard() {
                 <AdminSidebar
                     activeTab={activeTab}
                     setActiveTab={(tab) => {
-                        setActiveTab(tab);
+                        handleSetActiveTab(tab);
                         setIsSidebarOpen(false);
                     }}
                     profile={profile}
@@ -261,7 +304,7 @@ export default function AdminDashboard() {
                             resources={resources}
                             users={users}
                             bugReports={bugReports}
-                            setActiveTab={setActiveTab}
+                            setActiveTab={handleSetActiveTab}
                         />
                     )}
 
@@ -278,7 +321,7 @@ export default function AdminDashboard() {
                     )}
 
                     {activeTab === 'users' && (
-                        <AdminUsers users={users} />
+                        <AdminUsers users={users} canEdit />
                     )}
 
                     {activeTab === 'reports' && (

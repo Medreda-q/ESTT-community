@@ -6,7 +6,8 @@
     "dev": "next dev -H 0.0.0.0",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "clean:anonymous-users": "node scripts/clean-anonymous-firebase-users.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
