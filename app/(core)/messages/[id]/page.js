@@ -50,6 +50,7 @@ export default function DirectMessagePage() {
     const messagesEndRef = useRef(null);
     const scrollContainerRef = useRef(null);
     const profilesListeners = useRef({});
+    const isInitialLoad = useRef(true);
     const [sharedKey, setSharedKey] = useState(null);
     // Track last notified DM so we don't spam
     const lastNotifiedMsgIdRef = useRef(null);
@@ -227,7 +228,10 @@ export default function DirectMessagePage() {
                 setHasMore(false);
             }
             setLoading(false);
-            if (isInitialLoad) scrollToBottom();
+            if (isInitialLoad.current) {
+                scrollToBottom();
+                isInitialLoad.current = false;
+            }
         });
 
         const typingRef = ref(db, `direct_messages/${roomId}/typing`);
