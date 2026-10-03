@@ -39,6 +39,38 @@ const TYPE_COLORS = ['#3b82f6', '#f59e0b', '#ec4899', '#10b981', '#6366f1'];
 const STATUS_COLORS = { 'Vérifié': '#10b981', 'En attente': '#ef4444' };
 const USER_FIELD_COLORS = ['#6366f1', '#8b5cf6', '#ec4899', '#f43f5e', '#f59e0b'];
 
+function getTimestamp(value) {
+    if (typeof value === 'number') return value;
+    if (value && typeof value.seconds === 'number') return value.seconds * 1000;
+
+    const timestamp = new Date(value).getTime();
+    return Number.isNaN(timestamp) ? null : timestamp;
+}
+
+function calculateGrowth(items, now, periodDays) {
+    const currentPeriodStart = now - (periodDays * 24 * 60 * 60 * 1000);
+    const previousPeriodStart = now - (2 * periodDays * 24 * 60 * 60 * 1000);
+    let currentCount = 0;
+    let previousCount = 0;
+
+    items.forEach(item => {
+        const timestamp = getTimestamp(item.createdAt);
+        if (timestamp === null) return;
+
+        if (timestamp >= currentPeriodStart && timestamp <= now) {
+            currentCount++;
+        } else if (timestamp >= previousPeriodStart && timestamp < currentPeriodStart) {
+            previousCount++;
+        }
+    });
+
+    if (previousCount === 0) {
+        return currentCount > 0 ? null : 0;
+    }
+
+    return Math.round(((currentCount - previousCount) / previousCount) * 100);
+}
+
 export default function AdminOverview({ stats, resources, users = [], setActiveTab }) {
     const { showSuccess, showError, showConfirm } = useDialog();
     const [rebuilding, setRebuilding] = useState(false);
@@ -52,6 +84,20 @@ export default function AdminOverview({ stats, resources, users = [], setActiveT
     // Filter states for modules explorer
     const [selectedField, setSelectedField] = useState(staticDb.fields[0]?.id || 'ia');
     const [selectedSem, setSelectedSem] = useState('S1');
+    const [growthPeriod, setGrowthPeriod] = useState('7');
+
+    const growth = useMemo(() => {
+        const now = Date.now();
+        const periodDays = Number(growthPeriod);
+
+        return {
+            users: calculateGrowth(users, now, periodDays),
+            resources: calculateGrowth(resources, now, periodDays)
+        };
+    }, [growthPeriod, resources, users]);
+    const growthPeriodLabel = growthPeriod === '1'
+        ? 'les dernières 24 heures'
+        : `les ${growthPeriod} derniers jours`;
 
     // Compute chart data
     const chartData = useMemo(() => {
@@ -153,6 +199,18 @@ export default function AdminOverview({ stats, resources, users = [], setActiveT
                     <p className="text-muted-foreground">Analyses et gestion de la communauté.</p>
                 </div>
                 <div className="flex gap-2">
+                    <Select value={growthPeriod} onValueChange={setGrowthPeriod}>
+                        <SelectTrigger className="w-[145px] rounded-xl">
+                            <SelectValue placeholder="Période" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="1">Dernières 24 heures</SelectItem>
+                            <SelectItem value="3">3 derniers jours</SelectItem>
+                            <SelectItem value="7">7 derniers jours</SelectItem>
+                            <SelectItem value="30">30 derniers jours</SelectItem>
+                            <SelectItem value="90">90 derniers jours</SelectItem>
+                        </SelectContent>
+                    </Select>
                     <Button
                         variant="outline"
                         size="sm"
@@ -178,7 +236,9 @@ export default function AdminOverview({ stats, resources, users = [], setActiveT
                             <div className="p-1.5 md:p-2 bg-blue-50 text-blue-600 rounded-lg dark:bg-blue-500/15 dark:text-blue-300">
                                 <Users className="w-4 h-4 md:w-5 md:h-5" />
                             </div>
-                            <Badge variant="outline" className="text-[9px] md:text-[10px] border-blue-100 text-blue-600">+12%</Badge>
+                            <Badge variant="outline" title={`Évolution sur ${growthPeriodLabel} par rapport à la période précédente`} className="text-[9px] md:text-[10px] border-blue-100 text-blue-600">
+                                {growth.users === null ? 'Nouveau' : `${growth.users >= 0 ? '+' : ''}${growth.users}%`}
+                            </Badge>
                         </div>
                         <p className="text-[10px] md:text-sm font-bold text-muted-foreground uppercase tracking-wider">Utilisateurs</p>
                         <h3 className="text-xl md:text-3xl font-black mt-1">{stats.users}</h3>
@@ -191,7 +251,9 @@ export default function AdminOverview({ stats, resources, users = [], setActiveT
                             <div className="p-1.5 md:p-2 bg-purple-50 text-purple-600 rounded-lg dark:bg-purple-500/15 dark:text-purple-300">
                                 <FileText className="w-4 h-4 md:w-5 md:h-5" />
                             </div>
-                            <Badge variant="outline" className="text-[9px] md:text-[10px] border-purple-100 text-purple-600">+5%</Badge>
+                            <Badge variant="outline" title={`Évolution sur ${growthPeriodLabel} par rapport à la période précédente`} className="text-[9px] md:text-[10px] border-purple-100 text-purple-600">
+                                {growth.resources === null ? 'Nouveau' : `${growth.resources >= 0 ? '+' : ''}${growth.resources}%`}
+                            </Badge>
                         </div>
                         <p className="text-[10px] md:text-sm font-bold text-muted-foreground uppercase tracking-wider">Ressources</p>
                         <h3 className="text-xl md:text-3xl font-black mt-1">{stats.resources}</h3>
@@ -474,4 +536,3 @@ export default function AdminOverview({ stats, resources, users = [], setActiveT
         </div>
     );
 }
-
