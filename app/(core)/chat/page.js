@@ -39,6 +39,7 @@ export default function DiscussionPage() {
     const [messageLimit, setMessageLimit] = useState(100);
     const [hasMore, setHasMore] = useState(true);
     const [isInitialLoad, setIsInitialLoad] = useState(true);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const messagesEndRef = useRef(null);
     const scrollContainerRef = useRef(null);
     const profilesListeners = useRef({});
@@ -202,6 +203,7 @@ export default function DiscussionPage() {
             unsubscribeTyping();
             unsubscribeReadStatus();
         };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user, authLoading, roomId, messageLimit]);
 
     const handleLoadMore = () => {
@@ -245,6 +247,7 @@ export default function DiscussionPage() {
                 timestamp: serverTimestamp()
             });
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [messages, user, roomId]);
 
     const scrollToBottom = () => {
@@ -369,7 +372,6 @@ export default function DiscussionPage() {
         .filter(Boolean);
     const extraCount = onlineProfiles.length > facepileLimit ? onlineProfiles.length - facepileLimit : 0;
 
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const navItems = [
         { href: '/', label: 'Accueil' },
         { href: '/events', label: 'Événements' },

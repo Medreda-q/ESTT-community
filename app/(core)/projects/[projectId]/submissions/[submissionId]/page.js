@@ -99,6 +99,7 @@ export default function SubmissionDetailPage() {
 
     useEffect(() => {
         fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [projectId, submissionId, user]);
 
     const runtimeStatus = useMemo(() => getProjectRuntimeStatus(project), [project]);

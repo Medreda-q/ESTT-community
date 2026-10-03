@@ -42,6 +42,7 @@ export default function ClubJoinPage() {
         if (clubId) {
             fetchClubData();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [clubId]);
 
     useEffect(() => {

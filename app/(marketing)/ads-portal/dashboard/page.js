@@ -60,6 +60,7 @@ export default function UserAdsDashboard() {
         if (canceled) {
             showWarning("Paiement annulé.");
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchParams]);
 
     useEffect(() => {

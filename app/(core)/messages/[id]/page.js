@@ -41,9 +41,7 @@ export default function DirectMessagePage() {
     const [replyingTo, setReplyingTo] = useState(null);
     const [typingUsers, setTypingUsers] = useState({});
     const [readStatuses, setReadStatuses] = useState({});
-    const [, setMessageLimit] = useState(100);
     const [, setHasMore] = useState(true);
-    const [, setIsInitialLoad] = useState(true);
     const [isGeneratingAiResponse, setIsGeneratingAiResponse] = useState(false);
     const [isAiSearching, setIsAiSearching] = useState(false);
     const [aiMessageCount, setAiMessageCount] = useState(0);
@@ -246,7 +244,7 @@ export default function DirectMessagePage() {
             unsubscribeTyping();
             unsubscribeReadStatus();
         };
-    }, [user, authLoading, roomId, messageLimit, sharedKey, recipientId, isEsttAiChat]);
+    }, [user, authLoading, roomId, sharedKey, recipientId, isEsttAiChat]);
 
     // Read Tracking
     useEffect(() => {

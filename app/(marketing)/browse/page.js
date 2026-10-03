@@ -58,6 +58,7 @@ export default function BrowsePage() {
             setResources([]);
             setAds([]);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedModule]);
 
     useEffect(() => {

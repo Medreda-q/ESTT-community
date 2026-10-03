@@ -106,6 +106,7 @@ export default function ChatBubble({ message, isOwn, onReact, onDelete, onReply,
         if (sharedEvent?.title && !eventDetails) {
             setEventDetails(sharedEvent);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sharedEvent]);
 
     // Multiple Resources Loader
@@ -128,6 +129,7 @@ export default function ChatBubble({ message, isOwn, onReact, onDelete, onReply,
                 setLoadingResources(prev => ({ ...prev, [resId]: false }));
             }
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sharedResourceIds]);
 
     // Reactions logic

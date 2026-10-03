@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Textarea } from '@/components/ui/textarea';
-import { Loader2, FileText, Video, Image as ImageIcon, Link as LinkIcon, Download, ExternalLink, User, Share2, MessageCircle, Send, X, Flag, AlertTriangle, Star, Eye, Globe, ListPlus } from 'lucide-react';
+import { Loader2, FileText, Link as LinkIcon, Download, ExternalLink, User, Share2, MessageCircle, Send, X, Flag, AlertTriangle, Star, Eye, Globe, ListPlus } from 'lucide-react';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
@@ -67,12 +67,14 @@ export default function ResourcePage() {
             };
             loadViewCount();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [resourceId]);
 
     useEffect(() => {
         if (resourceId && user) {
             fetchUserRating();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [resourceId, user]);
 
     // Track views and notify Slack every 10 views milestone
@@ -171,6 +173,7 @@ export default function ResourcePage() {
         if (resource) {
             trackView();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [resource, user, profile]);
 
     useEffect(() => {
@@ -185,6 +188,7 @@ export default function ResourcePage() {
         });
 
         return () => unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user, resourceId, db]);
 
     const fetchResource = async () => {
@@ -590,6 +594,7 @@ export default function ResourcePage() {
         fetch(proxyUrl, { method: 'HEAD' })
             .then((res) => setPreviewAvailable(res.ok))
             .catch(() => setPreviewAvailable(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [resource]);
 
     if (loading) {

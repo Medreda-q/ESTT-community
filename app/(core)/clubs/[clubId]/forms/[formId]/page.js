@@ -36,6 +36,7 @@ export default function CustomFormPage() {
         if (clubId && formId) {
             fetchData();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [clubId, formId]);
 
     useEffect(() => {
@@ -54,6 +55,7 @@ export default function CustomFormPage() {
                 setFormData(newFormData);
             }
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user, profile, form]);
 
     const fetchData = async () => {

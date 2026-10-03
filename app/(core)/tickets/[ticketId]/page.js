@@ -81,6 +81,7 @@ export default function TicketPage() {
         });
 
         return () => unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ticketId, db, orderId, verifying, prevScanned, ticket?.id]);
 
     if (loading) {

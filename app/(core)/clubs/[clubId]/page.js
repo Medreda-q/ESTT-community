@@ -57,6 +57,7 @@ export default function ClubProfilePage() {
         if (clubId) {
             fetchClubData();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [clubId]);
 
     useEffect(() => {
@@ -69,6 +70,7 @@ export default function ClubProfilePage() {
         if (user && clubId) {
             fetchUserTickets();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user, clubId]);
 
     // Carousel Autoplay

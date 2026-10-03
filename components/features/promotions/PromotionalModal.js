@@ -150,6 +150,7 @@ export default function PromotionalModal({ isOpen, onClose, fromId, initialCode 
                 setError('Code automatique invalide.');
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isOpen, initialCode, rewardCodes, step, loading]);
 
 

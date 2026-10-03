@@ -149,6 +149,7 @@ export default function ClubAdminPage() {
         if (clubId && !authLoading) {
             fetchClubData();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [clubId, authLoading]);
 
     useEffect(() => {
@@ -157,9 +158,7 @@ export default function ClubAdminPage() {
             setIsAdmin(adminStatus);
 
             // Check if president
-            const presidentKey = Object.keys(club.organizationalChart || {}).find(k =>
-                club.organizationalChart[k].role.toLowerCase() === 'président'
-            );
+            // Check if president
             // isPresident check used inline in JSX only
 
             // Initialize org chart for editing if needed
@@ -180,6 +179,7 @@ export default function ClubAdminPage() {
                 }, 2000);
             }
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [club, user]);
 
     // Notification Settings

@@ -23,6 +23,7 @@ export default function CertificatePage() {
         if (clubId && memberId) {
             fetchData();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [clubId, memberId]);
 
     const fetchData = async () => {

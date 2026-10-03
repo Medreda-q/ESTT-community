@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { db, ref, get, update } from '@/lib/firebase';
 import { useAuth } from '@/context/AuthContext';
@@ -38,6 +38,7 @@ export default function TicketScannerPage() {
         if (clubId && !authLoading) {
             checkAccess();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [clubId, authLoading]);
 
     useEffect(() => {
@@ -56,6 +57,7 @@ export default function TicketScannerPage() {
                 });
             };
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isAdmin, scanning]);
 
     const checkAccess = async () => {
