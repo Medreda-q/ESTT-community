@@ -1,6 +1,9 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import { db, ref, update } from '@/lib/firebase';
+import { db as staticDb } from '@/lib/data';
+import { useDialog } from '@/context/DialogContext';
 import {
     Table,
     TableBody,
@@ -22,7 +25,34 @@ import {
     DropdownMenuSeparator,
     DropdownMenuLabel,
 } from '@/components/ui/dropdown-menu';
-import { ExternalLink, Search, ArrowUpDown, Users, BookOpen, ShieldCheck } from 'lucide-react';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+} from '@/components/ui/dialog';
+import { Textarea } from '@/components/ui/textarea';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
+import {
+    ExternalLink,
+    Search,
+    ArrowUpDown,
+    Users,
+    BookOpen,
+    ShieldCheck,
+    Pencil,
+    Plus,
+    Trash2,
+    Loader2,
+} from 'lucide-react';
 
 const ROLE_OPTIONS = [
     { value: 'all', label: 'Tous les rôles' },
@@ -50,12 +80,119 @@ const ROLE_BADGE_CLASSES = {
     contributor: 'bg-emerald-100 text-emerald-800 border-emerald-200 dark:bg-emerald-500/15 dark:text-emerald-300 dark:border-emerald-500/40',
 };
 
-export default function AdminUsers({ users }) {
+export default function AdminUsers({ users, canEdit = false }) {
     const [search, setSearch] = useState('');
     const [sortBy, setSortBy] = useState('newest');
     const [roleFilter, setRoleFilter] = useState('all');
     const [filiereFilter, setFiliereFilter] = useState('all');
     const [verifiedFilter, setVerifiedFilter] = useState('all');
+    const [userToEdit, setUserToEdit] = useState(null);
+    const [editFields, setEditFields] = useState([]);
+    const [simpleMode, setSimpleMode] = useState(true);
+    const [simpleForm, setSimpleForm] = useState({
+        firstName: '',
+        lastName: '',
+        filiere: '',
+        startYear: '',
+    });
+    const [savingUser, setSavingUser] = useState(false);
+    const { showSuccess, showError } = useDialog();
+
+    const openEditDialog = (user) => {
+        setUserToEdit(user);
+        setSimpleMode(true);
+        setSimpleForm({
+            firstName: user.firstName || '',
+            lastName: user.lastName || '',
+            filiere: user.filiere || '',
+            startYear: user.startYear || '',
+        });
+        setEditFields(
+            Object.entries(user)
+                .filter(([key]) => key !== 'id' && key !== 'email')
+                .map(([key, value]) => ({
+                    id: `${key}-${Math.random()}`,
+                    key,
+                    value: JSON.stringify(value, null, 2) ?? 'null',
+                    existing: true,
+                }))
+        );
+    };
+
+    const closeEditDialog = () => {
+        if (savingUser) return;
+        setUserToEdit(null);
+        setEditFields([]);
+        setSimpleMode(true);
+    };
+
+    const updateEditField = (fieldId, property, value) => {
+        setEditFields((fields) =>
+            fields.map((field) => field.id === fieldId ? { ...field, [property]: value } : field)
+        );
+    };
+
+    const addEditField = () => {
+        setEditFields((fields) => [
+            ...fields,
+            { id: `new-${Date.now()}-${fields.length}`, key: '', value: '""', existing: false },
+        ]);
+    };
+
+    const removeEditField = (fieldId) => {
+        setEditFields((fields) => fields.filter((field) => field.id !== fieldId));
+    };
+
+    const saveUser = async (event) => {
+        event.preventDefault();
+        if (!userToEdit) return;
+
+        const payload = simpleMode
+            ? {
+                firstName: simpleForm.firstName.trim(),
+                lastName: simpleForm.lastName.trim(),
+                filiere: simpleForm.filiere.trim(),
+                startYear: simpleForm.startYear.trim(),
+            }
+            : {};
+        const keys = new Set();
+
+        try {
+            if (simpleMode) {
+                if (!payload.firstName || !payload.lastName || !payload.filiere || !payload.startYear) {
+                    throw new Error('Veuillez renseigner le prénom, le nom, la filière et l’année d’entrée.');
+                }
+            } else {
+                editFields.forEach((field) => {
+                    const key = field.key.trim();
+                    if (!key || key.toLowerCase() === 'email') {
+                        throw new Error('Chaque champ doit avoir un nom valide différent de « email ».');
+                    }
+                    if (/[.#$[\]/]/.test(key)) {
+                        throw new Error(`Le nom « ${key} » contient un caractère interdit.`);
+                    }
+                    if (keys.has(key)) {
+                        throw new Error(`Le champ « ${key} » est présent plusieurs fois.`);
+                    }
+                    keys.add(key);
+                    payload[key] = JSON.parse(field.value);
+                });
+            }
+
+            setSavingUser(true);
+            await update(ref(db, `users/${userToEdit.id}`), payload);
+            showSuccess('Les informations de l’utilisateur ont été mises à jour.');
+            setUserToEdit(null);
+            setEditFields([]);
+        } catch (error) {
+            console.error('Failed to update user:', error);
+            showError(error instanceof SyntaxError
+                ? 'Une valeur JSON est invalide. Vérifiez le champ concerné.'
+                : error.message || 'Erreur lors de la mise à jour de l’utilisateur.');
+        } finally {
+            setSavingUser(false);
+        }
+    };
 
     // Derive unique filières dynamically from data
     const filiereOptions = useMemo(() => {
@@ -293,6 +430,16 @@ export default function AdminUsers({ users }) {
                                         </Badge>
                                     </TableCell>
                                     <TableCell className="text-right">
+                                        {canEdit && (
+                                            <Button
+                                                size="sm"
+                                                variant="ghost"
+                                                onClick={() => openEditDialog(u)}
+                                                aria-label={`Modifier ${u.firstName || ''} ${u.lastName || ''}`}
+                                            >
+                                                <Pencil className="w-4 h-4" />
+                                            </Button>
+                                        )}
                                         <Button size="sm" variant="ghost" asChild>
                                             <a href={`/profile/${u.id}`} target="_blank">
                                                 <ExternalLink className="w-4 h-4" />
@@ -305,6 +452,144 @@ export default function AdminUsers({ users }) {
                     </TableBody>
                 </Table>
             </Card>
+
+            <Dialog open={Boolean(userToEdit)} onOpenChange={(open) => !open && closeEditDialog()}>
+                <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+                    <DialogHeader>
+                        <div className="flex items-center justify-between gap-4 pr-8">
+                            <DialogTitle>Modifier l’utilisateur</DialogTitle>
+                            <Button
+                                type="button"
+                                variant="outline"
+                                size="sm"
+                                onClick={() => setSimpleMode((mode) => !mode)}
+                            >
+                                {simpleMode ? 'Mode avancé' : 'Mode simplifié'}
+                            </Button>
+                        </div>
+                        <DialogDescription>
+                            Modifiez les données de {userToEdit?.firstName || ''} {userToEdit?.lastName || ''}.
+                            L’adresse email est protégée et ne peut pas être modifiée ici.
+                        </DialogDescription>
+                    </DialogHeader>
+
+                    <form onSubmit={saveUser} className="space-y-4">
+                        <div className="rounded-lg border bg-muted/40 p-3">
+                            <p className="text-xs font-semibold text-muted-foreground">Email (lecture seule)</p>
+                            <p className="mt-1 break-all text-sm">{userToEdit?.email || 'Aucun email renseigné'}</p>
+                        </div>
+
+                        {simpleMode ? (
+                            <div className="grid gap-4 sm:grid-cols-2">
+                                <div className="space-y-2">
+                                    <label htmlFor="admin-user-first-name" className="text-sm font-medium">Prénom</label>
+                                    <Input
+                                        id="admin-user-first-name"
+                                        value={simpleForm.firstName}
+                                        onChange={(event) => setSimpleForm((form) => ({ ...form, firstName: event.target.value }))}
+                                        placeholder="Prénom"
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <label htmlFor="admin-user-last-name" className="text-sm font-medium">Nom</label>
+                                    <Input
+                                        id="admin-user-last-name"
+                                        value={simpleForm.lastName}
+                                        onChange={(event) => setSimpleForm((form) => ({ ...form, lastName: event.target.value }))}
+                                        placeholder="Nom"
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <label htmlFor="admin-user-filiere" className="text-sm font-medium">Filière</label>
+                                    <Select
+                                        value={simpleForm.filiere}
+                                        onValueChange={(value) => setSimpleForm((form) => ({ ...form, filiere: value }))}
+                                    >
+                                        <SelectTrigger id="admin-user-filiere">
+                                            <SelectValue placeholder="Sélectionnez une filière..." />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            {staticDb.fields.map((field) => (
+                                                <SelectItem key={field.id} value={field.id}>
+                                                    {field.name}
+                                                </SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                                <div className="space-y-2">
+                                    <label htmlFor="admin-user-start-year" className="text-sm font-medium">Année d’entrée</label>
+                                    <Input
+                                        id="admin-user-start-year"
+                                        type="number"
+                                        min="2000"
+                                        max="2100"
+                                        value={simpleForm.startYear}
+                                        onChange={(event) => setSimpleForm((form) => ({ ...form, startYear: event.target.value }))}
+                                        placeholder="2025"
+                                    />
+                                </div>
+                            </div>
+                        ) : (
+                            <>
+                                <div className="space-y-3">
+                                    {editFields.map((field) => (
+                                        <div key={field.id} className="rounded-lg border p-3">
+                                            <div className="mb-2 flex items-center gap-2">
+                                        <Input
+                                            value={field.key}
+                                            onChange={(event) => updateEditField(field.id, 'key', event.target.value)}
+                                            placeholder="Nom du champ"
+                                            aria-label="Nom du champ"
+                                            disabled={field.existing}
+                                            className="font-medium"
+                                        />
+                                        <Button
+                                            type="button"
+                                            variant="ghost"
+                                            size="icon"
+                                            onClick={() => removeEditField(field.id)}
+                                            disabled={field.existing}
+                                            aria-label={`Supprimer ${field.key || 'ce champ'}`}
+                                        >
+                                            <Trash2 className="h-4 w-4 text-destructive" />
+                                        </Button>
+                                            </div>
+                                            <Textarea
+                                                value={field.value}
+                                                onChange={(event) => updateEditField(field.id, 'value', event.target.value)}
+                                                aria-label={`Valeur de ${field.key || 'ce champ'}`}
+                                                className="min-h-20 font-mono text-xs"
+                                                spellCheck="false"
+                                            />
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <Button type="button" variant="outline" onClick={addEditField} className="w-full gap-2">
+                                    <Plus className="h-4 w-4" />
+                                    Ajouter un champ
+                                </Button>
+
+                                <p className="text-xs text-muted-foreground">
+                                    Les valeurs doivent être du JSON valide : texte entre guillemets, nombres, true/false,
+                                    null, objets ou tableaux. Une valeur null supprime le champ dans Firebase.
+                                </p>
+                            </>
+                        )}
+
+                        <DialogFooter>
+                            <Button type="button" variant="outline" onClick={closeEditDialog} disabled={savingUser}>
+                                Annuler
+                            </Button>
+                            <Button type="submit" disabled={savingUser}>
+                                {savingUser && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                Enregistrer
+                            </Button>
+                        </DialogFooter>
+                    </form>
+                </DialogContent>
+            </Dialog>
         </div>
     );
 }

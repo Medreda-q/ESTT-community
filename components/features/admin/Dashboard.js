@@ -278,7 +278,7 @@ export default function AdminDashboard() {
                     )}
 
                     {activeTab === 'users' && (
-                        <AdminUsers users={users} />
+                        <AdminUsers users={users} canEdit />
                     )}
 
                     {activeTab === 'reports' && (
