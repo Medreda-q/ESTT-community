@@ -82,6 +82,7 @@ export default function AdminDashboard() {
     const [projectSubmissions, setProjectSubmissions] = useState([]);
     const [projectShowcases, setProjectShowcases] = useState([]);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
     useEffect(() => {
         const handleHashChange = () => setActiveTab(getTabFromHash());
@@ -279,7 +280,7 @@ export default function AdminDashboard() {
                 </Button>
             </div>
 
-            <div className="flex flex-col md:flex-row flex-grow relative">
+            <div className={`flex flex-col md:flex-row flex-grow relative transition-[padding-left] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${isSidebarCollapsed ? 'md:pl-24' : 'md:pl-64'}`}>
                 <AdminSidebar
                     activeTab={activeTab}
                     setActiveTab={(tab) => {
@@ -295,6 +296,8 @@ export default function AdminDashboard() {
                     unreadMessagesCount={contactMessages.filter(m => m.status === 'unread').length}
                     isOpen={isSidebarOpen}
                     setIsOpen={setIsSidebarOpen}
+                    isCollapsed={isSidebarCollapsed}
+                    setIsCollapsed={setIsSidebarCollapsed}
                 />
 
                 <main className="flex-grow p-4 md:p-10 overflow-auto custom-scrollbar">
