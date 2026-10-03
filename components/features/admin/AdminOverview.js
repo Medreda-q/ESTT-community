@@ -101,6 +101,60 @@ export default function AdminOverview({ stats, resources, users = [], bugReports
         ? 'les dernières 24 heures'
         : `les ${growthPeriod} derniers jours`;
 
+    const handleExport = () => {
+        try {
+            const rows = [
+                ['Section', 'Indicateur', 'Valeur', 'Détails'],
+                ['Résumé', 'Utilisateurs', stats.users, 'Nombre total'],
+                ['Résumé', 'Ressources', stats.resources, 'Nombre total'],
+                ['Résumé', 'Ressources en attente', stats.pending, 'Ressources non vérifiées'],
+                ['Évolution', 'Utilisateurs', growth.users === null ? 'Nouveau' : `${growth.users}%`, growthPeriodLabel],
+                ['Évolution', 'Ressources', growth.resources === null ? 'Nouveau' : `${growth.resources}%`, growthPeriodLabel],
+                ['Filtres', 'Filière', selectedField, 'Répartition par module'],
+                ['Filtres', 'Semestre', selectedSem, 'Répartition par module'],
+                ['Filtres', 'Période de croissance', growthPeriodLabel, ''],
+            ];
+
+            const chartSections = [
+                ['Types de ressources', chartData.types],
+                ['Statut des ressources', chartData.status],
+                ['Vérification des emails', chartData.emailStatus],
+                ['Statut des bugs', chartData.bugStatus],
+                ['Ressources par filière', chartData.fields],
+                ['Ressources par module', chartData.modules],
+                ['Utilisateurs par filière', chartData.userFields],
+            ];
+
+            chartSections.forEach(([section, entries]) => {
+                entries.forEach(({ name, value }) => {
+                    rows.push([section, name, value, '']);
+                });
+            });
+
+            const report = rows
+                .map(([section, indicator, value, details]) => {
+                    const suffix = details ? ` (${details})` : '';
+                    return `${section} | ${indicator} | ${value}${suffix}`;
+                })
+                .join('\r\n');
+            const blob = new Blob([`\uFEFF${report}`], { type: 'text/plain;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            const date = new Date().toISOString().slice(0, 10);
+
+            link.href = url;
+            link.download = `admin-overview-${date}.txt`;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            URL.revokeObjectURL(url);
+            showSuccess('Les données du tableau de bord ont été exportées.');
+        } catch (error) {
+            console.error('Failed to export admin overview:', error);
+            showError("Erreur lors de l'exportation des données.");
+        }
+    };
+
     // Compute chart data
     const chartData = useMemo(() => {
         const typeMap = {};
@@ -257,7 +311,12 @@ export default function AdminOverview({ stats, resources, users = [], bugReports
                         {rebuilding ? <Loader2 className="w-4 h-4 animate-spin" /> : <SearchIcon className="w-4 h-4" />}
                         Reconstruire l&apos;index
                     </Button>
-                    <Button variant="outline" size="sm" className="gap-2 rounded-xl px-4">
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        className="gap-2 rounded-xl px-4"
+                        onClick={handleExport}
+                    >
                         <ArrowUpRight className="w-4 h-4" /> Exporter
                     </Button>
                 </div>
