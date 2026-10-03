@@ -1,3 +1,10 @@
+# [1.37.0](https://github.com/torchcoders/ESTT-community/compare/v1.36.2...v1.37.0) (2026-10-03)
+
+
+### Features
+
+* add admin user editing modes ([f122f14](https://github.com/torchcoders/ESTT-community/commit/f122f14202c5ad469dace55ef1a979a95ae409fc))
+
 ## [1.36.2](https://github.com/torchcoders/ESTT-community/compare/v1.36.1...v1.36.2) (2026-10-03)
 
 ## [1.36.1](https://github.com/torchcoders/ESTT-community/compare/v1.36.0...v1.36.1) (2026-10-03)
