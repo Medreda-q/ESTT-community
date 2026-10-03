@@ -58,7 +58,6 @@ const ROLE_OPTIONS = [
     { value: 'all', label: 'Tous les rôles' },
     { value: 'admin', label: 'Admin' },
     { value: 'moderator', label: 'Modérateur' },
-    { value: 'contributor', label: 'Contributeur' },
     { value: 'student', label: 'Étudiant' },
 ];
 
