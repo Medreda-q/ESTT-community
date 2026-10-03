@@ -1,3 +1,13 @@
+# [1.36.0](https://github.com/torchcoders/ESTT-community/compare/v1.35.12...v1.36.0) (2026-10-02)
+
+
+### Features
+
+* v1.36.0 - Added other prof option and prof filter in ressources page ([46ff64c](https://github.com/torchcoders/ESTT-community/commit/46ff64c067ec03eb1eca55979b60ef37b55a04fd))
+* v1.36.0 - Added other prof option and prof filter in ressources, and giving admin 'Modifier la ressource' same Professeur UX as Contribuer ([4c994f7](https://github.com/torchcoders/ESTT-community/commit/4c994f79b54e843a23e67cd6e799e5465ac7e320))
+
+## [1.35.13](https://github.com/torchcoders/ESTT-community/compare/v1.35.12...v1.35.13) (2026-10-01)
+
 ## [1.35.13](https://github.com/torchcoders/ESTT-community/compare/v1.35.12...v1.35.13) (2026-10-01)
 
 ## [1.35.13](https://github.com/torchcoders/ESTT-community/compare/v1.35.12...v1.35.13) (2026-09-30)
