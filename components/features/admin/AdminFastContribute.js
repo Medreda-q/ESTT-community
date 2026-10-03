@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { db as staticDb } from '@/lib/data';
+import { db as staticDb, getModulesForField } from '@/lib/data';
 import { uploadResourceFile as uploadResourceFileToDrive } from '@/lib/drive';
 import { uploadResourceFile as uploadResourceFileToSupabase } from '@/lib/supabase';
 import { db, ref, push, set, get } from '@/lib/firebase';
@@ -497,7 +497,7 @@ export default function AdminFastContribute() {
                                                 className="h-6 text-[9px] font-bold"
                                                 onClick={() => {
                                                     const current = resource.fields || [];
-                                                    updateResource(resource.id, { fields: [...current, { fieldId: '', moduleId: '' }] });
+                                                    updateResource(resource.id, { fields: [...current, { fieldId: '', semester: '', moduleId: '' }] });
                                                 }}
                                             >
                                                 <Plus className="w-3 h-3 mr-1" /> Ajouter
@@ -506,10 +506,8 @@ export default function AdminFastContribute() {
 
                                         <div className="space-y-3">
                                             {(resource.fields || []).map((link, lIndex) => {
-                                                const semester = variableFields.has('semester') ? resource.semester : commonData.semester;
-                                                const linkModules = link.fieldId && semester
-                                                    ? staticDb.modules[`${link.fieldId}-${semester}`] || []
-                                                    : [];
+                                                const linkModules = link.fieldId ? getModulesForField(link.fieldId) : [];
+                                                const linkSemester = link.semester || '';
 
                                                 return (
                                                     <div key={lIndex} className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3 bg-card rounded-lg border border-border">
@@ -519,7 +517,7 @@ export default function AdminFastContribute() {
                                                                 value={link.fieldId}
                                                                 onValueChange={(val) => {
                                                                     const updatedLinks = [...resource.fields];
-                                                                    updatedLinks[lIndex] = { ...updatedLinks[lIndex], fieldId: val, moduleId: '' };
+                                                                    updatedLinks[lIndex] = { ...updatedLinks[lIndex], fieldId: val, semester: '', moduleId: '' };
                                                                     updateResource(resource.id, { fields: updatedLinks });
                                                                 }}
                                                             >
@@ -532,8 +530,24 @@ export default function AdminFastContribute() {
                                                             </Select>
                                                         </div>
                                                         <div className="space-y-1 relative">
-                                                            <Label className="text-[9px] font-black uppercase text-muted-foreground">Module Équivalent</Label>
+                                                            <Label className="text-[9px] font-black uppercase text-muted-foreground">Semestre et module équivalents</Label>
                                                             <div className="flex gap-2">
+                                                                <Select
+                                                                    value={linkSemester}
+                                                                    onValueChange={(val) => {
+                                                                        const updatedLinks = [...resource.fields];
+                                                                        updatedLinks[lIndex] = { ...updatedLinks[lIndex], semester: val, moduleId: '' };
+                                                                        updateResource(resource.id, { fields: updatedLinks });
+                                                                    }}
+                                                                    disabled={!link.fieldId}
+                                                                >
+                                                                    <SelectTrigger className="h-8 w-24 text-xs rounded-none shadow-none"><SelectValue placeholder="Semestre" /></SelectTrigger>
+                                                                    <SelectContent>
+                                                                        {Array.from(new Set(linkModules.map(m => m.semester))).map(semester => (
+                                                                            <SelectItem key={semester} value={semester}>{semester}</SelectItem>
+                                                                        ))}
+                                                                    </SelectContent>
+                                                                </Select>
                                                                 <Select
                                                                     value={link.moduleId}
                                                                     onValueChange={(val) => {
@@ -545,7 +559,7 @@ export default function AdminFastContribute() {
                                                                 >
                                                                     <SelectTrigger className="h-8 text-xs flex-grow rounded-none shadow-none"><SelectValue placeholder="Module" /></SelectTrigger>
                                                                     <SelectContent>
-                                                                        {linkModules.map(m => (
+                                                                        {linkModules.filter(m => !linkSemester || m.semester === linkSemester).map(m => (
                                                                             <SelectItem key={m.id} value={m.id}>{m.name}</SelectItem>
                                                                         ))}
                                                                     </SelectContent>

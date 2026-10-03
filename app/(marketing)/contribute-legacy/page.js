@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { db as staticDb } from '@/lib/data';
+import { db as staticDb, getModulesForField } from '@/lib/data';
 import { uploadResourceFile } from '@/lib/supabase';
 import { db, ref, push, set, get, } from '@/lib/firebase';
 import { useAuth } from '@/context/AuthContext';
@@ -441,7 +441,7 @@ export default function ContributePage() {
                                             className="h-8 text-xs font-bold text-primary hover:bg-primary/5"
                                             onClick={() => {
                                                 const current = formData.fields || [];
-                                                handleChange('fields', [...current, { fieldId: '', moduleId: '' }]);
+                                                handleChange('fields', [...current, { fieldId: '', semester: '', moduleId: '' }]);
                                             }}
                                         >
                                             <Plus className="w-3 h-3 mr-1" /> Ajouter
@@ -450,9 +450,8 @@ export default function ContributePage() {
 
                                     <div className="space-y-3">
                                         {(formData.fields || []).map((link, lIndex) => {
-                                            const linkModules = link.fieldId && formData.semester
-                                                ? staticDb.modules[`${link.fieldId}-${formData.semester}`] || []
-                                                : [];
+                                            const linkModules = link.fieldId ? getModulesForField(link.fieldId) : [];
+                                            const linkSemester = link.semester || '';
 
                                             return (
                                                 <div key={lIndex} className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3 bg-card/50 rounded-xl border border-muted-foreground/5 relative group">
@@ -462,7 +461,7 @@ export default function ContributePage() {
                                                             value={link.fieldId}
                                                             onValueChange={(val) => {
                                                                 const updatedLinks = [...formData.fields];
-                                                                updatedLinks[lIndex] = { ...updatedLinks[lIndex], fieldId: val, moduleId: '' };
+                                                                updatedLinks[lIndex] = { ...updatedLinks[lIndex], fieldId: val, semester: '', moduleId: '' };
                                                                 handleChange('fields', updatedLinks);
                                                             }}
                                                         >
@@ -475,8 +474,24 @@ export default function ContributePage() {
                                                         </Select>
                                                     </div>
                                                     <div className="space-y-1.5">
-                                                        <Label className="text-[10px] font-bold uppercase opacity-70">Module Équivalent</Label>
+                                                        <Label className="text-[10px] font-bold uppercase opacity-70">Semestre et module équivalents</Label>
                                                         <div className="flex gap-2">
+                                                            <Select
+                                                                value={linkSemester}
+                                                                onValueChange={(val) => {
+                                                                    const updatedLinks = [...formData.fields];
+                                                                    updatedLinks[lIndex] = { ...updatedLinks[lIndex], semester: val, moduleId: '' };
+                                                                    handleChange('fields', updatedLinks);
+                                                                }}
+                                                                disabled={!link.fieldId}
+                                                            >
+                                                                <SelectTrigger className="h-9 w-24 text-xs"><SelectValue placeholder="Semestre" /></SelectTrigger>
+                                                                <SelectContent>
+                                                                    {Array.from(new Set(linkModules.map(m => m.semester))).map(semester => (
+                                                                        <SelectItem key={semester} value={semester}>{semester}</SelectItem>
+                                                                    ))}
+                                                                </SelectContent>
+                                                            </Select>
                                                             <Select
                                                                 value={link.moduleId}
                                                                 onValueChange={(val) => {
@@ -488,7 +503,7 @@ export default function ContributePage() {
                                                             >
                                                                 <SelectTrigger className="h-9 text-xs flex-grow"><SelectValue placeholder="Module" /></SelectTrigger>
                                                                 <SelectContent>
-                                                                    {linkModules.map(m => (
+                                                                    {linkModules.filter(m => !linkSemester || m.semester === linkSemester).map(m => (
                                                                         <SelectItem key={m.id} value={m.id}>{m.name}</SelectItem>
                                                                     ))}
                                                                 </SelectContent>
@@ -652,4 +667,3 @@ export default function ContributePage() {
         </main>
     );
 }
-
