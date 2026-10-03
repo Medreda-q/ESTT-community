@@ -11,8 +11,7 @@ import {
     Loader2,
     PieChart as PieChartIcon,
     BarChart3,
-    Filter
-} from 'lucide-react';
+    } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -23,7 +22,6 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import Link from 'next/link';
 import { 
     ResponsiveContainer, 
     PieChart, 
@@ -163,7 +161,7 @@ export default function AdminOverview({ stats, resources, users = [], setActiveT
                         disabled={rebuilding}
                     >
                         {rebuilding ? <Loader2 className="w-4 h-4 animate-spin" /> : <SearchIcon className="w-4 h-4" />}
-                        Reconstruire l'index
+                        Reconstruire l&apos;index
                     </Button>
                     <Button variant="outline" size="sm" className="gap-2 rounded-xl px-4">
                         <ArrowUpRight className="w-4 h-4" /> Exporter

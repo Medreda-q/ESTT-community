@@ -2,7 +2,6 @@
 
 import { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import {
-    getNotificationPermission,
     requestNotificationPermission,
     notifyMention,
     notifyDM,

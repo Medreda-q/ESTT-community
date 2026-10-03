@@ -6,10 +6,10 @@ import { db, ref, get, set, push, update, remove, runTransaction, onValue } from
 import { useAuth } from '@/context/AuthContext';
 import { useDialog } from '@/context/DialogContext';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Textarea } from '@/components/ui/textarea';
-import { Loader2, FileText, Video, Image as ImageIcon, Link as LinkIcon, Download, ExternalLink, User, Share2, GraduationCap, Play, MessageCircle, Send, X, Flag, AlertTriangle, Star, Bookmark, Eye, Globe, ListPlus } from 'lucide-react';
+import { Loader2, FileText, Link as LinkIcon, Download, ExternalLink, User, Share2, MessageCircle, Send, X, Flag, AlertTriangle, Star, Eye, Globe, ListPlus } from 'lucide-react';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
@@ -63,16 +63,18 @@ export default function ResourcePage() {
                     const vcRef = ref(db, `resourceViews/${resourceId}/viewCount`);
                     const snap = await get(vcRef);
                     if (snap.exists()) setViewCount(snap.val());
-                } catch (_) {}
+                } catch {}
             };
             loadViewCount();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [resourceId]);
 
     useEffect(() => {
         if (resourceId && user) {
             fetchUserRating();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [resourceId, user]);
 
     // Track views and notify Slack every 10 views milestone
@@ -171,6 +173,7 @@ export default function ResourcePage() {
         if (resource) {
             trackView();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [resource, user, profile]);
 
     useEffect(() => {
@@ -185,6 +188,7 @@ export default function ResourcePage() {
         });
 
         return () => unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user, resourceId, db]);
 
     const fetchResource = async () => {
@@ -256,16 +260,7 @@ export default function ResourcePage() {
         }
     };
 
-    const getResourceIcon = (type) => {
-        switch (type) {
-            case 'pdf': return <FileText className="w-12 h-12 text-primary" />;
-            case 'video': return <Video className="w-12 h-12 text-primary" />;
-            case 'image': return <ImageIcon className="w-12 h-12 text-primary" />;
-            case 'link': return <LinkIcon className="w-12 h-12 text-primary" />;
-            case 'html': return <Globe className="w-12 h-12 text-primary" />;
-            default: return <FileText className="w-12 h-12 text-primary" />;
-        }
-    };
+
 
     const ensureProtocol = (url) => {
         if (!url) return '';
@@ -319,7 +314,7 @@ export default function ResourcePage() {
         try {
             const urlObj = new URL(url);
             return urlObj.pathname.toLowerCase().endsWith('.pdf');
-        } catch (e) {
+        } catch {
             return url.toLowerCase().includes('.pdf');
         }
     };
@@ -599,6 +594,7 @@ export default function ResourcePage() {
         fetch(proxyUrl, { method: 'HEAD' })
             .then((res) => setPreviewAvailable(res.ok))
             .catch(() => setPreviewAvailable(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [resource]);
 
     if (loading) {
@@ -709,7 +705,7 @@ export default function ResourcePage() {
                                             Signaler cette ressource
                                         </DialogTitle>
                                         <DialogDescription>
-                                            Pourquoi signalez-vous "{resource.title}" ? Notre équipe examinera ce contenu.
+                                            Pourquoi signalez-vous &quot;{resource.title}&quot; ? Notre équipe examinera ce contenu.
                                         </DialogDescription>
                                     </DialogHeader>
 
@@ -725,7 +721,7 @@ export default function ResourcePage() {
                                             </div>
                                             <div className="flex items-center space-x-2">
                                                 <RadioGroupItem value="copyright" id="copyright" />
-                                                <Label htmlFor="copyright">Violation des droits d'auteur</Label>
+                                                <Label htmlFor="copyright">Violation des droits d&apos;auteur</Label>
                                             </div>
                                             <div className="flex items-center space-x-2">
                                                 <RadioGroupItem value="irrelevant" id="irrelevant" />
@@ -1026,7 +1022,7 @@ export default function ResourcePage() {
 
                         <div className="border-t pt-4">
                             {comments.length === 0 && (
-                                <p className="text-center text-muted-foreground text-sm py-6">Aucun commentaire pour l'instant.</p>
+                                <p className="text-center text-muted-foreground text-sm py-6">Aucun commentaire pour l&apos;instant.</p>
                             )}
                             {comments.length > 0 && (
                                 <div className="space-y-4">

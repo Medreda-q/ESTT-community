@@ -75,7 +75,7 @@ export default function ClubsPage() {
                             Clubs Etudiants
                         </h1>
                         <p className="text-lg text-muted-foreground mb-6">
-                            Découvrez les clubs et associations de l'ESTT. Rejoignez une communauté passionnée et participez à des activités enrichissantes.
+                            Découvrez les clubs et associations de l&apos;ESTT. Rejoignez une communauté passionnée et participez à des activités enrichissantes.
                         </p>
 
                         {/* Search Bar */}
@@ -161,8 +161,8 @@ export default function ClubsPage() {
                     <div className="container px-4 md:px-6 text-center">
                         <h2 className="text-3xl font-bold mb-4">Vous avez un club à proposer ?</h2>
                         <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                            Si votre club n'est pas encore listé, vous pouvez soumettre une demande de création.
-                            Les administrateurs examineront votre demande et l'approuveront si elle répond aux critères.
+                            Si votre club n&apos;est pas encore listé, vous pouvez soumettre une demande de création.
+                            Les administrateurs examineront votre demande et l&apos;approuveront si elle répond aux critères.
                         </p>
                         <Button size="lg" asChild className="gap-2">
                             <Link href="/clubs/request">

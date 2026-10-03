@@ -6,7 +6,6 @@ import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
 import { Loader2, Menu, X, ShieldCheck } from 'lucide-react';
 
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 
 // Subcomponents
@@ -211,11 +210,6 @@ export default function AdminDashboard() {
         };
     }, [user, profile, authLoading]);
 
-    // Handle tab change from outside (e.g. sidebar)
-    const handleTabChange = (status) => {
-        setActiveTab(status);
-        setIsSidebarOpen(false);
-    };
 
     if (authLoading || loading) return (
         <div className="flex items-center justify-center min-h-screen">

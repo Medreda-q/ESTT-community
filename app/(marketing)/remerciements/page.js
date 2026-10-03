@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { db, ref, get } from '@/lib/firebase';
-import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Trophy, Medal, ArrowLeft, Loader2, User, Heart, ChevronRight } from 'lucide-react';
 
@@ -87,7 +86,7 @@ export default function RemerciementsPage() {
 
                     <p className="mx-auto mt-6 max-w-[700px] text-lg text-muted-foreground md:text-xl">
                         La plateforme ESTT Community vit grâce à la générosité de ses membres.
-                        Chaque ressource partagée construit l'avenir de notre communauté.
+                        Chaque ressource partagée construit l&apos;avenir de notre communauté.
                     </p>
 
                     <div className="mt-8 flex items-center gap-6 text-sm font-medium text-muted-foreground">
@@ -107,7 +106,7 @@ export default function RemerciementsPage() {
                 <div className="container max-w-3xl">
                     <div className="max-w-2xl mb-12">
                         <h2 className="text-2xl font-bold tracking-tight text-foreground mb-3 text-center sm:text-left">
-                            Tableau d'honneur
+                            Tableau d&apos;honneur
                         </h2>
                         <p className="text-muted-foreground text-base text-center sm:text-left">
                             Tous les membres qui ont contribué au succès de la plateforme.
@@ -184,7 +183,7 @@ export default function RemerciementsPage() {
                 <div className="container text-center">
                     <div className="max-w-xl mx-auto">
                         <h2 className="text-3xl font-bold tracking-tight text-foreground mb-6 font-heading leading-tight">
-                            Rejoignez le tableau d'honneur
+                            Rejoignez le tableau d&apos;honneur
                         </h2>
                         <p className="text-muted-foreground text-lg mb-10">
                             Aidez vos camarades et laissez votre empreinte sur la plateforme.

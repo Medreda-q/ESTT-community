@@ -24,6 +24,7 @@ export default function PostDetailPage() {
 
     useEffect(() => {
         if (clubId && postId) fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [clubId, postId]);
 
     const fetchData = async () => {

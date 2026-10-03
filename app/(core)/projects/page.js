@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
-import { useAuth } from '@/context/AuthContext';
 import { db, ref, get } from '@/lib/firebase';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -11,7 +10,6 @@ import ProjectSubmissionCard from '@/components/features/projects/ProjectSubmiss
 import ProjectShowcaseCard from '@/components/features/projects/ProjectShowcaseCard';
 import {
     countUniqueAuthors,
-    getProjectCategoryLabel,
     isProjectVisible,
     normalizeProject,
     normalizeShowcase,
@@ -22,7 +20,6 @@ import ProjectCarousel from '@/components/features/projects/ProjectCarousel';
 import { ArrowRight, Layers3, Loader2, Rocket, Sparkles, Trophy } from 'lucide-react';
 
 export default function ProjectsPage() {
-    const { user } = useAuth();
     const [projects, setProjects] = useState([]);
     const [submissions, setSubmissions] = useState([]);
     const [showcases, setShowcases] = useState([]);

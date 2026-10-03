@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getAdminDb } from '@/lib/firebase-admin';
 
+export const dynamic = 'force-dynamic';
+
 export const maxDuration = 60;
 
 const CLIENT_ID = process.env.GOOGLE_CLIENT_ID;

@@ -1,12 +1,11 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Github, Smartphone, Apple, ExternalLink, Download, Sparkles, Shield, Zap, Heart } from 'lucide-react';
+import { Github, Smartphone, Apple, ExternalLink, Download, Sparkles, Shield, Zap, } from 'lucide-react';
 
 export default function DownloadPage() {
     const androidDownloadUrl = 'https://expo.dev/artifacts/eas/4QW4Fn5v85oLWxeTcoYeoi.apk';
@@ -40,7 +39,7 @@ export default function DownloadPage() {
 
                     <Badge variant="outline" className="mb-6 px-4 py-1.5 border-primary/20 bg-background/60 backdrop-blur text-primary rounded-full shadow-sm animate-in fade-in slide-in-from-bottom-4 duration-500">
                         <Sparkles className="w-3.5 h-3.5 mr-2" />
-                        L'application mobile est arrivée
+                        L&apos;application mobile est arrivée
                     </Badge>
 
                     <h1 className="text-3xl font-heading font-black tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl max-w-4xl leading-tight animate-in fade-in slide-in-from-bottom-8 duration-700">
@@ -137,7 +136,7 @@ export default function DownloadPage() {
                                     </li>
                                 </ul>
                                 <Button className="w-full h-14 rounded-2xl text-lg font-bold shadow-lg shadow-primary/10 mt-auto" asChild>
-                                    <a href={androidDownloadUrl} download>Installer l'APK</a>
+                                    <a href={androidDownloadUrl} download>Installer l&apos;APK</a>
                                 </Button>
                             </CardContent>
                         </Card>
@@ -150,7 +149,7 @@ export default function DownloadPage() {
                                 </div>
                                 <CardTitle className="text-3xl font-heading font-bold">iOS</CardTitle>
                                 <CardDescription className="text-base text-muted-foreground mt-2">
-                                    L'App Store arrive bientôt. Utilisez la Web App optimisée en attendant.
+                                    L&apos;App Store arrive bientôt. Utilisez la Web App optimisée en attendant.
                                 </CardDescription>
                             </CardHeader>
                             <CardContent className="p-8 pt-4 flex-grow flex flex-col">
@@ -165,7 +164,7 @@ export default function DownloadPage() {
                                     </li>
                                     <li className="flex items-start">
                                         <Sparkles className="w-5 h-5 text-primary mr-3 mt-0.5" />
-                                        <span className="text-primary font-medium">Bientôt disponible sur l'App Store</span>
+                                        <span className="text-primary font-medium">Bientôt disponible sur l&apos;App Store</span>
                                     </li>
                                 </ul>
                                 <Button variant="outline" className="w-full h-14 rounded-2xl text-lg font-bold border-2 mt-auto" asChild>
@@ -191,7 +190,7 @@ export default function DownloadPage() {
                             </div>
                             <h2 className="text-3xl md:text-5xl font-heading font-black mb-6 tracking-tight">Open Source & Communautaire</h2>
                             <p className="max-w-2xl mx-auto text-lg md:text-xl text-white/80 mb-12">
-                                Le projet est entièrement libre sur GitHub. Contribuez, signalez des bugs ou suggérez des fonctionnalités pour améliorer la vie étudiante à l'EST Tétouan.
+                                Le projet est entièrement libre sur GitHub. Contribuez, signalez des bugs ou suggérez des fonctionnalités pour améliorer la vie étudiante à l&apos;EST Tétouan.
                             </p>
 
                             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full sm:w-auto">

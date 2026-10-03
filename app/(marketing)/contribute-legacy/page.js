@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { db as staticDb } from '@/lib/data';
 import { uploadResourceFile } from '@/lib/supabase';
-import { db, ref, push, set, get, update } from '@/lib/firebase';
+import { db, ref, push, set, get, } from '@/lib/firebase';
 import { useAuth } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -63,7 +63,7 @@ export default function ContributePage() {
         };
 
         fetchProfessors();
-    }, [db]);
+    }, []);
 
 
     const handleChange = (name, value) => {
@@ -261,7 +261,7 @@ export default function ContributePage() {
                                 Se connecter
                             </Button>
                             <Button onClick={() => router.push('/signup')} className="w-fit">
-                                S'inscrire
+                                S&apos;inscrire
                             </Button>
                         </div>
                     </AlertDescription>
@@ -289,7 +289,7 @@ export default function ContributePage() {
                                 Mon profil
                             </Button>
                             <Button variant="outline" onClick={() => router.push('/')} className="w-fit border-destructive/30 hover:bg-destructive/20 text-destructive">
-                                Retour à l'accueil
+                                Retour à l&apos;accueil
                             </Button>
                         </div>
                     </AlertDescription>
@@ -318,7 +318,7 @@ export default function ContributePage() {
                     <CardHeader>
                         <CardTitle>Formulaire de contribution</CardTitle>
                         <CardDescription>
-                            Les champs marqués d'une astérisque (*) sont obligatoires.
+                            Les champs marqués d&apos;une astérisque (*) sont obligatoires.
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -605,7 +605,7 @@ export default function ContributePage() {
                                                     </label>
                                                 </div>
                                                 <p className="text-xs text-muted-foreground">
-                                                    {formData.type === 'pdf' ? 'PDF uniquement' : 'Images uniquement'} jusqu'à 10MB
+                                                    {formData.type === 'pdf' ? 'PDF uniquement' : 'Images uniquement'} jusqu&apos;à 10MB
                                                 </p>
                                             </div>
                                         </div>
@@ -642,7 +642,7 @@ export default function ContributePage() {
                                 </Button>
                                 <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
                                     <Info className="h-3 w-3" />
-                                    <span>Toutes les ressources sont vérifiées avant d'être publiées.</span>
+                                    <span>Toutes les ressources sont vérifiées avant d&apos;être publiées.</span>
                                 </div>
                             </div>
                         </form>

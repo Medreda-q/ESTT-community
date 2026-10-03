@@ -4,11 +4,9 @@ import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
-import { db, ref, get, query, orderByChild, equalTo, runTransaction, set, push } from '@/lib/firebase';
+import { db, ref, get, runTransaction, set, push } from '@/lib/firebase';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Textarea } from '@/components/ui/textarea';
 import {
     formatProjectDate,
@@ -17,11 +15,8 @@ import {
     normalizeSubmission,
 } from '@/lib/projects';
 import { 
-    AlertCircle, 
     ArrowLeft, 
     CalendarDays, 
-    CheckCircle2, 
-    ChevronDown, 
     ExternalLink, 
     Github, 
     Loader2, 
@@ -29,8 +24,7 @@ import {
     Send, 
     Trophy, 
     User, 
-    X 
-} from 'lucide-react';
+    } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export default function SubmissionDetailPage() {
@@ -46,13 +40,13 @@ export default function SubmissionDetailPage() {
     const [comments, setComments] = useState([]);
     const [currentVote, setCurrentVote] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [refreshing, setRefreshing] = useState(false);
+    const [, setRefreshing] = useState(false);
     const [voting, setVoting] = useState(false);
     const [commentText, setCommentText] = useState('');
     const [replyTexts, setReplyTexts] = useState({});
     const [expandedReplies, setExpandedReplies] = useState({});
     const [submittingComment, setSubmittingComment] = useState(false);
-    const [message, setMessage] = useState(null);
+    const [, setMessage] = useState(null);
     const [error, setError] = useState(null);
 
     const fetchData = async () => {
@@ -105,6 +99,7 @@ export default function SubmissionDetailPage() {
 
     useEffect(() => {
         fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [projectId, submissionId, user]);
 
     const runtimeStatus = useMemo(() => getProjectRuntimeStatus(project), [project]);
@@ -331,7 +326,7 @@ export default function SubmissionDetailPage() {
 
                                 {submission.notes && (
                                     <div className="rounded-2xl bg-amber-50 p-6 border border-amber-100 dark:bg-amber-500/10 dark:border-amber-500/30">
-                                        <h3 className="text-sm font-bold uppercase tracking-wider text-amber-700 mb-2 dark:text-amber-300">Note de l'auteur</h3>
+                                        <h3 className="text-sm font-bold uppercase tracking-wider text-amber-700 mb-2 dark:text-amber-300">Note de l&apos;auteur</h3>
                                         <p className="text-foreground italic">{submission.notes}</p>
                                     </div>
                                 )}
@@ -360,7 +355,7 @@ export default function SubmissionDetailPage() {
                         {/* Screenshots Carousel/Grid */}
                         {submission.screenshots?.length > 0 && (
                             <div className="space-y-4">
-                                <h3 className="text-xl font-black text-foreground">Captures d'ecran</h3>
+                                <h3 className="text-xl font-black text-foreground">Captures d&apos;ecran</h3>
                                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                                     {submission.screenshots.map((s, idx) => (
                                         <img 
@@ -499,7 +494,7 @@ export default function SubmissionDetailPage() {
                     <aside className="space-y-6">
                         <div className="sticky top-28 space-y-6">
                             <div className="rounded-3xl border border-border bg-card p-6 shadow-sm">
-                                <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-muted-foreground mb-4">A propos de l'auteur</h3>
+                                <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-muted-foreground mb-4">A propos de l&apos;auteur</h3>
                                 <div className="flex items-center gap-4">
                                     <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
                                         <User className="h-6 w-6" />
@@ -536,7 +531,7 @@ export default function SubmissionDetailPage() {
                                 <Trophy className="h-8 w-8 text-emerald-600 mb-4" />
                                 <h3 className="font-black text-foreground mb-2">Classement</h3>
                                 <p className="text-xs text-muted-foreground leading-relaxed">
-                                    Ce build participe au challenge <span className="font-bold">{project.title}</span>. Les votes determinent l'implementation gagnante a la fin du challenge.
+                                    Ce build participe au challenge <span className="font-bold">{project.title}</span>. Les votes determinent l&apos;implementation gagnante a la fin du challenge.
                                 </p>
                                 <Button asChild variant="link" className="px-0 text-emerald-700 h-auto mt-4 font-bold">
                                     <Link href={`/projects/${projectId}`}>Voir le challenge complet &rarr;</Link>

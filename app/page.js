@@ -1,16 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
-import Image from 'next/image';
-import { IMAGE_SIZES } from '@/lib/image-constants';
 import { db as staticDb } from '@/lib/data';
 import { db as firebaseDb, ref, get } from '@/lib/firebase';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent } from '@/components/ui/card';
-import { Search, BookOpen, Users, FileText, ChevronLeft, ChevronRight, Calendar, Sparkles } from 'lucide-react';
 import Hero from '@/components/features/marketing/Hero';
 import AnnouncementCarousel from '@/components/features/marketing/AnnouncementCarousel';
 import ProgramBanners from '@/components/features/marketing/ProgramBanners';
@@ -24,7 +16,6 @@ import { useSearchParams } from 'next/navigation';
 
 
 export default function Home() {
-    const router = useRouter();
     const searchParams = useSearchParams();
     const [showPromoModal, setShowPromoModal] = useState(false);
     const [fromId, setFromId] = useState('');
@@ -36,14 +27,14 @@ export default function Home() {
         contributions: 0,
         modules: 0
     });
-    const [allResources, setAllResources] = useState([]);
+    const [, setAllResources] = useState([]);
     const [clubs, setClubs] = useState([]);
     const [loadingClubs, setLoadingClubs] = useState(true);
     const [announcements, setAnnouncements] = useState([]);
     const [currentSlide, setCurrentSlide] = useState(0);
-    const [loadingAnnouncements, setLoadingAnnouncements] = useState(true);
+    const [, setLoadingAnnouncements] = useState(true);
     const [studentAds, setStudentAds] = useState([]);
-    const [loadingAds, setLoadingAds] = useState(true);
+    const [, setLoadingAds] = useState(true);
 
     useEffect(() => {
         const from = searchParams.get('from');
@@ -201,7 +192,7 @@ export default function Home() {
         };
 
         fetchData();
-    }, [firebaseDb]);
+    }, []);
 
     // Carousel Autoplay
     useEffect(() => {

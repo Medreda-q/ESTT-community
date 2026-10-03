@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Heart, Github, Globe, MessageCircle, BookOpen, ExternalLink, ShieldCheck, Mail, Info, Phone , Copyright } from 'lucide-react';
+import { Heart, Github, Globe, ExternalLink, Mail, Phone , } from 'lucide-react';
 import LatestReleaseBadge from '../LatestReleaseBadge';
 
 export default function Footer() {
@@ -14,7 +14,7 @@ export default function Footer() {
     
     if (pathname === '/downloadAndroid' || pathname === '/docs' || isChatPage || isMessagesPage) return null;
 
-    const currentYear = new Date().getFullYear();
+
 
 
     const sections = [
@@ -71,7 +71,7 @@ export default function Footer() {
                         </Link>
 
                         <p className="text-base text-muted-foreground leading-relaxed max-w-sm mx-auto lg:mx-0">
-                            La plateforme collaborative pour les étudiants de l'École Supérieure de Technologie de Tétouan.
+                            La plateforme collaborative pour les étudiants de l&apos;École Supérieure de Technologie de Tétouan.
                         </p>
 
                         <div className="flex items-center justify-center lg:justify-start gap-4 pt-2">
@@ -133,7 +133,7 @@ export default function Footer() {
                 <div className="pt-8 border-t border-border flex flex-col lg:flex-row justify-between items-center gap-8 text-sm">
                     <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-center md:text-left">
                         <p className="text-[11px] sm:text-sm text-muted-foreground font-medium flex items-center gap-1.5">
-                          Codé avec <Heart className="w-3.5 h-3.5 text-rose-500"/> Par des étudiants de l'EST Tétouan.
+                          Codé avec <Heart className="w-3.5 h-3.5 text-rose-500"/> Par des étudiants de l&apos;EST Tétouan.
                         
                         {
                             //  Copyright {currentYear} <Copyright className="w-3.5 h-3.5" /> ESTT.Community  — Codé avec <Heart className="w-3.5 h-3.5 text-rose-500"/> par des étudiants de l'EST Tétouan.

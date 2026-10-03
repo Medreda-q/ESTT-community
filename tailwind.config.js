@@ -110,7 +110,19 @@ module.exports = {
     				'var(--font-lateef)',
     				'serif'
     			]
-    		}
+    		},
+			transitionDuration: {
+				'800': '800ms',
+				'1000': '1000ms',
+				'1200': '1200ms',
+				'1500': '1500ms',
+				'2000': '2000ms',
+				'3000': '3000ms',
+			},
+			transitionTimingFunction: {
+				'custom': 'cubic-bezier(0.23,1,0.32,1)',
+				'custom-alt': 'cubic-bezier(0.34,1.56,0.64,1)',
+			}
     	}
     },
     plugins: [

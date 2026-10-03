@@ -84,7 +84,7 @@ export default function ModeratorDocs() {
                     </div>
                     <div>
                         <h1 className="text-3xl font-black tracking-tight">Documentation Modérateur</h1>
-                        <p className="text-muted-foreground font-medium">Guide d'utilisation du panneau de modération d'ESTT Community.</p>
+                        <p className="text-muted-foreground font-medium">Guide d&apos;utilisation du panneau de modération d&apos;ESTT Community.</p>
                     </div>
                 </div>
             </div>
@@ -97,11 +97,11 @@ export default function ModeratorDocs() {
                             <span className="font-bold tracking-wide text-sm opacity-90 uppercase">Votre Mission</span>
                         </div>
                         <h2 className="text-2xl font-black leading-tight max-w-2xl">
-                            Assurer la qualité et l'accessibilité des ressources pour tous les étudiants.
+                            Assurer la qualité et l&apos;accessibilité des ressources pour tous les étudiants.
                         </h2>
                         <p className="opacity-80 text-sm max-w-xl font-medium leading-relaxed">
                             En tant que modérateur, votre rôle est crucial pour maintenir une base de données propre, 
-                            classée et vérifiée. Un bon référencement aide des centaines d'étudiants à trouver ce dont ils ont besoin.
+                            classée et vérifiée. Un bon référencement aide des centaines d&apos;étudiants à trouver ce dont ils ont besoin.
                         </p>
                     </div>
                     {/* Decorative element */}
@@ -177,10 +177,10 @@ export default function ModeratorDocs() {
                         <Info className="w-5 h-5" />
                     </div>
                     <div className="space-y-1">
-                        <p className="text-sm font-bold text-foreground">Besoin d'aide supplémentaire ?</p>
+                        <p className="text-sm font-bold text-foreground">Besoin d&apos;aide supplémentaire ?</p>
                         <p className="text-sm text-muted-foreground font-medium">
                             Si vous rencontrez un problème technique ou si vous avez des doutes sur une ressource, 
-                            contactez l'administrateur via le groupe de communication ou directement sur le campus.
+                            contactez l&apos;administrateur via le groupe de communication ou directement sur le campus.
                         </p>
                     </div>
                 </CardContent>

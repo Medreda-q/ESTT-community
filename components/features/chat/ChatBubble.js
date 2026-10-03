@@ -7,7 +7,7 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
 import { cn } from '@/lib/utils';
-import { BadgeCheck, ShieldCheck, Gem, User, SmilePlus, Trash2, MoreHorizontal, Pencil, AlertTriangle, X, Reply, Flag, FileText, Video, Link as LinkIcon, ArrowRight, BookOpen, Users, CheckCheck, Calendar, MapPin, Clock, CalendarDays, Loader2 } from 'lucide-react';
+import { Gem, User, SmilePlus, Trash2, MoreHorizontal, AlertTriangle, X, Reply, Flag, FileText, Video, Link as LinkIcon, ArrowRight, BookOpen, Users, CheckCheck, Calendar, MapPin, Clock, CalendarDays, Loader2 } from 'lucide-react';
 import { db, ref, get } from '@/lib/firebase';
 import { ESTT_AI_AGENT_ID } from '@/lib/estt-ai';
 
@@ -41,7 +41,8 @@ export default function ChatBubble({ message, isOwn, onReact, onDelete, onReply,
     // Permissions logic
     const isSubscribed = subscription?.expiresAt && subscription.expiresAt > Date.now();
     const isAdmin = role === 'admin';
-    const canEdit = isOwn;
+    // canEdit — kept for future use (currently only canDelete and canReport are active)
+    // const canEdit = isOwn;
     const canDelete = isOwn;
     const canReport = !isOwn;
 
@@ -105,6 +106,7 @@ export default function ChatBubble({ message, isOwn, onReact, onDelete, onReply,
         if (sharedEvent?.title && !eventDetails) {
             setEventDetails(sharedEvent);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sharedEvent]);
 
     // Multiple Resources Loader
@@ -127,6 +129,7 @@ export default function ChatBubble({ message, isOwn, onReact, onDelete, onReply,
                 setLoadingResources(prev => ({ ...prev, [resId]: false }));
             }
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sharedResourceIds]);
 
     // Reactions logic
@@ -513,7 +516,7 @@ export default function ChatBubble({ message, isOwn, onReact, onDelete, onReply,
                                     ) : loadError ? (
                                         <div className="p-4 bg-red-50 border border-red-100 rounded-2xl flex items-center gap-3 text-red-600 dark:bg-red-500/15 dark:border-red-500/30 dark:text-red-300">
                                             <AlertTriangle className="w-5 h-5 shrink-0" />
-                                            <p className="text-xs font-bold">Cet événement n'est plus disponible.</p>
+                                            <p className="text-xs font-bold">Cet événement n&apos;est plus disponible.</p>
                                         </div>
                                     ) : (
                                         <Link
@@ -581,7 +584,7 @@ export default function ChatBubble({ message, isOwn, onReact, onDelete, onReply,
                                                 {attendees.length > 0 && (
                                                     <div className="mt-4 pt-4 border-t border-border flex items-center justify-between">
                                                         <div className="flex -space-x-2 md:-space-x-2.5 overflow-hidden">
-                                                            {attendees.slice(0, 5).map((uid, i) => {
+                                                            {attendees.slice(0, 5).map((uid, _i) => {
                                                                 const p = profiles[uid];
                                                                 if (!p) return null;
                                                                 return (
@@ -1024,7 +1027,7 @@ export default function ChatBubble({ message, isOwn, onReact, onDelete, onReply,
     );
 }
 
-function ResourceCard({ resource, isOwn }) {
+function ResourceCard({ resource, isOwn: _isOwn }) {
     return (
         <div className="p-0.5">
             <Link
@@ -1058,7 +1061,7 @@ function ResourceCard({ resource, isOwn }) {
     );
 }
 
-function ResourceCardSkeleton({ isOwn }) {
+function ResourceCardSkeleton({ isOwn: _isOwn }) {
     return (
         <div className="p-0.5 animate-pulse">
             <div className="w-full h-24 bg-card/40 border border-border/50 rounded-xl" />

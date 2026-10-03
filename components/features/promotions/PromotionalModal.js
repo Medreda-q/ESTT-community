@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { 
     Dialog, 
     DialogContent, 
-    DialogHeader, 
     DialogTitle, 
     DialogDescription 
 } from '@/components/ui/dialog';
@@ -151,6 +150,7 @@ export default function PromotionalModal({ isOpen, onClose, fromId, initialCode 
                 setError('Code automatique invalide.');
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isOpen, initialCode, rewardCodes, step, loading]);
 
 
@@ -274,7 +274,7 @@ export default function PromotionalModal({ isOpen, onClose, fromId, initialCode 
                             <div className="space-y-2 text-center">
                                 <DialogTitle className="text-2xl font-bold">Code Promo QR</DialogTitle>
                                 <DialogDescription className="text-muted-foreground">
-                                    Entrez le code à 4 chiffres présent sur l'affiche pour réclamer votre récompense.
+                                    Entrez le code à 4 chiffres présent sur l&apos;affiche pour réclamer votre récompense.
                                 </DialogDescription>
                             </div>
 
@@ -307,7 +307,7 @@ export default function PromotionalModal({ isOpen, onClose, fromId, initialCode 
                         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
                             <div className="space-y-2 text-center">
                                 <DialogTitle className="text-2xl font-bold flex items-center justify-center gap-2">
-                                    C'est gagné ! <Sparkles className="w-6 h-6 text-amber-500" />
+                                    C&apos;est gagné ! <Sparkles className="w-6 h-6 text-amber-500" />
                                 </DialogTitle>
                                 <DialogDescription className="text-muted-foreground font-medium">
                                     Vous avez débloqué <span className="text-indigo-600 font-bold">{

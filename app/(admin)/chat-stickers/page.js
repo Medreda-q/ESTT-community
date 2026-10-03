@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import { supabase } from "@/lib/supabase";
-import { db, ref, push, set } from "@/lib/firebase";
+import { db, ref, set } from "@/lib/firebase";
 import { 
     Upload, 
     Image as ImageIcon, 
@@ -68,7 +68,7 @@ export default function StickerManagement() {
                 const filename = `stickers/${categoryId}/${Date.now()}_${file.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
 
                 // Upload to Supabase
-                const { data, error: uploadError } = await supabase.storage
+                const { error: uploadError } = await supabase.storage
                     .from('resources')
                     .upload(filename, file, {
                         contentType: 'image/webp',

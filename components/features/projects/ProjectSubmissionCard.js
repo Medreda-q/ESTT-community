@@ -1,16 +1,16 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
-import { ExternalLink, Eye, Github, Trophy } from 'lucide-react';
+import { Eye, Trophy } from 'lucide-react';
 
 export default function ProjectSubmissionCard({
     submission,
     userId = '',
     currentVoteId = '',
-    showProjectLink = false,
+    showProjectLink: _showProjectLink = false,
 }) {
     const isOwnSubmission = userId && submission.authorId === userId;
     const isActiveVote = currentVoteId === submission.id;
@@ -25,9 +25,12 @@ export default function ProjectSubmissionCard({
             <Link href={detailUrl} className="block relative">
                 <div className="absolute inset-0 bg-muted" />
                 {image && (
-                    <img
+                    <Image
                         src={image}
                         alt={submission.title}
+                        width={800}
+                        height={400}
+                        unoptimized
                         className="relative h-28 sm:h-40 w-full object-cover transition-transform group-hover:scale-105"
                     />
                 )}

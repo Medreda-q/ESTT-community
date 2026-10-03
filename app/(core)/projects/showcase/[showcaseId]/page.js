@@ -54,7 +54,7 @@ export default function ShowcaseDetailPage() {
                 <div className="rounded-xl border border-dashed border-border bg-card p-10">
                     <h1 className="text-3xl font-black text-foreground">Projet introuvable</h1>
                     <p className="mt-3 text-sm text-muted-foreground">
-                        Cette fiche showcase n'est plus disponible.
+                        Cette fiche showcase n&apos;est plus disponible.
                     </p>
                     <Button asChild className="mt-6 rounded-full">
                         <Link href="/projects/showcase">Retour au showcase</Link>

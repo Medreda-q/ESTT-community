@@ -2,6 +2,7 @@
 
 import React, { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ChevronLeft, ChevronRight, Sparkles, Trophy, Users, Calendar, ArrowRight } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -50,9 +51,12 @@ export default function ProjectCarousel({ projects }) {
                             {/* Background Image */}
                             <div className="absolute inset-0">
                                 {project.coverImage ? (
-                                    <img
+                                    <Image
                                         src={project.coverImage}
                                         alt={project.title}
+                                        fill
+                                        sizes="100vw"
+                                        unoptimized
                                         className={cn("h-full w-full object-cover transition-transform duration-[3000ms] ease-out", isActive ? "scale-100" : "scale-105")}
                                     />
                                 ) : (

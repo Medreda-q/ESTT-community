@@ -15,7 +15,6 @@ import {
     Link,
     Gift,
     Trophy,
-    X,
     MessageSquare
 } from 'lucide-react';
 
@@ -26,7 +25,7 @@ export default function AdminSidebar({
     activeTab, 
     setActiveTab, 
     profile, 
-    stats = {}, 
+    stats: _stats = {}, 
     openReportsCount = 0, 
     openBugReportsCount = 0, 
     openClubRequestsCount = 0, 
@@ -67,7 +66,7 @@ export default function AdminSidebar({
                         className="justify-start gap-3 h-11"
                         onClick={() => setActiveTab('overview')}
                     >
-                        <LayoutDashboard className="w-4 h-4" /> Vue d'ensemble
+                        <LayoutDashboard className="w-4 h-4" /> Vue d&apos;ensemble
                     </Button>
                     <Button
                         variant={activeTab === 'resources' ? 'default' : 'ghost'}

@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
 import { useAuth } from '@/context/AuthContext';
 import { useDialog } from '@/context/DialogContext';
 import { db, ref, push, set } from '@/lib/firebase';
@@ -13,17 +12,15 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { AlertCircle, ChevronLeft, Eye, Send, Save, CheckCircle2, Video, ImageIcon } from 'lucide-react';
-import { AD_STATUSES, AD_CATEGORIES, AD_PRICING, AD_LIMITS } from '@/lib/ad-constants';
+import { ChevronLeft, Eye, Send, Save, CheckCircle2, Video, ImageIcon } from 'lucide-react';
+import { AD_STATUSES, AD_PRICING, AD_LIMITS } from '@/lib/ad-constants';
 import { adNotifications } from '@/lib/ad-notifications';
 
 export default function SubmitAdPage() {
-    const { user, profile } = useAuth();
+    const { user } = useAuth();
     const router = useRouter();
     const { showWarning, showSuccess, showError } = useDialog();
-    const [step, setStep] = useState(1);
     const [loading, setLoading] = useState(false);
-    const [previewMode, setPreviewMode] = useState(false);
     const [filePreview, setFilePreview] = useState(null);
 
     const [formData, setFormData] = useState({
@@ -151,7 +148,7 @@ export default function SubmitAdPage() {
                                 {/* Title */}
                                 <div className="space-y-2">
                                     <div className="flex justify-between">
-                                        <Label className="text-foreground font-bold">Titre de l'annonce</Label>
+                                        <Label className="text-foreground font-bold">Titre de l&apos;annonce</Label>
                                         <span className="text-[10px] text-muted-foreground">{formData.title.length}/{AD_LIMITS.TITLE_MAX_LENGTH}</span>
                                     </div>
                                     <Input

@@ -7,7 +7,7 @@ export default function PrivacyPolicy() {
 
                 <section>
                     <h2 className="text-2xl font-bold text-foreground mb-4">1. Collecte des données</h2>
-                    <p>Nous collectons les informations que vous nous fournissez lors de la création de votre compte, notamment votre nom, prénom, adresse email académique, filière et année d'étude.</p>
+                    <p>Nous collectons les informations que vous nous fournissez lors de la création de votre compte, notamment votre nom, prénom, adresse email académique, filière et année d&apos;étude.</p>
                 </section>
 
                 <section>
@@ -16,8 +16,8 @@ export default function PrivacyPolicy() {
                     <ul className="list-disc pl-6 space-y-2">
                         <li>Gérer votre compte et vous identifier sur la plateforme.</li>
                         <li>Attribuer vos contributions (ressources, articles) à votre profil.</li>
-                        <li>Vous permettre de communiquer avec d'autres étudiants via le chat.</li>
-                        <li>Améliorer nos services et l'expérience utilisateur.</li>
+                        <li>Vous permettre de communiquer avec d&apos;autres étudiants via le chat.</li>
+                        <li>Améliorer nos services et l&apos;expérience utilisateur.</li>
                     </ul>
                 </section>
 
@@ -25,8 +25,8 @@ export default function PrivacyPolicy() {
                     <h2 className="text-2xl font-bold text-foreground mb-4">3. Confidentialité des messages</h2>
                     <p>Dans le cadre de nos services de communication interne :</p>
                     <ul className="list-disc pl-6 space-y-2 mt-2">
-                        <li><strong>Discussions de groupe :</strong> Les messages partagés dans les espaces de discussion communs ne sont pas chiffrés de bout en bout. En utilisant ces espaces, vous donnez expressément votre accord pour que nous puissions collecter et utiliser ces messages en vue d'entraîner et d'améliorer des modèles d'intelligence artificielle (notamment des modèles linguistiques en darija).</li>
-                        <li><strong>Messages directs (DMs) :</strong> Nous appliquons un chiffrement strict pour vos conversations privées. Nous nous engageons formellement à respecter leur totale confidentialité : nous n'accédons pas à leur contenu, et nous garantissons que ces messages ne seront jamais exploités ou analysés à d'autres fins.</li>
+                        <li><strong>Discussions de groupe :</strong> Les messages partagés dans les espaces de discussion communs ne sont pas chiffrés de bout en bout. En utilisant ces espaces, vous donnez expressément votre accord pour que nous puissions collecter et utiliser ces messages en vue d&apos;entraîner et d&apos;améliorer des modèles d&apos;intelligence artificielle (notamment des modèles linguistiques en darija).</li>
+                        <li><strong>Messages directs (DMs) :</strong> Nous appliquons un chiffrement strict pour vos conversations privées. Nous nous engageons formellement à respecter leur totale confidentialité : nous n&apos;accédons pas à leur contenu, et nous garantissons que ces messages ne seront jamais exploités ou analysés à d&apos;autres fins.</li>
                     </ul>
                 </section>
 
@@ -37,12 +37,12 @@ export default function PrivacyPolicy() {
 
                 <section>
                     <h2 className="text-2xl font-bold text-foreground mb-4">4. Partage des données</h2>
-                    <p>Nous ne vendons, n'échangeons ni ne transférons vos informations personnelles identifiables à des tiers. Cela n'inclut pas les tierces parties de confiance qui nous aident à exploiter notre site Web (comme Firebase), tant que ces parties conviennent de garder ces informations confidentielles.</p>
+                    <p>Nous ne vendons, n&apos;échangeons ni ne transférons vos informations personnelles identifiables à des tiers. Cela n&apos;inclut pas les tierces parties de confiance qui nous aident à exploiter notre site Web (comme Firebase), tant que ces parties conviennent de garder ces informations confidentielles.</p>
                 </section>
 
                 <section>
                     <h2 className="text-2xl font-bold text-foreground mb-4">5. Vos droits</h2>
-                    <p>Conformément à la réglementation en vigueur, vous disposez d'un droit d'accès, de rectification et de suppression de vos données personnelles. Vous pouvez exercer ces droits en nous contactant ou via les paramètres de votre profil.</p>
+                    <p>Conformément à la réglementation en vigueur, vous disposez d&apos;un droit d&apos;accès, de rectification et de suppression de vos données personnelles. Vous pouvez exercer ces droits en nous contactant ou via les paramètres de votre profil.</p>
                 </section>
             </div>
         </main>

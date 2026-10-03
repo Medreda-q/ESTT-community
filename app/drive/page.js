@@ -87,7 +87,7 @@ export default function DriveTestPage() {
                             Upload Test
                         </CardTitle>
                         <CardDescription>
-                            Une fois le compte lié, testez l'upload vers le stockage global.
+                            Une fois le compte lié, testez l&apos;upload vers le stockage global.
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">

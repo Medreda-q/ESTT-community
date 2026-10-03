@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { db, ref, get } from '@/lib/firebase';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter, CardDescription } from '@/components/ui/card';
@@ -11,7 +11,6 @@ import { generateCertificate, getCertificateSignature } from '@/lib/pdfUtils';
 
 export default function CertificatePage() {
     const params = useParams();
-    const router = useRouter();
     const { clubId, memberId } = params;
 
     const [club, setClub] = useState(null);
@@ -24,6 +23,7 @@ export default function CertificatePage() {
         if (clubId && memberId) {
             fetchData();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [clubId, memberId]);
 
     const fetchData = async () => {
@@ -92,7 +92,7 @@ export default function CertificatePage() {
                     </CardHeader>
                     <CardFooter className="justify-center">
                         <Button asChild variant="outline">
-                            <Link href="/">Retour à l'accueil</Link>
+                            <Link href="/">Retour à l&apos;accueil</Link>
                         </Button>
                     </CardFooter>
                 </Card>
@@ -107,7 +107,7 @@ export default function CertificatePage() {
                     <div className="mx-auto w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mb-4 text-blue-600 dark:bg-blue-500/15 dark:text-blue-300">
                         <Award className="w-10 h-10" />
                     </div>
-                    <CardTitle className="text-2xl font-bold">Certificat d'Adhésion Officiel</CardTitle>
+                    <CardTitle className="text-2xl font-bold">Certificat d&apos;Adhésion Officiel</CardTitle>
                     <CardDescription>
                         Félicitations, vous êtes membre de <strong>{club.name}</strong>
                     </CardDescription>
@@ -130,7 +130,7 @@ export default function CertificatePage() {
 
                     <p className="text-sm text-muted-foreground">
                         Votre certificat est en cours de génération et devrait être téléchargé automatiquement.
-                        Si ce n'est pas le cas, utilisez le bouton ci-dessous.
+                        Si ce n&apos;est pas le cas, utilisez le bouton ci-dessous.
                     </p>
                 </CardContent>
                 <CardFooter className="flex flex-col gap-3">

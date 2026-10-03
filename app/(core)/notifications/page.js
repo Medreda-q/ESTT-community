@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { db, ref, onValue, remove } from '@/lib/firebase';
 import { useAuth } from '@/context/AuthContext';
-import { markAsRead, markGlobalAsRead, NOTIF_PRIORITY } from '@/lib/notifications';
+import { markAsRead, markGlobalAsRead } from '@/lib/notifications';
 import { useDialog } from '@/context/DialogContext';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -15,7 +15,7 @@ import {
     DialogTitle,
     DialogClose,
 } from "@/components/ui/dialog";
-import { Bell, CheckCheck, Loader2, ArrowRight, Info, AlertTriangle, Megaphone, ExternalLink, Download, Check, Copy, Edit, Trash2, Share2, MoreVertical, MapPin, Calendar, User, Mail, Phone, Eye, Lock, Home, Search, Menu, X, Plus, Minus, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Heart, Star, Flag, Bookmark, Settings, LogOut, LogIn, Clock, Zap, AlertCircle, CheckCircle, AlertOctagon, MessageSquare, Send, Inbox, Archive, Trash, FileText, Image, Music, Video, Code, Cpu, Database, Server, Cloud, GitBranch, Package } from 'lucide-react';
+import { Bell, CheckCheck, Loader2, ArrowRight, Info, AlertTriangle, Megaphone, ExternalLink, Download, Check, Copy, Edit, Trash2, Share2, MoreVertical, Calendar, User, Mail, Phone, Eye, Lock, Home, Search, Heart, Star, Flag, Bookmark, Settings, Clock, Zap, AlertCircle, CheckCircle, MessageSquare, Send, Inbox, Archive, FileText, Image as ImageIcon, Music, Video, Code, Cpu, Database, Server, Cloud, GitBranch, Package } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
@@ -64,7 +64,7 @@ export default function NotificationsPage() {
         return () => {
             unsubPrivate();
         };
-    }, [user, profile, db]);
+    }, [user, profile]);
 
     const handleMarkAllRead = async () => {
         if (!user) return;
@@ -180,7 +180,7 @@ export default function NotificationsPage() {
             'inbox': <Inbox className={className} />,
             'archive': <Archive className={className} />,
             'file-text': <FileText className={className} />,
-            'image': <Image className={className} />,
+            'image': <ImageIcon className={className} />,
             'music': <Music className={className} />,
             'video': <Video className={className} />,
             'code': <Code className={className} />,
@@ -207,7 +207,7 @@ export default function NotificationsPage() {
             <div className="flex items-center justify-between mb-8">
                 <div>
                     <h1 className="text-3xl font-black tracking-tight">Vos Notifications</h1>
-                    <p className="text-muted-foreground mt-1">Restez informé de l'activité de votre compte.</p>
+                    <p className="text-muted-foreground mt-1">Restez informé de l&apos;activité de votre compte.</p>
                 </div>
                 {notifications.some(n => !n.read) && (
                     <Button

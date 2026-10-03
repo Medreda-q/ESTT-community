@@ -5,7 +5,7 @@ const CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 const REDIRECT_URI = process.env.GOOGLE_DRIVE_REDIRECT_URI;
 
-export async function GET(req) {
+export async function GET(_req) {
     const oauth2Client = new google.auth.OAuth2(
         CLIENT_ID,
         CLIENT_SECRET,

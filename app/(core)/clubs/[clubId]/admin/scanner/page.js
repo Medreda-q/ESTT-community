@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { db, ref, get, update } from '@/lib/firebase';
 import { useAuth } from '@/context/AuthContext';
@@ -9,9 +9,9 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
-import { Loader2, ArrowLeft, Camera, CheckCircle2, XCircle, AlertCircle, Scan, User, Ticket, Calendar } from 'lucide-react';
+import { Loader2, ArrowLeft, CheckCircle2, XCircle, AlertCircle, Scan, User } from 'lucide-react';
 import Link from 'next/link';
 import { Html5QrcodeScanner } from 'html5-qrcode';
 import { cn } from '@/lib/utils';
@@ -23,7 +23,7 @@ export default function TicketScannerPage() {
     const { user, loading: authLoading } = useAuth();
     const clubId = params.clubId;
 
-    const [club, setClub] = useState(null);
+    const [, setClub] = useState(null);
     const [isAdmin, setIsAdmin] = useState(false);
     const [loading, setLoading] = useState(true);
     const [scannedTicket, setScannedTicket] = useState(null);
@@ -32,12 +32,13 @@ export default function TicketScannerPage() {
     const [success, setSuccess] = useState('');
     const [scanning, setScanning] = useState(true);
 
-    const scannerRef = useRef(null);
+    // scannerRef unused — scanner is managed via Html5QrcodeScanner instance directly
 
     useEffect(() => {
         if (clubId && !authLoading) {
             checkAccess();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [clubId, authLoading]);
 
     useEffect(() => {
@@ -56,6 +57,7 @@ export default function TicketScannerPage() {
                 });
             };
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isAdmin, scanning]);
 
     const checkAccess = async () => {
@@ -93,7 +95,7 @@ export default function TicketScannerPage() {
         handleTicketLookup(decodedText);
     }
 
-    function onScanFailure(error) {
+    function onScanFailure(_error) {
         // console.warn(`Code scan error = ${error}`);
     }
 
@@ -148,7 +150,7 @@ export default function TicketScannerPage() {
                 setScanning(true);
             }, 3000);
 
-        } catch (err) {
+        } catch {
             setError("Erreur lors de la validation");
         } finally {
             setActionLoading(false);
@@ -166,7 +168,7 @@ export default function TicketScannerPage() {
 
             setSuccess("Ticket marqué comme VALIDE.");
             setScannedTicket(prev => ({ ...prev, status: 'valid' }));
-        } catch (err) {
+        } catch {
             setError("Erreur lors de la validation");
         } finally {
             setActionLoading(false);
@@ -211,7 +213,7 @@ export default function TicketScannerPage() {
                         </Card>
 
                         <div className="flex flex-col gap-2">
-                            <Label className="text-slate-400 text-xs text-center">OU ENTRER L'ID MANUELLEMENT</Label>
+                            <Label className="text-slate-400 text-xs text-center">OU ENTRER L&apos;ID MANUELLEMENT</Label>
                             <div className="flex gap-2">
                                 <Input
                                     placeholder="Ticket ID (ex: -O...)"

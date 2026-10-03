@@ -127,7 +127,7 @@ export default function ProfileCompletionDialog({ isOpen, user, profile }) {
                     </div>
 
                     <div className="space-y-2">
-                        <Label htmlFor="completion-start-year">Année d'entrée</Label>
+                        <Label htmlFor="completion-start-year">Année d&apos;entrée</Label>
                         <Input
                             id="completion-start-year"
                             type="number"

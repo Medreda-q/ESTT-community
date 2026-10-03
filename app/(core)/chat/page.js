@@ -6,7 +6,7 @@ import { db, ref, onValue, push, set, serverTimestamp, update, query, limitToLas
 import ChatBubble from '@/components/features/chat/ChatBubble';
 import ChatInput from '@/components/features/chat/ChatInput';
 import ChatTermsDialog from '@/components/features/chat/ChatTermsDialog';
-import { Loader2, Lock, Menu, Bell, BellOff, Search, User as UserIcon, LogOut, ArrowLeft } from 'lucide-react';
+import { Loader2, Lock, Menu, Bell, BellOff, User as UserIcon, LogOut, ArrowLeft } from 'lucide-react';
 import { PeopleIcon } from '@primer/octicons-react';
 import { useNotifications } from '@/context/NotificationContext';
 import { notifyMention as rawNotifyMention } from '@/lib/browserNotifications';
@@ -39,6 +39,7 @@ export default function DiscussionPage() {
     const [messageLimit, setMessageLimit] = useState(100);
     const [hasMore, setHasMore] = useState(true);
     const [isInitialLoad, setIsInitialLoad] = useState(true);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const messagesEndRef = useRef(null);
     const scrollContainerRef = useRef(null);
     const profilesListeners = useRef({});
@@ -202,6 +203,7 @@ export default function DiscussionPage() {
             unsubscribeTyping();
             unsubscribeReadStatus();
         };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user, authLoading, roomId, messageLimit]);
 
     const handleLoadMore = () => {
@@ -245,6 +247,7 @@ export default function DiscussionPage() {
                 timestamp: serverTimestamp()
             });
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [messages, user, roomId]);
 
     const scrollToBottom = () => {
@@ -353,7 +356,7 @@ export default function DiscussionPage() {
             </div>
             <h1 className="text-2xl font-black mb-2">Accès Restreint</h1>
             <p className="text-muted-foreground max-w-sm mb-8">
-                Vous devez être connecté pour accéder à l'espace de discussion de votre promotion.
+                Vous devez être connecté pour accéder à l&apos;espace de discussion de votre promotion.
             </p>
         </div>
     );
@@ -369,7 +372,6 @@ export default function DiscussionPage() {
         .filter(Boolean);
     const extraCount = onlineProfiles.length > facepileLimit ? onlineProfiles.length - facepileLimit : 0;
 
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const navItems = [
         { href: '/', label: 'Accueil' },
         { href: '/events', label: 'Événements' },
@@ -377,11 +379,6 @@ export default function DiscussionPage() {
         { href: '/chat', label: 'Discussion' },
     ];
     if (user) navItems.push({ href: '/profile', label: 'Profil' });
-
-    const isActive = (path) => {
-        if (path === '/') return false; // Simple check for chat
-        return false;
-    };
 
     return (
         <main className="fixed inset-0 z-[100] h-[100dvh] bg-card flex flex-col font-sans overflow-hidden overscroll-none">

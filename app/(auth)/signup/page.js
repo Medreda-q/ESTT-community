@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
 import { useDialog } from '@/context/DialogContext';
@@ -24,7 +24,6 @@ import { Checkbox } from '@/components/ui/checkbox';
 
 
 export default function SignupPage() {
-    const router = useRouter();
     const searchParams = useSearchParams();
     const { showSuccess } = useDialog();
 
@@ -247,7 +246,7 @@ export default function SignupPage() {
                             </div>
                             <div className="flex flex-col sm:flex-row gap-4 w-full">
                                 <Button className="flex-grow h-12 text-lg" asChild>
-                                    <Link href="/">Retour à l'accueil</Link>
+                                    <Link href="/">Retour à l&apos;accueil</Link>
                                 </Button>
                                 <Button variant="outline" className="flex-grow h-12 text-lg" asChild>
                                     <Link href="/login">Se connecter</Link>
@@ -293,7 +292,7 @@ export default function SignupPage() {
                                     disabled={loading}
                                 />
                                 <p className="text-[10px] text-muted-foreground">
-                                    Requis pour vérifier votre appartenance à l'UAE
+                                    Requis pour vérifier votre appartenance à l&apos;UAE
                                 </p>
                             </div>
 
@@ -333,7 +332,7 @@ export default function SignupPage() {
                                     </Select>
                                 </div>
                                 <div className="space-y-2">
-                                    <Label htmlFor="startYear">Année d'entrée</Label>
+                                    <Label htmlFor="startYear">Année d&apos;entrée</Label>
                                     <Select
                                         value={formData.startYear}
                                         onValueChange={(v) => handleChange('startYear', v)}
@@ -362,7 +361,7 @@ export default function SignupPage() {
                                     htmlFor="terms" 
                                     className="text-sm text-muted-foreground font-normal leading-tight peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                                 >
-                                    J'accepte les <Link href="/terms" target="_blank" className="text-primary font-medium hover:underline">Conditions d'utilisation</Link> et la <Link href="/privacy" target="_blank" className="text-primary font-medium hover:underline">Politique de confidentialité</Link>.
+                                    J&apos;accepte les <Link href="/terms" target="_blank" className="text-primary font-medium hover:underline">Conditions d&apos;utilisation</Link> et la <Link href="/privacy" target="_blank" className="text-primary font-medium hover:underline">Politique de confidentialité</Link>.
                                 </Label>
                             </div>
 

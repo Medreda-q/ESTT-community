@@ -11,7 +11,6 @@ import {
     CheckCircle2,
     ChevronRight,
     Code,
-    CreditCard,
     FileUp,
     Github,
     HelpCircle,

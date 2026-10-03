@@ -14,7 +14,7 @@ import {
     // UI icons
     X, ChevronRight, Check, Loader2, Upload,
 } from 'lucide-react';
-import { db, ref, update, get, auth } from '@/lib/firebase';
+import { db, ref, update, auth } from '@/lib/firebase';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { uploadToImgBB } from '@/lib/uploadUtils';
 import { useDialog } from '@/context/DialogContext';
@@ -236,7 +236,7 @@ function AccountTab({ profile, resolvedUid, onClose }) {
                             readOnly
                             className="w-full px-3 py-2.5 sm:py-2 text-sm rounded-lg border border-border bg-muted text-muted-foreground cursor-not-allowed"
                         />
-                        <p className="text-[10px] text-muted-foreground mt-1">L'adresse email ne peut pas être modifiée ici.</p>
+                        <p className="text-[10px] text-muted-foreground mt-1">L&apos;adresse email ne peut pas être modifiée ici.</p>
                     </FieldRow>
                 </div>
 
@@ -246,14 +246,14 @@ function AccountTab({ profile, resolvedUid, onClose }) {
                         <div className="flex items-center gap-2">
                             <Globe className="w-4 h-4 text-muted-foreground shrink-0" />
                             <div>
-                                <p className="text-sm font-medium text-foreground">Langue de l'interface</p>
+                                <p className="text-sm font-medium text-foreground">Langue de l&apos;interface</p>
                                 <p className="text-xs text-muted-foreground">Français</p>
                             </div>
                         </div>
                         <span className="text-xs text-muted-foreground bg-card border border-border px-2 py-1 rounded-md font-medium w-fit">FR</span>
                     </div>
                     <p className="text-[10px] text-muted-foreground mt-2 leading-relaxed border-t border-border pt-2">
-                        Pour l'instant, seule la langue française est disponible.
+                        Pour l&apos;instant, seule la langue française est disponible.
                     </p>
                 </div>
 
@@ -388,7 +388,7 @@ function AppearanceTab() {
     );
 }
 
-function NotificationsTab({ profile, resolvedUid, onClose }) {
+function NotificationsTab({ profile: _profile, resolvedUid, onClose }) {
     const { showSuccess, showError, showConfirm } = useDialog();
     const { signOut } = useAuth();
     const [exporting, setExporting] = useState(false);

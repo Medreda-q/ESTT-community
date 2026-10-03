@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { db, ref, get, onValue } from '@/lib/firebase';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Loader2, Ticket, Calendar, User, Building2, CheckCircle2, AlertCircle, ArrowLeft, MapPin, Clock, Share2, Download } from 'lucide-react';
 import Link from 'next/link';
@@ -22,7 +21,7 @@ export default function TicketPage() {
     const searchParams = useSearchParams();
     const orderId = searchParams.get('order_id');
     const [verifying, setVerifying] = useState(false);
-    const [justScanned, setJustScanned] = useState(false);
+    const [, setJustScanned] = useState(false);
     const [prevScanned, setPrevScanned] = useState(false);
 
     useEffect(() => {
@@ -82,6 +81,7 @@ export default function TicketPage() {
         });
 
         return () => unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ticketId, db, orderId, verifying, prevScanned, ticket?.id]);
 
     if (loading) {
@@ -100,7 +100,7 @@ export default function TicketPage() {
                 </div>
                 <p className="text-xl font-bold text-white">{error || 'Ticket invalide'}</p>
                 <Button asChild variant="outline" className="border-white/20 text-white hover:bg-white/10">
-                    <Link href="/">Retour à l'accueil</Link>
+                    <Link href="/">Retour à l&apos;accueil</Link>
                 </Button>
             </div>
         );
@@ -152,7 +152,7 @@ export default function TicketPage() {
                             </div>
                         </div>
                         <h1 className="text-3xl font-black uppercase tracking-tight leading-none mb-1">{ticket.eventName}</h1>
-                        <p className="text-white/70 text-sm font-medium">Billet d'entrée officiel</p>
+                        <p className="text-white/70 text-sm font-medium">Billet d&apos;entrée officiel</p>
                     </div>
 
                     {/* Middle: Details */}
@@ -254,7 +254,7 @@ export default function TicketPage() {
                         {ticket.status !== 'valid' && (
                             <div className="absolute inset-0 flex items-center justify-center px-12 text-center">
                                 <p className="bg-white/90 backdrop-blur-md p-4 rounded-2xl border border-border shadow-xl text-xs font-bold text-muted-foreground">
-                                    Le QR Code sera activé une fois votre billet validé par l'organisateur.
+                                    Le QR Code sera activé une fois votre billet validé par l&apos;organisateur.
                                 </p>
                             </div>
                         )}

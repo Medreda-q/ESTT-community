@@ -129,7 +129,7 @@ export default function ResourceContactPage() {
                 <div className="mx-auto max-w-2xl">
                     <Card>
                         <CardContent className="p-8 text-center text-muted-foreground">
-                            Cette room n'existe pas ou n'est plus disponible.
+                            Cette room n&apos;existe pas ou n&apos;est plus disponible.
                         </CardContent>
                     </Card>
                 </div>

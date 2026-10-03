@@ -10,8 +10,7 @@ import ChatTermsDialog from '@/components/features/chat/ChatTermsDialog';
 import { Loader2, ArrowLeft, Bell, BellOff, Search, Trash2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { onDisconnect, remove } from 'firebase/database';
-import { X, Lock, ShieldCheck, Gem } from 'lucide-react';
-import Image from 'next/image';
+import { X, Lock, Gem } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { getSharedKey, encryptText, decryptText } from '@/lib/crypto';
@@ -23,7 +22,6 @@ import {
     buildEsttAiHistory,
     isEsttAiAgent,
 } from '@/lib/estt-ai';
-import { searchResourcesAction } from '@/lib/resourceUtils';
 
 export default function DirectMessagePage() {
     const { id: recipientId } = useParams();
@@ -43,9 +41,8 @@ export default function DirectMessagePage() {
     const [replyingTo, setReplyingTo] = useState(null);
     const [typingUsers, setTypingUsers] = useState({});
     const [readStatuses, setReadStatuses] = useState({});
-    const [messageLimit, setMessageLimit] = useState(100);
-    const [hasMore, setHasMore] = useState(true);
-    const [isInitialLoad, setIsInitialLoad] = useState(true);
+    const [, setHasMore] = useState(true);
+    const messageLimit = 100;
     const [isGeneratingAiResponse, setIsGeneratingAiResponse] = useState(false);
     const [isAiSearching, setIsAiSearching] = useState(false);
     const [aiMessageCount, setAiMessageCount] = useState(0);
@@ -53,6 +50,7 @@ export default function DirectMessagePage() {
     const messagesEndRef = useRef(null);
     const scrollContainerRef = useRef(null);
     const profilesListeners = useRef({});
+    const isInitialLoad = useRef(true);
     const [sharedKey, setSharedKey] = useState(null);
     // Track last notified DM so we don't spam
     const lastNotifiedMsgIdRef = useRef(null);
@@ -230,7 +228,10 @@ export default function DirectMessagePage() {
                 setHasMore(false);
             }
             setLoading(false);
-            if (isInitialLoad) scrollToBottom();
+            if (isInitialLoad.current) {
+                scrollToBottom();
+                isInitialLoad.current = false;
+            }
         });
 
         const typingRef = ref(db, `direct_messages/${roomId}/typing`);
@@ -248,7 +249,7 @@ export default function DirectMessagePage() {
             unsubscribeTyping();
             unsubscribeReadStatus();
         };
-    }, [user, authLoading, roomId, messageLimit, sharedKey, recipientId, isEsttAiChat]);
+    }, [user, authLoading, roomId, sharedKey, recipientId, isEsttAiChat, messageLimit]);
 
     // Read Tracking
     useEffect(() => {
@@ -682,7 +683,7 @@ export default function DirectMessagePage() {
                                         </div>
                                         <h2 className="mt-4 text-2xl font-black text-foreground">Agent officiel de la communaute ESTT</h2>
                                         <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">
-                                            Posez vos questions sur la plateforme, les clubs, les evenements, les contributions ou demandez de l'aide pour rediger un message, une annonce ou une presentation.
+                                            Posez vos questions sur la plateforme, les clubs, les evenements, les contributions ou demandez de l&apos;aide pour rediger un message, une annonce ou une presentation.
                                         </p>
                                     </div>
                                 </div>
@@ -746,7 +747,7 @@ export default function DirectMessagePage() {
                     {recipientIsTyping && !isAiSearching && (
                         <div className="flex items-center gap-2 mb-2 animate-in fade-in slide-in-from-bottom-1 duration-200">
                             <span className="text-[10px] font-medium text-muted-foreground italic">
-                                {activeRecipientProfile?.firstName} est en train d'écrire...
+                                {activeRecipientProfile?.firstName} est en train d&apos;écrire...
                             </span>
                         </div>
                     )}
@@ -779,7 +780,7 @@ export default function DirectMessagePage() {
                                     </h3>
                                     <p className="text-sm text-white/80 font-medium leading-relaxed max-w-lg">
                                         Notre assistant intelligent est réservé aux membres <strong>ESTTPlus+</strong>.
-                                        Débloquez l'IA pour obtenir des résumés, des conseils d'étude et une recherche de ressources ultra-rapide.
+                                        Débloquez l&apos;IA pour obtenir des résumés, des conseils d&apos;étude et une recherche de ressources ultra-rapide.
                                     </p>
                                 </div>
                                 <div className="shrink-0 w-full md:w-auto">
@@ -802,7 +803,7 @@ export default function DirectMessagePage() {
                                 <div className="space-y-1">
                                     <h3 className="text-base font-bold text-foreground">Limite quotidienne atteinte</h3>
                                     <p className="text-sm text-muted-foreground">
-                                        Vous avez utilisé vos 2 messages gratuits pour aujourd'hui.
+                                        Vous avez utilisé vos 2 messages gratuits pour aujourd&apos;hui.
                                         Revenez demain ou passez à <strong>ESTTPlus+</strong> pour un accès illimité.
                                     </p>
                                 </div>

@@ -1,4 +1,6 @@
 // This will be called at build time or on-demand in production
+export const dynamic = 'force-dynamic';
+
 export default async function sitemap() {
     const baseUrl = 'https://estt.ma';
 
@@ -37,7 +39,7 @@ export default async function sitemap() {
             if (!snapshot.exists()) return [];
 
             return Object.entries(snapshot.val())
-                .filter(([_, item]) => item.verified || item.unverified !== true) // Show verified or not marked as unverified
+                .filter(([_key, item]) => item.verified || item.unverified !== true) // Show verified or not marked as unverified
                 .map(([id, item]) => ({
                     url: `${baseUrl}/${routePrefix}/${id}`,
                     lastModified: new Date(item.updatedAt || item.createdAt || Date.now()),

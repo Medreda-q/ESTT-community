@@ -7,20 +7,11 @@ import {
     Download,
     Github,
     ExternalLink,
-    Book,
-    Zap,
     Smartphone,
     Shield,
-    Search,
     Menu,
     X,
     Layout,
-    Calendar,
-    Ticket,
-    Users,
-    ClipboardList,
-    QrCode,
-    UserCircle,
     Monitor
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -180,7 +171,7 @@ export default function DocsPage() {
                                 </p>
                                 <ol className="mt-6 ml-6 list-decimal space-y-4 text-zinc-400">
                                     <li>Download the latest <span className="text-zinc-50 font-medium">APK file</span> from the official portal.</li>
-                                    <li>Enable "Installation from Unknown Sources" in your Android settings.</li>
+                                    <li>Enable &quot;Installation from Unknown Sources&quot; in your Android settings.</li>
                                     <li>Locate the downloaded file and tap to install.</li>
                                     <li>Open the app and sign in with your <span className="text-blue-400">@etu.uae.ac.ma</span> email.</li>
                                 </ol>
@@ -210,7 +201,7 @@ export default function DocsPage() {
                                 </p>
                                 <div className="mt-6 flex items-start gap-4 p-4 rounded-xl border border-dashed border-zinc-800">
                                     <Layout className="h-6 w-6 text-zinc-500 shrink-0 mt-1" />
-                                    <p className="text-sm text-zinc-500 italic">"Stay informed about campus life in real-time. No more missing out on announcements."</p>
+                                    <p className="text-sm text-zinc-500 italic">&quot;Stay informed about campus life in real-time. No more missing out on announcements.&quot;</p>
                                 </div>
                             </section>
 

@@ -11,7 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import OrganizationalChart from '@/components/features/admin/OrganizationalChart';
 import ClubMemberCard from '@/components/features/clubs/ClubMemberCard';
 import StructuredData from '@/components/layout/StructuredData';
-import { CheckCircle2, Loader2, Settings, ArrowLeft, ChevronLeft, ChevronRight, User, Ticket } from 'lucide-react';
+import { Loader2, Settings, ArrowLeft, ChevronLeft, ChevronRight, User, Ticket } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
@@ -57,6 +57,7 @@ export default function ClubProfilePage() {
         if (clubId) {
             fetchClubData();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [clubId]);
 
     useEffect(() => {
@@ -69,6 +70,7 @@ export default function ClubProfilePage() {
         if (user && clubId) {
             fetchUserTickets();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user, clubId]);
 
     // Carousel Autoplay
@@ -277,7 +279,7 @@ export default function ClubProfilePage() {
                                                 let hostname = '';
                                                 try {
                                                     hostname = new URL(fullUrl).hostname;
-                                                } catch (e) {
+                                                } catch {
                                                     hostname = fullUrl;
                                                 }
 

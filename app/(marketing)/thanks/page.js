@@ -38,7 +38,7 @@ export default function ThanksPage() {
                     <Button variant="outline" className="w-full sm:w-auto h-11 gap-2" asChild>
                         <Link href="/">
                             <ArrowLeft className="w-4 h-4" />
-                            Retour à l'accueil
+                            Retour à l&apos;accueil
                         </Link>
                     </Button>
                 </CardFooter>

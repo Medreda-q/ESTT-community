@@ -20,10 +20,8 @@ import {
     ChevronRight,
     Loader2,
     Search,
-    Filter,
     Calendar,
     Clock,
-    Tag,
     Ticket,
     X,
 } from 'lucide-react';
@@ -287,7 +285,7 @@ function MonthView({ events, currentDate, onSelectDay, selectedDay }) {
 
 // ─── Week View ────────────────────────────────────────────────────────────────
 
-function WeekView({ events, currentDate, onSelectDay, selectedDay }) {
+function WeekView({ events, currentDate, onSelectDay: _onSelectDay, selectedDay: _selectedDay }) {
     const weekStart = startOfWeek(currentDate);
     const days = Array.from({ length: 7 }, (_, i) => addDays(weekStart, i));
     const today = new Date();

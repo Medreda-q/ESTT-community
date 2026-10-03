@@ -1,6 +1,5 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
@@ -12,14 +11,10 @@ import {
   CreditCard,
   LayoutDashboard,
   PlusCircle,
-  PlayCircle,
-  MousePointer2,
-  Calendar,
-  MessageSquare
-} from 'lucide-react';
+  } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, } from "@/components/ui/card";
 import { AD_PRICING } from '@/lib/ad-constants';
 
 export default function AdPlatformLanding() {
@@ -44,11 +39,11 @@ export default function AdPlatformLanding() {
           <h1 className="text-4xl md:text-7xl font-black text-foreground mb-8 tracking-tighter leading-[1.1]">
             Propulsez votre projet <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
-              au cœur de l'EST Tétouan
+              au cœur de l&apos;EST Tétouan
             </span>
           </h1>
           <p className="max-w-2xl mx-auto text-muted-foreground text-lg md:text-xl mb-12 leading-relaxed">
-            Le moyen le plus simple et le plus efficace pour atteindre des milliers d'étudiants chaque jour. Services, projets ou événements : soyez visible là où ça compte.
+            Le moyen le plus simple et le plus efficace pour atteindre des milliers d&apos;étudiants chaque jour. Services, projets ou événements : soyez visible là où ça compte.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
@@ -104,19 +99,19 @@ export default function AdPlatformLanding() {
                 step: "01",
                 title: "Créez votre annonce",
                 desc: "Remplissez le formulaire, téléchargez votre visuel (image ou vidéo) et définissez votre lien de redirection.",
-                icon: Edit3 => <PlusCircle className="w-8 h-8 text-blue-600" />
+                icon: () => <PlusCircle className="w-8 h-8 text-blue-600" />
               },
               {
                 step: "02",
                 title: "Validation & Review",
                 desc: "Notre équipe vérifie le contenu de votre annonce sous 24h pour s'assurer de sa qualité.",
-                icon: Shield => <ShieldCheck className="w-8 h-8 text-blue-600" />
+                icon: () => <ShieldCheck className="w-8 h-8 text-blue-600" />
               },
               {
                 step: "03",
                 title: "Activez & Rayonnez",
                 desc: "Une fois validée, procédez au paiement pour activer votre annonce sur la page d'accueil de l'ESTT.",
-                icon: Rocket => <Sparkles className="w-8 h-8 text-blue-600" />
+                icon: () => <Sparkles className="w-8 h-8 text-blue-600" />
               }
             ].map((step, i) => (
               <div key={i} className="relative group p-8 bg-card rounded-[32px] border border-border shadow-sm hover:shadow-xl transition-all duration-500">
@@ -193,7 +188,7 @@ export default function AdPlatformLanding() {
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-black text-foreground mb-4">Questions Fréquentes</h2>
-            <p className="text-muted-foreground">Tout ce qu'il faut savoir avant de vous lancer.</p>
+            <p className="text-muted-foreground">Tout ce qu&apos;il faut savoir avant de vous lancer.</p>
           </div>
 
           <div className="space-y-4">
@@ -225,7 +220,7 @@ export default function AdPlatformLanding() {
             <div className="relative z-10">
               <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tight">Prêt à briller sur le campus ?</h2>
               <p className="text-blue-100 text-lg md:text-xl max-w-2xl mx-auto mb-12">
-                Ne laissez pas votre projet dans l'ombre. Rejoignez les dizaines d'étudiants qui boostent leur visibilité avec nous.
+                Ne laissez pas votre projet dans l&apos;ombre. Rejoignez les dizaines d&apos;étudiants qui boostent leur visibilité avec nous.
               </p>
               <Button
                 asChild

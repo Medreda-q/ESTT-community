@@ -14,7 +14,7 @@ import { CheckCircle2 } from 'lucide-react';
 import RejectionDialog from './RejectionDialog';
 
 export default function AdminClubRequests({ requests }) {
-    const { showSuccess, showError, showWarning, showConfirm } = useDialog();
+    const { showSuccess, showError, showConfirm } = useDialog();
     const [rejectionModalOpen, setRejectionModalOpen] = useState(false);
     const [itemToReject, setItemToReject] = useState(null);
     const [rejectionReason, setRejectionReason] = useState('');

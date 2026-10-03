@@ -65,7 +65,7 @@ export default function AdminAnnouncements({ announcements, userEmail }) {
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
                     <h1 className="text-3xl font-black tracking-tight">Annonces Globales</h1>
-                    <p className="text-muted-foreground">Gérez les annonces qui s'affichent en haut de la page d'accueil.</p>
+                    <p className="text-muted-foreground">Gérez les annonces qui s&apos;affichent en haut de la page d&apos;accueil.</p>
                 </div>
             </div>
 
@@ -98,7 +98,7 @@ export default function AdminAnnouncements({ announcements, userEmail }) {
                                 />
                             </div>
                             <div className="space-y-2">
-                                <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground">URL de l'image (Optionnel)</label>
+                                <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground">URL de l&apos;image (Optionnel)</label>
                                 <Input
                                     placeholder="https://..."
                                     value={announcementForm.imageUrl}
@@ -107,7 +107,7 @@ export default function AdminAnnouncements({ announcements, userEmail }) {
                             </div>
                             <Button type="submit" className="w-full gap-2" disabled={isSubmitting}>
                                 {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
-                                Publier l'annonce
+                                Publier l&apos;annonce
                             </Button>
                         </form>
                     </CardContent>

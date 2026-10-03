@@ -17,10 +17,10 @@ import {
     SelectValue,
 } from '@/components/ui/select';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Loader2, Mail, Phone, MessageSquare, Send, CheckCircle2, ArrowLeft, Globe, Github, MapPin } from 'lucide-react';
+import { Loader2, Mail, Phone, Send, CheckCircle2, ArrowLeft, Globe, Github, MapPin } from 'lucide-react';
 
 export default function ContactPage() {
-    const { user, profile, loading: authLoading } = useAuth();
+    const { user, profile } = useAuth();
     const { showSuccess, showError } = useDialog();
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
@@ -97,7 +97,7 @@ export default function ContactPage() {
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
                         <Button asChild className="rounded-2xl h-12 px-8 font-bold">
-                            <Link href="/">Retour à l'accueil</Link>
+                            <Link href="/">Retour à l&apos;accueil</Link>
                         </Button>
                         <Button variant="outline" onClick={() => { setSuccess(false); setFormData(prev => ({ ...prev, subject: '', message: '' })); }} className="rounded-2xl h-12 px-8 font-bold bg-card">
                             Envoyer un autre message
@@ -124,7 +124,7 @@ export default function ContactPage() {
                         Contactez-nous
                     </h1>
                     <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                        Une question, une suggestion ou besoin d'aide ? N'hésitez pas à nous écrire.
+                        Une question, une suggestion ou besoin d&apos;aide ? N&apos;hésitez pas à nous écrire.
                     </p>
                 </section>
 

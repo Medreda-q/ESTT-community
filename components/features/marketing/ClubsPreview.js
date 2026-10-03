@@ -12,7 +12,7 @@ export default function ClubsPreview({ clubs, loading }) {
                     <div className="max-w-2xl">
                         <h2 className="text-3xl font-bold tracking-tight text-foreground mb-2 md:mb-4">Community Clubs</h2>
                         <p className="text-muted-foreground text-lg">
-                            Rejoignez l'un de ESTT nombreux clubs et développez vos compétences.
+                            Rejoignez l&apos;un de ESTT nombreux clubs et développez vos compétences.
                         </p>
                     </div>
                     <Link href="/clubs" className="text-primary text-sm font-bold hover:underline shrink-0">

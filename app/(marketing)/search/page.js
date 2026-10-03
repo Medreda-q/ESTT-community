@@ -7,13 +7,7 @@ import Image from 'next/image';
 import { db as staticDb } from '@/lib/data';
 import { db, ref, get } from '@/lib/firebase';
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from '@/components/ui/select';
-import { cn } from '@/lib/utils';
+    } from '@/components/ui/select';
 import { Loader2, FileText, Video, ImageIcon, Link as LinkIcon, ArrowRight, Search as SearchIcon, User, BookOpen, Sparkles, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 function SearchContent() {
@@ -76,8 +70,8 @@ function SearchContent() {
             const keywordsData = snapshot.val() || {};
 
             const filteredResourceIds = Object.entries(keywordsData)
-                .filter(([id, data]) => data.title?.toLowerCase().includes(searchLower))
-                .map(([id, data]) => id);
+                .filter(([_id, data]) => data.title?.toLowerCase().includes(searchLower))
+                .map(([id, _data]) => id);
 
             // 3. Fetch full resource data for matched IDs
             // (Note: In a high-traffic app, we might want to store more metadata in the keywords node to avoid fetching multiple resources)
@@ -297,7 +291,7 @@ function SearchContent() {
                                 </h2>
                                 {results.resources.length === 0 ? (
                                     <div className="text-center py-12 bg-muted/30 rounded-xl border border-dashed">
-                                        <p className="text-muted-foreground">Aucune ressource trouvée pour "{query}"</p>
+                                        <p className="text-muted-foreground">Aucune ressource trouvée pour &quot;{query}&quot;</p>
                                     </div>
                                 ) : (
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

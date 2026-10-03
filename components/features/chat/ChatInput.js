@@ -1,4 +1,4 @@
-import { ArrowUp, Image as ImageIcon, Loader2, Library, Search, FileText, Video, Link as LinkIcon, ArrowRight, BookOpen, Sticker, Globe } from 'lucide-react';
+import { ArrowUp, Image as ImageIcon, Loader2, Library, Search, FileText, Video, Link as LinkIcon, ArrowRight, BookOpen, Sticker, Globe, CalendarDays } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { uploadToImgBB } from '@/lib/uploadUtils';
 import { db, ref, get, onValue } from '@/lib/firebase';
@@ -64,6 +64,7 @@ export default function ChatInput({
                 setIsLoadingStickers(false);
             });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isStickerDrawerOpen]);
 
     const handleSendSticker = (stickerUrl) => {
@@ -141,6 +142,7 @@ export default function ChatInput({
             if (resources.length === 0) fetchAllResources();
             if (events.length === 0) fetchAllEvents();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isResourceDrawerOpen]);
 
     const fetchAllResources = async () => {

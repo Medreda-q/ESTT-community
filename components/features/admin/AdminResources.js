@@ -1161,7 +1161,7 @@ export default function AdminResources({ resources }) {
             <Dialog open={linkModalOpen} onOpenChange={setLinkModalOpen}>
                 <DialogContent className="sm:max-w-md">
                     <DialogHeader>
-                        <DialogTitle>Lier à d'autres filières</DialogTitle>
+                        <DialogTitle>Lier à d&apos;autres filières</DialogTitle>
                         <DialogDescription>
                             Sélectionnez toutes les filières où cette ressource doit apparaître.
                         </DialogDescription>
@@ -1282,7 +1282,7 @@ export default function AdminResources({ resources }) {
                         </Button>
                         <Button onClick={handleSendContactEmail} disabled={sendingContactEmail}>
                             {sendingContactEmail ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Mail className="mr-2 h-4 w-4" />}
-                            Envoyer l'email
+                            Envoyer l&apos;email
                         </Button>
                     </DialogFooter>
                 </DialogContent>

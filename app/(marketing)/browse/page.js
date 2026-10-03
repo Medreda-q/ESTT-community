@@ -81,7 +81,8 @@ export default function BrowsePage() {
             setResources([]);
             setAds([]);
         }
-    }, [selectedModule, db]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedModule]);
 
     useEffect(() => {
         if (!user || !db) return;
@@ -95,7 +96,7 @@ export default function BrowsePage() {
             setFavorites(map);
         });
         return () => unsub();
-    }, [user, db]);
+    }, [user]);
 
     const handleToggleFavorite = async (e, resource) => {
         e.preventDefault();
@@ -258,9 +259,7 @@ export default function BrowsePage() {
         }
     };
 
-    const getFieldName = (fieldId) => {
-        return staticDb.fields.find(f => f.id === fieldId)?.name || fieldId;
-    };
+
 
     const groupedResources = filteredResources.reduce((acc, resource) => {
         const type = resource.docType || 'Autres';
@@ -582,7 +581,7 @@ export default function BrowsePage() {
                                             {ads[0].link && (
                                                 <a href={ads[0].link} target="_blank" rel="noopener noreferrer">
                                                     <Button variant="default" className="rounded-full shadow-lg hover:shadow-primary/25 transition-all">
-                                                        Découvrir l'annonce <ArrowRight className="ml-2 w-4 h-4" />
+                                                        Découvrir l&apos;annonce <ArrowRight className="ml-2 w-4 h-4" />
                                                     </Button>
                                                 </a>
                                             )}

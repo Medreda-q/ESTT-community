@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import {
-    AI_MODELS,
     DEFAULT_AI_MODEL,
     ESTT_AI_SYSTEM_INSTRUCTION,
 } from '@/lib/estt-ai';
@@ -8,10 +7,20 @@ import { searchResourcesAction } from '@/lib/resourceUtils';
 
 export const dynamic = 'force-dynamic';
 
-let TurndownService;
-let mammoth;
-try { TurndownService = require('turndown'); } catch (e) { console.warn('[ESTT-AI] turndown not available:', e.message); }
-try { mammoth = require('mammoth'); } catch (e) { console.warn('[ESTT-AI] mammoth not available:', e.message); }
+async function getMammoth() {
+    try {
+        const importedMammoth = await import('mammoth');
+        return importedMammoth.default || importedMammoth;
+    } catch (error) {
+        console.warn('[ESTT-AI] mammoth not available:', error.message);
+        return null;
+    }
+}
+
+async function getPdfParser() {
+    const importedPdfParser = await import('pdf-parse/lib/pdf-parse.js');
+    return importedPdfParser.default || importedPdfParser;
+}
 
 function extractAiResponse(text) {
     if (!text) return { reply: null, action: null };
@@ -43,7 +52,7 @@ function extractAiResponse(text) {
                 action: actionData,
             };
         }
-    } catch (e) {
+    } catch {
         console.warn('[ESTT-AI] Malformed JSON in response, treating as plain text.');
     }
 
@@ -52,7 +61,7 @@ function extractAiResponse(text) {
 
 async function extractTextFromServer(file) {
     try {
-        const parse = require('pdf-parse/lib/pdf-parse.js');
+        const parse = await getPdfParser();
         if (typeof parse !== 'function') {
             throw new Error('pdf-parse core is not a function');
         }
@@ -89,7 +98,7 @@ async function safeFetch(url, timeoutMs = 15000) {
 
 async function extractTextFromPdfUrl(url) {
     try {
-        const parse = require('pdf-parse/lib/pdf-parse.js');
+        const parse = await getPdfParser();
         if (typeof parse !== 'function') return null;
 
         const response = await safeFetch(url, 10000);
@@ -117,7 +126,7 @@ async function extractTextFromGDrive(url) {
         if (contentType.includes('application/pdf')) {
             const arrayBuffer = await response.arrayBuffer();
             const buffer = Buffer.from(arrayBuffer);
-            const parse = require('pdf-parse/lib/pdf-parse.js');
+            const parse = await getPdfParser();
             if (typeof parse !== 'function') return null;
             const data = await parse(buffer);
             return data?.text || null;
@@ -144,6 +153,7 @@ async function extractTextFromGDoc(url) {
 
 async function extractTextFromDocx(url) {
     try {
+        const mammoth = await getMammoth();
         if (!mammoth) return null;
         const response = await safeFetch(url, 10000);
         if (!response || !response.ok) return null;

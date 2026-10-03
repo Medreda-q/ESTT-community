@@ -1,18 +1,10 @@
-import { db, ref, get } from '@/lib/firebase';
+import { getAdminDb } from '@/lib/firebase-admin';
 
 export async function generateMetadata({ params }) {
     const { clubId } = params;
 
     try {
-        if (!db) {
-            return {
-                title: 'Club',
-                description: 'Découvrez ce club étudiant de l\'EST Tétouan',
-            };
-        }
-
-        const clubRef = ref(db, `clubs/${clubId}`);
-        const clubSnap = await get(clubRef);
+        const clubSnap = await getAdminDb().ref(`clubs/${clubId}`).once('value');
 
         if (!clubSnap.exists()) {
             return {

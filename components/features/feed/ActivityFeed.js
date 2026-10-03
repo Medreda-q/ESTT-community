@@ -1,11 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
 import { db, ref, onValue } from '@/lib/firebase';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Loader2, FileText, PenTool, ArrowRight, User } from 'lucide-react';
+import { Loader2, ArrowRight, User } from 'lucide-react';
 
 export default function ActivityFeed() {
     const [activities, setActivities] = useState([]);

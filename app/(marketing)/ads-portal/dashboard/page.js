@@ -2,17 +2,15 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
 import { useDialog } from '@/context/DialogContext';
-import { db, ref, onValue, remove, set } from '@/lib/firebase';
+import { db, ref, onValue, remove, } from '@/lib/firebase';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
     Plus,
     LayoutDashboard,
-    MoreHorizontal,
     Trash2,
     ExternalLink,
     Clock,
@@ -21,8 +19,7 @@ import {
     XCircle,
     CreditCard,
     MessageSquare,
-    Loader2
-} from 'lucide-react';
+    } from 'lucide-react';
 import { AD_STATUSES } from '@/lib/ad-constants';
 import { useSearchParams } from 'next/navigation';
 
@@ -52,7 +49,6 @@ export default function UserAdsDashboard() {
     const searchParams = useSearchParams();
     const [ads, setAds] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [payLoading, setPayLoading] = useState(null);
 
     // Handle success/cancel notifications
     useEffect(() => {
@@ -64,6 +60,7 @@ export default function UserAdsDashboard() {
         if (canceled) {
             showWarning("Paiement annulé.");
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchParams]);
 
     useEffect(() => {
@@ -103,37 +100,8 @@ export default function UserAdsDashboard() {
         }
         try {
             await remove(ref(db, `studentAds/${ad.id}`));
-        } catch (error) {
+        } catch {
             showError("Erreur lors de la suppression");
-        }
-    };
-
-    const handlePayment = async (ad) => {
-        setPayLoading(ad.id);
-        try {
-            const response = await fetch('/api/checkout', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    type: 'ad',
-                    adId: ad.id,
-                    adTitle: ad.title,
-                    price: ad.price,
-                    userEmail: user.email
-                })
-            });
-
-            const data = await response.json();
-            if (data.url) {
-                window.location.href = data.url;
-            } else {
-                throw new Error(data.error || "Une erreur est survenue");
-            }
-        } catch (error) {
-            console.error("Payment error:", error);
-            showError("Erreur: " + error.message);
-        } finally {
-            setPayLoading(null);
         }
     };
 
@@ -173,7 +141,7 @@ export default function UserAdsDashboard() {
                         </div>
                         <h2 className="text-2xl font-bold text-foreground mb-2">Aucune annonce trouvée</h2>
                         <p className="text-muted-foreground max-w-sm mx-auto mb-8">
-                            Partagez votre première annonce dès aujourd'hui pour gagner en visibilité auprès de la communauté.
+                            Partagez votre première annonce dès aujourd&apos;hui pour gagner en visibilité auprès de la communauté.
                         </p>
                         <Button variant="outline" onClick={() => router.push('/ads-portal/submit')} className="rounded-full h-12 px-8">
                             Publier ma première annonce
@@ -280,7 +248,7 @@ export default function UserAdsDashboard() {
                                         <div className="bg-red-50 p-6 flex gap-4 items-start border-t border-red-100 dark:bg-red-500/10 dark:border-red-500/30">
                                             <AlertCircle className="w-5 h-5 text-red-500 mt-0.5" />
                                             <div>
-                                                <p className="text-sm font-bold text-red-900">Note de l'administrateur :</p>
+                                                <p className="text-sm font-bold text-red-900">Note de l&apos;administrateur :</p>
                                                 <p className="text-sm text-red-700 mt-1">{ad.adminNote}</p>
                                             </div>
                                         </div>
@@ -294,7 +262,7 @@ export default function UserAdsDashboard() {
                 {/* Footer Help */}
                 <div className="mt-20 p-10 bg-slate-900 rounded-[40px] text-white">
                     <div className="max-w-3xl">
-                        <h2 className="text-2xl font-bold mb-4">Besoin d'aide avec votre campagne ?</h2>
+                        <h2 className="text-2xl font-bold mb-4">Besoin d&apos;aide avec votre campagne ?</h2>
                         <p className="text-slate-400 mb-8 leading-relaxed">
                             Notre équipe est là pour vous accompagner dans la réussite de votre publicité.
                             Contactez-nous si vous avez des questions sur le paiement ou le ciblage.

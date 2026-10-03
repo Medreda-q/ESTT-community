@@ -8,9 +8,7 @@ import { db, ref, push, set, get } from '@/lib/firebase';
 import { useAuth } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { Checkbox } from '@/components/ui/checkbox';
 import {
     Select,
     SelectContent,
@@ -19,11 +17,10 @@ import {
     SelectValue,
 } from '@/components/ui/select';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Loader2, CheckCircle2, AlertCircle, CloudUpload, Info, Plus, Trash2 } from 'lucide-react';
+import { Loader2, CheckCircle2, AlertCircle, Info, Plus, Trash2 } from 'lucide-react';
 
 export default function AdminFastContribute() {
-    const { user, profile } = useAuth();
+    const { user } = useAuth();
     const [commonData, setCommonData] = useState({
         field: '',
         semester: '',
@@ -257,7 +254,7 @@ export default function AdminFastContribute() {
             <div className="flex items-center justify-between px-1">
                 <div>
                     <h2 className="text-2xl font-bold">Contribution Rapide</h2>
-                    <p className="text-muted-foreground text-sm">Ajoutez plusieurs ressources d'un coup. Pas d'emails, pas de vérification.</p>
+                    <p className="text-muted-foreground text-sm">Ajoutez plusieurs ressources d&apos;un coup. Pas d&apos;emails, pas de vérification.</p>
                 </div>
                 <Button onClick={handleSubmitAll} className="rounded-none shadow-none">
                     Tout envoyer
@@ -492,7 +489,7 @@ export default function AdminFastContribute() {
                                     <div className="mt-4 p-4 bg-muted rounded-xl border border-border">
                                         <div className="flex items-center justify-between mb-3">
                                             <label className="text-[10px] font-black uppercase text-muted-foreground">
-                                                Aussi utile pour (Lier à d'autres filières)
+                                                Aussi utile pour (Lier à d&apos;autres filières)
                                             </label>
                                             <Button
                                                 variant="ghost"

@@ -9,7 +9,6 @@ import { useAuth } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import {
     Select,
@@ -20,7 +19,7 @@ import {
 } from '@/components/ui/select';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Loader2, CheckCircle2, AlertCircle, CloudUpload, Info, Sparkles, Plus, Trash2, HardDrive } from 'lucide-react';
+import { Loader2, CheckCircle2, AlertCircle, CloudUpload, Sparkles, HardDrive } from 'lucide-react';
 
 export default function ContributeDrivePage() {
     const router = useRouter();
@@ -63,7 +62,7 @@ export default function ContributeDrivePage() {
         };
 
         fetchProfessors();
-    }, [db]);
+    }, []);
 
 
     const handleChange = (name, value) => {
@@ -199,7 +198,7 @@ export default function ContributeDrivePage() {
                                 Se connecter
                             </Button>
                             <Button onClick={() => router.push('/signup')} className="w-fit">
-                                S'inscrire
+                                S&apos;inscrire
                             </Button>
                         </div>
                     </AlertDescription>
@@ -227,7 +226,7 @@ export default function ContributeDrivePage() {
                                 Mon profil
                             </Button>
                             <Button variant="outline" onClick={() => router.push('/')} className="w-fit border-destructive/30 hover:bg-destructive/20 text-destructive">
-                                Retour à l'accueil
+                                Retour à l&apos;accueil
                             </Button>
                         </div>
                     </AlertDescription>
@@ -457,7 +456,7 @@ export default function ContributeDrivePage() {
                                                     </label>
                                                 </div>
                                                 <p className="text-xs text-muted-foreground">
-                                                    PDF ou Images jusqu'à 10MB
+                                                    PDF ou Images jusqu&apos;à 10MB
                                                 </p>
                                             </div>
                                         </div>

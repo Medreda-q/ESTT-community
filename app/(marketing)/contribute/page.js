@@ -30,8 +30,8 @@ import {
     DialogTitle,
 } from '@/components/ui/dialog';
 import Image from 'next/image';
-import { Loader2, CheckCircle2, AlertCircle, CloudUpload, Info, Plus, Trash2, HardDrive, FileText, FileSpreadsheet, Presentation, File, Copy, Check } from 'lucide-react';
-const AI_MAX_WORDS = 50; // Restored to a higher limit for the new provider
+import { Loader2, CheckCircle2, AlertCircle, CloudUpload, Info, Plus, Trash2, Copy, Check } from 'lucide-react';
+
 import { Sparkles } from 'lucide-react';
 
 export default function ContributePage() {
@@ -429,7 +429,7 @@ export default function ContributePage() {
             setAiResponseText('');
             setIsError(false);
             setMessage('Champs remplis avec succès via l\'IA !');
-        } catch (error) {
+        } catch {
             setAiParseError('Format JSON invalide. Assurez-vous de coller uniquement le JSON renvoyé par l\'IA.');
         }
     };
@@ -462,7 +462,7 @@ export default function ContributePage() {
                                 Se connecter
                             </Button>
                             <Button onClick={() => router.push('/signup')} className="w-fit">
-                                S'inscrire
+                                S&apos;inscrire
                             </Button>
                         </div>
                     </AlertDescription>
@@ -490,7 +490,7 @@ export default function ContributePage() {
                                 Mon profil
                             </Button>
                             <Button variant="outline" onClick={() => router.push('/')} className="w-fit border-destructive/30 hover:bg-destructive/20 text-destructive">
-                                Retour à l'accueil
+                                Retour à l&apos;accueil
                             </Button>
                         </div>
                     </AlertDescription>
@@ -516,7 +516,7 @@ export default function ContributePage() {
                         <div className="space-y-1.5">
                             <CardTitle>Formulaire de contribution</CardTitle>
                             <CardDescription>
-                                Les champs marqués d'une astérisque (*) sont obligatoires.
+                                Les champs marqués d&apos;une astérisque (*) sont obligatoires.
                             </CardDescription>
                         </div>
                         <Button
@@ -527,7 +527,7 @@ export default function ContributePage() {
                             className="bg-blue-50 hover:bg-blue-100 text-blue-600 border-blue-100 hover:border-blue-200 font-semibold shadow-sm shrink-0 dark:bg-blue-500/10 dark:hover:bg-blue-500/20 dark:text-blue-300 dark:border-blue-500/40 dark:hover:border-blue-500/60"
                         >
                             <Sparkles className="w-4 h-4 mr-2" />
-                            Remplir avec l'IA
+                            Remplir avec l&apos;IA
                         </Button>
                     </CardHeader>
                     <CardContent>
@@ -865,7 +865,7 @@ export default function ContributePage() {
                                                     )}
                                                 </div>
                                                 <p className="text-xs text-muted-foreground">
-                                                    {getFileTypeLabel(formData.type)} — jusqu'à 10 MB
+                                                    {getFileTypeLabel(formData.type)} — jusqu&apos;à 10 MB
                                                 </p>
                                             </div>
                                         </div>
@@ -906,7 +906,7 @@ export default function ContributePage() {
                                 </Button>
                                 <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
                                     <Info className="h-3 w-3" />
-                                    <span>Toutes les ressources sont vérifiées avant d'être publiées.</span>
+                                    <span>Toutes les ressources sont vérifiées avant d&apos;être publiées.</span>
                                 </div>
                             </div>
                         </form>
@@ -965,7 +965,7 @@ export default function ContributePage() {
                     <DialogHeader>
                         <DialogTitle className="flex items-center gap-2">
                             <Sparkles className="w-5 h-5 text-primary" />
-                            Remplir avec l'IA
+                            Remplir avec l&apos;IA
                         </DialogTitle>
                         <DialogDescription>
                             Générez automatiquement le titre et la description en demandant à votre IA préférée (ChatGPT, Claude, Gemini, etc.).
@@ -977,7 +977,7 @@ export default function ContributePage() {
                             <div className="flex items-center justify-between">
                                 <h3 className="font-semibold text-sm flex items-center gap-2"><span className="flex items-center justify-center bg-primary text-primary-foreground rounded-full w-5 h-5 text-xs">1</span> Copiez ce prompt</h3>
                                 {!(formData.field && formData.semester) && (
-                                    <span className="text-[10px] text-muted-foreground italic px-2 py-0.5 bg-muted rounded-full">Sélectionnez d'abord une filière et un semestre pour un prompt avancé.</span>
+                                    <span className="text-[10px] text-muted-foreground italic px-2 py-0.5 bg-muted rounded-full">Sélectionnez d&apos;abord une filière et un semestre pour un prompt avancé.</span>
                                 )}
                             </div>
                             <div className="relative bg-muted/50 p-4 rounded-lg font-mono text-xs text-muted-foreground border border-muted whitespace-pre-wrap">

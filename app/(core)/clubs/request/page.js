@@ -12,8 +12,8 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Loader2, Plus, Trash2, Upload, CheckCircle2, AlertCircle, ArrowLeft, Info } from 'lucide-react';
+import { Alert, AlertDescription, } from '@/components/ui/alert';
+import { Loader2, Plus, Trash2, CheckCircle2, AlertCircle, ArrowLeft, Info } from 'lucide-react';
 import Link from 'next/link';
 
 export default function ClubRequestPage() {
@@ -315,7 +315,7 @@ export default function ClubRequestPage() {
                         <h2 className="text-2xl font-bold mb-2">Demande envoyée !</h2>
                         <p className="text-muted-foreground mb-6">
                             Votre demande de création de club a été soumise avec succès.
-                            Les administrateurs l'examineront prochainement.
+                            Les administrateurs l&apos;examineront prochainement.
                         </p>
                         <Button asChild>
                             <Link href="/clubs">Retour aux clubs</Link>
@@ -569,7 +569,7 @@ export default function ClubRequestPage() {
                                     <div>
                                         <h3 className="text-xl font-semibold">Membres réguliers (optionnel)</h3>
                                         <p className="text-sm text-muted-foreground">
-                                            Ajoutez les membres qui ne font pas partie de l'organigramme
+                                            Ajoutez les membres qui ne font pas partie de l&apos;organigramme
                                         </p>
                                     </div>
                                     <Button
@@ -587,7 +587,7 @@ export default function ClubRequestPage() {
 
                                 {members.length > 0 && (
                                     <div className="space-y-3">
-                                        {members.map((member, index) => (
+                                        {members.map((member, _index) => (
                                             <Card key={member.id} className="border-muted">
                                                 <CardContent className="pt-4 pb-4">
                                                     <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:gap-4">

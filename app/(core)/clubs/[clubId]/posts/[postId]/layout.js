@@ -1,24 +1,15 @@
-import { db, ref, get } from '@/lib/firebase';
+import { getAdminDb } from '@/lib/firebase-admin';
 
 export async function generateMetadata({ params }) {
     const { clubId, postId } = params;
 
     try {
-        if (!db) {
-            return {
-                title: 'Publication',
-                description: 'Découvrez cette publication',
-            };
-        }
-
         // Fetch club data
-        const clubRef = ref(db, `clubs/${clubId}`);
-        const clubSnap = await get(clubRef);
+        const clubSnap = await getAdminDb().ref(`clubs/${clubId}`).once('value');
         const club = clubSnap.exists() ? clubSnap.val() : null;
 
         // Fetch post data
-        const postRef = ref(db, `clubPosts/${clubId}/${postId}`);
-        const postSnap = await get(postRef);
+        const postSnap = await getAdminDb().ref(`clubPosts/${clubId}/${postId}`).once('value');
 
         if (!postSnap.exists()) {
             return {

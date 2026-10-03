@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { db, ref, get, push, set } from '@/lib/firebase';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -18,7 +18,6 @@ import { generatePDF } from '@/lib/pdfUtils';
 
 export default function ClubJoinPage() {
     const params = useParams();
-    const router = useRouter();
     const { user, profile } = useAuth();
     const clubId = params.clubId;
 
@@ -43,6 +42,7 @@ export default function ClubJoinPage() {
         if (clubId) {
             fetchClubData();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [clubId]);
 
     useEffect(() => {
@@ -155,7 +155,6 @@ export default function ClubJoinPage() {
                     );
                     if (president) recipient = president.email;
                 }
-                a
                 if (sendNotif && recipient) {
                     const { adminNotificationEmail } = await import('@/lib/email-templates');
                     const notifHtml = adminNotificationEmail(
@@ -215,7 +214,7 @@ export default function ClubJoinPage() {
                         </div>
                         <CardTitle className="text-2xl text-green-700">Demande envoyée !</CardTitle>
                         <CardDescription>
-                            Votre demande d'adhésion a été transmise aux administrateurs du club.
+                            Votre demande d&apos;adhésion a été transmise aux administrateurs du club.
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
@@ -303,7 +302,7 @@ export default function ClubJoinPage() {
 
                 <Card className="border-t-4" style={{ borderTopColor: club.themeColor || '#64748b' }}>
                     <CardHeader>
-                        <CardTitle>Formulaire d'adhésion</CardTitle>
+                        <CardTitle>Formulaire d&apos;adhésion</CardTitle>
                         <CardDescription>
                             Remplissez ce formulaire pour soumettre votre candidature.
                         </CardDescription>

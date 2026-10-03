@@ -24,12 +24,12 @@ export default function NotFound() {
                 </CardHeader>
                 <CardContent className="text-center space-y-6 px-10 pb-12">
                     <p className="text-muted-foreground text-lg leading-relaxed max-w-md mx-auto">
-                        Désolé, la page que vous recherchez semble avoir disparu dans les couloirs de l'EST Tétouan ou n'a jamais existé.
+                        Désolé, la page que vous recherchez semble avoir disparu dans les couloirs de l&apos;EST Tétouan ou n&apos;a jamais existé.
                     </p>
                     <div className="flex flex-col items-center justify-center pt-2">
                         <p className="text-sm font-medium text-primary bg-primary/5 py-2 px-6 rounded-full inline-flex items-center gap-2">
                             <Search className="w-4 h-4" />
-                            Essayez de retourner à l'accueil pour trouver ce que vous cherchez.
+                            Essayez de retourner à l&apos;accueil pour trouver ce que vous cherchez.
                         </p>
                     </div>
                 </CardContent>
@@ -37,7 +37,7 @@ export default function NotFound() {
                     <Button className="w-full sm:w-auto h-12 px-8 gap-2 text-base font-semibold border-2 border-transparent transition-all duration-200 hover:bg-transparent hover:text-primary hover:border-primary" asChild shadow="none">
                         <Link href="/">
                             <Home className="w-5 h-5" />
-                            Aller à l'accueil
+                            Aller à l&apos;accueil
                         </Link>
                     </Button>
                     <Button variant="outline" className="w-full sm:w-auto h-12 px-8 gap-2 text-base font-semibold border-2 transition-all duration-200 hover:bg-primary hover:text-white" asChild>

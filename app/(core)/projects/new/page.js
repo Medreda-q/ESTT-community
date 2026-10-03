@@ -191,7 +191,7 @@ export default function NewProjectPage() {
                         Proposer un challenge
                     </div>
                     <h1 className="text-4xl font-black tracking-tight text-foreground md:text-5xl">
-                        Lance un projet que d'autres etudiants pourront construire.
+                        Lance un projet que d&apos;autres etudiants pourront construire.
                     </h1>
                     <p className="max-w-2xl text-base leading-relaxed text-muted-foreground">
                         Decris le probleme, le niveau, les attentes et les criteres d evaluation. La communaute pourra ensuite soumettre des implementations et voter.

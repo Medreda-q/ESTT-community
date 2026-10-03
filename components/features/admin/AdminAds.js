@@ -21,7 +21,6 @@ import {
     XCircle,
     ExternalLink,
     MessageSquare,
-    Clock,
     CreditCard,
     AlertCircle
 } from 'lucide-react';
@@ -33,7 +32,7 @@ import { sendPrivateNotification, NOTIF_TYPES } from '@/lib/notifications';
 export default function AdminAds() {
     const { showError } = useDialog();
     const [ads, setAds] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [, setLoading] = useState(true);
     const [filter, setFilter] = useState('all');
     const [search, setSearch] = useState('');
 
@@ -90,7 +89,7 @@ export default function AdminAds() {
             setShowApproveModal(false);
 
             setSelectedAd(null);
-        } catch (error) {
+        } catch {
             showError("Erreur lors de l'approbation");
         }
     };
@@ -117,7 +116,7 @@ export default function AdminAds() {
 
             setSelectedAd(null);
             setRejectReason('');
-        } catch (error) {
+        } catch {
             showError("Erreur lors du refus");
         }
     };
@@ -152,7 +151,7 @@ export default function AdminAds() {
             setShowPaidModal(false);
 
             setSelectedAd(null);
-        } catch (error) {
+        } catch {
             showError("Erreur lors du marquage comme payé");
         }
     };
@@ -291,9 +290,9 @@ export default function AdminAds() {
             <Dialog open={showRejectModal} onOpenChange={setShowRejectModal}>
                 <DialogContent className="rounded-3xl max-w-md">
                     <DialogHeader>
-                        <DialogTitle>Refuser l'annonce</DialogTitle>
+                        <DialogTitle>Refuser l&apos;annonce</DialogTitle>
                         <DialogDescription>
-                            Veuillez indiquer la raison du refus. Cet e-mail sera envoyé à l'étudiant.
+                            Veuillez indiquer la raison du refus. Cet e-mail sera envoyé à l&apos;étudiant.
                         </DialogDescription>
                     </DialogHeader>
                     <div className="py-4">
@@ -315,9 +314,9 @@ export default function AdminAds() {
             <Dialog open={showApproveModal} onOpenChange={setShowApproveModal}>
                 <DialogContent className="rounded-3xl max-w-sm">
                     <DialogHeader>
-                        <DialogTitle>Approuver l'annonce ?</DialogTitle>
+                        <DialogTitle>Approuver l&apos;annonce ?</DialogTitle>
                         <DialogDescription>
-                            L'annonce passera en statut "Paiement Requis". Un e-mail sera envoyé à l'étudiant avec les tarifs.
+                            L&apos;annonce passera en statut &quot;Paiement Requis&quot;. Un e-mail sera envoyé à l&apos;étudiant avec les tarifs.
                         </DialogDescription>
                     </DialogHeader>
                     <DialogFooter className="mt-4">
@@ -340,7 +339,7 @@ export default function AdminAds() {
                     </DialogHeader>
                     <div className="bg-orange-50 p-4 rounded-xl text-[13px] text-orange-800 border border-orange-100 mt-2 dark:bg-orange-500/10 dark:text-orange-300 dark:border-orange-500/30">
                         <AlertCircle className="w-4 h-4 inline mr-2" />
-                        Assurez-vous d'avoir reçu les {selectedAd?.price} MAD via WhatsApp avant de confirmer.
+                        Assurez-vous d&apos;avoir reçu les {selectedAd?.price} MAD via WhatsApp avant de confirmer.
                     </div>
                     <DialogFooter className="mt-6">
                         <Button variant="ghost" className="rounded-xl" onClick={() => setShowPaidModal(false)}>Annuler</Button>

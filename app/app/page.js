@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { db as staticDb } from '@/lib/data';
 import { db as firebaseDb, ref, get } from '@/lib/firebase';
 import Hero from '@/components/features/marketing/Hero';
@@ -14,20 +13,19 @@ import LatestActivity from '@/components/features/marketing/LatestActivity';
 import StructuredData from '@/components/layout/StructuredData';
 
 export default function AppHome() {
-    const router = useRouter();
     const [stats, setStats] = useState({
         resources: 0,
         contributions: 0,
         modules: 0
     });
-    const [allResources, setAllResources] = useState([]);
+    const [, setAllResources] = useState([]);
     const [clubs, setClubs] = useState([]);
     const [loadingClubs, setLoadingClubs] = useState(true);
     const [announcements, setAnnouncements] = useState([]);
     const [currentSlide, setCurrentSlide] = useState(0);
-    const [loadingAnnouncements, setLoadingAnnouncements] = useState(true);
+    const [, setLoadingAnnouncements] = useState(true);
     const [studentAds, setStudentAds] = useState([]);
-    const [loadingAds, setLoadingAds] = useState(true);
+    const [, setLoadingAds] = useState(true);
 
     useEffect(() => {
         if (!firebaseDb) return;
@@ -166,9 +164,6 @@ export default function AppHome() {
         fetchData();
     }, []);
 
-    const handleSearchClick = () => {
-        router.push('/search');
-    };
 
     useEffect(() => {
         if (announcements.length <= 1) return;

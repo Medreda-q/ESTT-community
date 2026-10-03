@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { db, ref, update, push, get } from '@/lib/firebase';
+import { db, ref, update, push, } from '@/lib/firebase';
 import { useAuth } from '@/context/AuthContext';
 import { useDialog } from '@/context/DialogContext';
 import { sendPrivateNotification, NOTIF_TYPES } from '@/lib/notifications';
@@ -11,11 +11,9 @@ import {
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import {
     MessageSquare,
-    CheckCircle2,
     Clock,
     Mail,
     User,
@@ -24,15 +22,12 @@ import {
     Trash2,
     Send,
     Inbox,
-    ArrowLeft,
     CircleDot
 } from 'lucide-react';
 import {
     Dialog,
     DialogContent,
-    DialogHeader,
-    DialogTitle
-} from '@/components/ui/dialog';
+    } from '@/components/ui/dialog';
 
 const SUBJECT_LABELS = {
     question: 'Question générale',
@@ -146,7 +141,7 @@ export default function AdminMessages({ messages = [] }) {
             await update(ref(db, `contactMessages/${msgId}`), { deleted: true });
             setIsDetailOpen(false);
             showSuccess('Message supprimé.');
-        } catch (err) {
+        } catch {
             showError('Erreur lors de la suppression.');
         } finally {
             setActionLoading(null);
