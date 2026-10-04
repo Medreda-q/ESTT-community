@@ -1,3 +1,10 @@
+# [1.38.0](https://github.com/torchcoders/ESTT-community/compare/v1.37.0...v1.38.0) (2026-10-04)
+
+
+### Features
+
+* add collapsible sidebar with smooth animation to admin & moderator panels ([652873d](https://github.com/torchcoders/ESTT-community/commit/652873dc5dcaa6d2982b70873d9c914dc4774ddc))
+
 # [1.37.0](https://github.com/torchcoders/ESTT-community/compare/v1.36.2...v1.37.0) (2026-10-03)
 
 
