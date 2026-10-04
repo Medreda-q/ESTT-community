@@ -20,7 +20,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Loader2, CheckCircle2, AlertCircle, Info, Plus, Trash2 } from 'lucide-react';
 
 export default function AdminFastContribute() {
-    const { user } = useAuth();
+    const { user, profile } = useAuth();
     const [commonData, setCommonData] = useState({
         field: '',
         semester: '',
@@ -158,7 +158,7 @@ export default function AdminFastContribute() {
                             professorName: finalData.professor,
                             displayTitle: resource.title
                         };
-                        const uploaded = await uploadResourceFileToDrive(resource.file, folderMetadata);
+                        const uploaded = await uploadResourceFileToDrive(resource.file, folderMetadata, null, user);
                         if (!uploaded || !uploaded.publicUrl) throw new Error("Upload failed");
                         resourceUrl = uploaded.publicUrl;
                     }
@@ -171,7 +171,7 @@ export default function AdminFastContribute() {
                     url: resourceUrl,
                     fileName: resource.file?.name || null,
                     authorId: user?.uid || null,
-                    authorName: 'Admin',
+                    authorName: (profile?.role === 'moderator' ? 'Modérateur' : 'Admin'),
                     createdAt: timestamp,
                     unverified: false,
                     storageType: finalType === 'html' ? 'supabase' : 'google-drive',

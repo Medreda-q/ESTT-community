@@ -29,6 +29,7 @@ export default function ModeratorDashboard() {
     const [resources, setResources] = useState([]);
     const [users, setUsers] = useState([]);
     const [reports, setReports] = useState([]);
+    const [bugReports, setBugReports] = useState([]);
     const [activeTab, setActiveTab] = useState('overview');
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -107,12 +108,18 @@ export default function ModeratorDashboard() {
             setReports(list);
         });
 
+        const unsubBugReports = onValue(ref(db, 'bugReports'), (snapshot) => {
+            const data = snapshot.val() || {};
+            setBugReports(Object.entries(data).map(([id, val]) => ({ id, ...val })));
+        });
+
         setLoading(false);
 
         return () => {
             unsubResources();
             unsubUsers();
             unsubReports();
+            unsubBugReports();
         };
     }, [user, profile, authLoading]);
 
@@ -164,6 +171,7 @@ export default function ModeratorDashboard() {
                             stats={stats}
                             resources={resources}
                             users={users}
+                            bugReports={bugReports}
                             setActiveTab={setActiveTab}
                         />
                     )}
