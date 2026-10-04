@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Heart, Github, Globe, MessageCircle, BookOpen, ExternalLink, ShieldCheck, Mail, Info, Phone , Copyright } from 'lucide-react';
-import LatestReleaseBadge from '../LatestReleaseBadge';
+
 
 export default function Footer() {
     const pathname = usePathname();
@@ -147,8 +147,6 @@ export default function Footer() {
                     </div>
 
                     <div className="flex flex-wrap items-center justify-center gap-6">
-                        <LatestReleaseBadge />
-                        <div className="h-4 w-[1px] bg-border hidden sm:block" />
                         <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground flex items-center gap-2">
                             <Image
                                 src="/icons/open-source.png"
