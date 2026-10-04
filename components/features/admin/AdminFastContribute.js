@@ -158,7 +158,7 @@ export default function AdminFastContribute() {
                             professorName: finalData.professor,
                             displayTitle: resource.title
                         };
-                        const uploaded = await uploadResourceFileToDrive(resource.file, folderMetadata);
+                        const uploaded = await uploadResourceFileToDrive(resource.file, folderMetadata, null, user);
                         if (!uploaded || !uploaded.publicUrl) throw new Error("Upload failed");
                         resourceUrl = uploaded.publicUrl;
                     }
