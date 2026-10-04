@@ -131,32 +131,13 @@ export default function Footer() {
 
                 {/* Bottom Bar */}
                 <div className="pt-8 border-t border-border flex flex-col lg:flex-row justify-between items-center gap-8 text-sm">
-                    <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-center md:text-left">
-                        <p className="text-[11px] sm:text-sm text-muted-foreground font-medium flex items-center gap-1.5">
-                          Codé avec <Heart className="w-3.5 h-3.5 text-rose-500"/> Par des étudiants de l'EST Tétouan.
-                        
-                        {
-                            //  Copyright {currentYear} <Copyright className="w-3.5 h-3.5" /> ESTT.Community  — Codé avec <Heart className="w-3.5 h-3.5 text-rose-500"/> par des étudiants de l'EST Tétouan.
-                        }
-                        </p>
+                    <p className="text-[11px] sm:text-sm text-muted-foreground font-medium flex items-center gap-1.5">
+                        Codé avec <Heart className="w-3.5 h-3.5 text-rose-500"/> Par des étudiants de l'EST Tétouan.
+                    </p>
 
-                        <div className="flex items-center justify-center gap-6">
-                            <Link href="/privacy" className="text-[11px] sm:text-sm text-muted-foreground hover:text-foreground transition-colors">Vie privée</Link>
-                            <Link href="/terms" className="text-[11px] sm:text-sm text-muted-foreground hover:text-foreground transition-colors">Conditions</Link>
-                        </div>
-                    </div>
-
-                    <div className="flex flex-wrap items-center justify-center gap-6">
-                        <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground flex items-center gap-2">
-                            <Image
-                                src="/icons/open-source.png"
-                                alt="Open Source"
-                                width={16}
-                                height={16}
-                                className="opacity-80 group-hover:opacity-100 transition-opacity"
-                            />
-                            Open Source Project
-                        </p>
+                    <div className="flex items-center justify-center gap-6">
+                        <Link href="/privacy" className="text-[11px] sm:text-sm text-muted-foreground hover:text-foreground transition-colors">Vie privée</Link>
+                        <Link href="/terms" className="text-[11px] sm:text-sm text-muted-foreground hover:text-foreground transition-colors">Conditions</Link>
                     </div>
                 </div>
             </div>
